@@ -2,7 +2,7 @@
 
 The `PutEvents` action sends multiple events to EventBridge in a single request\. For more information, see [PutEvents](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutEvents.html) in the *Amazon EventBridge API Reference* and [put\-events](https://docs.aws.amazon.com/cli/latest/reference/events/put-events.html) in the *AWS CLI Command Reference*\.
 
-Each `PutEvents` request can support a limited number of entries\. For more information, see [Amazon EventBridge Limits](cloudwatch-limits-eventbridge.md)\. The `PutEvents` operation attempts to process all entries in the natural order of the request\. Each event has a unique id that is assigned by EventBridge after you call `PutEvents`\.
+Each `PutEvents` request can support a limited number of entries\. For more information, see [Amazon EventBridge Quotas](cloudwatch-limits-eventbridge.md)\. The `PutEvents` operation attempts to process all entries in the natural order of the request\. Each event has a unique id that is assigned by EventBridge after you call `PutEvents`\.
 
 The following example Java code sends two identical events to EventBridge:
 

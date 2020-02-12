@@ -5,7 +5,7 @@ You can set up your AWS account to send events to other AWS accounts, or to rece
 If you set up your account to send or receive events, you specify which individual AWS accounts can send events to or receive events from yours\. If you use the AWS Organizations feature, you can specify an organization and grant access to all accounts in that organization\. For more information, see [What is AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html) in the *AWS Organizations User Guide*\.
 
 The overall process is as follows:
-+ On the *receiver* account, edit the permissions on either the default event bus or a custom event bus to allow specified AWS accounts, an organization, or all AWS accounts to send events to the receiver account\.
++ On the *receiver* account, edit the permissions on the default event bus to allow specified AWS accounts, an organization, or all AWS accounts to send events to the receiver account\.
 + On the *sender* account, set up one or more rules that have the receiver account's event bus as the target\.
 
   If the sender account has permissions to send events because it is part of an AWS organization that has permissions, the sender account also must have an IAM role with policies that enable it to send events to the receiver account\. If you use the AWS Management Console to create the rule that targets the receiver account, this is done automatically\. If you use the AWS CLI, you must create the role manually\.

@@ -1,12 +1,15 @@
 # Document History<a name="document-history-eventbridge"></a>
 
 The following table describes important changes in each release of the *Amazon EventBridge User Guide*, beginning in July 2019\. For notification about updates to this documentation, you can subscribe to an RSS feed\. 
-| Change | Description | Date | 
-| --- |--- |--- |
-
-The following table describes the important changes to the *Amazon EventBridge User Guide*\.
 
 
 | Change | Description | Release Date | 
 | --- | --- | --- | 
+|  Increased service quotas  |  Amazon EventBridge has increased quotas for invocations and for `PutEvents`\. Quotas vary by region, and can be increased if necessary\. [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/eventbridge/latest/userguide/document-history-eventbridge.html)  | February 11, 2020 | 
+|  Added a new topic on transforming target input, and added a link to Application Auto Scaling Events\.  |  Improved documentation on the input transformer\. [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/eventbridge/latest/userguide/document-history-eventbridge.html) Added a link to Application Auto Scaling Events\. [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/eventbridge/latest/userguide/document-history-eventbridge.html)  | December 20, 2019 | 
+|  Content\-based filtering  |  Amazon EventBridge now supports content\-based filtering with event patterns\. For more information see [Content\-based Filtering with Event Patterns](content-filtering-with-event-patterns.md)\.  | December 19, 2019 | 
+|  Added links to Amazon Augmented AI event examples\.  |  Added a link to the Amazon Augmented AI topic in the Amazon SageMaker Developer Guide that provides example events for Amazon Augmented AI\. For more information, see the following\. [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/eventbridge/latest/userguide/document-history-eventbridge.html)  | December 13, 2019 | 
+|  Added links to Amazon Chime event examples\.  |  Added a link to the Amazon Chime topic that provides example events for that service\. For more information, see the following\. [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/eventbridge/latest/userguide/document-history-eventbridge.html)  | December 12, 2019 | 
+|  Amazon EventBridge Schemas  |  You can now manage schemas and generate code bindings for events in Amazon EventBridge\. For more information, see the following\.  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/eventbridge/latest/userguide/document-history-eventbridge.html)  | December 1, 2019 | 
+|  AWS CloudFormation support for Event Buses  |  AWS CloudFormation now supports the EventBus resource\. It also supports the EventBusName parameter in both the EventBusPolicy and Rule resources\. For more information, see [Amazon EventBridge Resource Type Reference ](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_Events.html)\.  | October 7, 2019 | 
 |  New service  |  Initial release of Amazon EventBridge\.  | July 11, 2019 | 

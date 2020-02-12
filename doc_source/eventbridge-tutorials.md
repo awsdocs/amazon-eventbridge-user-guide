@@ -16,3 +16,4 @@ The following tutorials show you how to create EventBridge rules for certain tas
 + [Tutorial: Run an Amazon ECS Task When a File Is Uploaded to an Amazon S3 Bucket](eventbridge-tutorial-ecs.md)
 + [Tutorial: Schedule Automated Builds Using AWS CodeBuild](eventbridge-tutorial-codebuild.md)
 + [Tutorial: Log State Changes of Amazon EC2 Instances](eventbridge-tutorial-cloudwatch-logs.md)
++ [Tutorial: Download Code Bindings for Events using the EventBridge Schema Registry](eventbridge-tutorial-schema-download-binding.md)

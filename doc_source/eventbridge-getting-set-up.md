@@ -10,7 +10,7 @@ Use the procedures in this section to create and delete EventBridge rules and ev
 + [Creating an Event Bus](create-event-bus.md)
 + [Deleting or Disabling a Rule](delete-or-disable-rule.md)
 
-**Limits**
+**Limitations**
 + The targets you associate with a rule must be in the same Region as the rule\.
 + Some target types might not be available in every Region\. For more information, see [Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\.
 + Creating rules with built\-in targets is supported only in the AWS Management Console\.

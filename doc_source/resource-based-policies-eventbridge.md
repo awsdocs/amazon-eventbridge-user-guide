@@ -179,11 +179,6 @@ When CloudWatch Logs is the target of a rule, EventBridge creates log streams, a
                 "logs:CreateLogStream",
                 "logs:PutLogEvents"
             ],
-            "Condition": {
-                "ArnLike": {
-                    "AWS:SourceArn": "arn:aws:events:{{region}}:{{account}}:*"
-                }
-            },
             "Effect": "Allow",
             "Principal": {
                 "Service": "events.amazonaws.com"

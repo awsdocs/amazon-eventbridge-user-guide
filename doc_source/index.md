@@ -1,7 +1,7 @@
 # Amazon EventBridge User Guide
 
 -----
-*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -38,8 +38,16 @@ Amazon's trademarks and trade dress may not be used in
    + [Tutorial: Run an Amazon ECS Task When a File Is Uploaded to an Amazon S3 Bucket](eventbridge-tutorial-ecs.md)
    + [Tutorial: Schedule Automated Builds Using AWS CodeBuild](eventbridge-tutorial-codebuild.md)
    + [Tutorial: Log State Changes of Amazon EC2 Instances](eventbridge-tutorial-cloudwatch-logs.md)
+   + [Tutorial: Download Code Bindings for Events using the EventBridge Schema Registry](eventbridge-tutorial-schema-download-binding.md)
 + [Schedule Expressions for Rules](scheduled-events.md)
 + [Events and Event Patterns in EventBridge](eventbridge-and-event-patterns.md)
+   + [AWS Events](aws-events.md)
+   + [Event Patterns](filtering-examples-structure.md)
+   + [Matching Null Values and Empty Strings in EventBridge Event Patterns](eventbridge-event-patterns-null-and-empty-strings.md)
+   + [Arrays in EventBridge Event Patterns](arrays-in-eventbridge-event-patterns.md)
+   + [Content-based Filtering with Event Patterns](content-filtering-with-event-patterns.md)
++ [Transforming Target Input](transform-input.md)
++ [Amazon EventBridge Schema Registry](eventbridge-schemas.md)
 + [EventBridge Event Examples from Supported AWS Services](event-types.md)
 + [Sending and Receiving Events Between AWS Accounts](eventbridge-cross-account-event-delivery.md)
 + [Adding Events with PutEvents](add-events-putevents.md)
@@ -55,7 +63,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Using IAM Policy Conditions for Fine-Grained Access Control](policy-keys-eventbridge.md)
 + [Tagging Your Amazon EventBridge Resources](eventbridge-tagging.md)
 + [Logging Amazon EventBridge API Calls with AWS CloudTrail](logging-cw-api-calls-eventbridge.md)
-+ [Amazon EventBridge Limits](cloudwatch-limits-eventbridge.md)
++ [Amazon EventBridge Quotas](cloudwatch-limits-eventbridge.md)
 + [Troubleshooting Amazon EventBridge](eventbridge-troubleshooting.md)
 + [Document History](document-history-eventbridge.md)
 + [AWS Glossary](glossary.md)

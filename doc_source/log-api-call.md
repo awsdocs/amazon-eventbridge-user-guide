@@ -10,11 +10,11 @@ Before you can match these events, you must use AWS CloudTrail to set up a trail
 
 1. Open the CloudTrail console at [https://console\.aws\.amazon\.com/cloudtrail/](https://console.aws.amazon.com/cloudtrail/)\.
 
-1. Choose **Trails**, **Add new trail**\.
+1. Choose **Trails**, **Create trail**\.
 
-1. For **Trail name**, enter a name for the trail\.
+1. For **Trail name**, type a name for the trail\.
 
-1. For **S3 bucket**, enter the name for the new bucket that CloudTrail should deliver logs to\.
+1. For **Storage location**, in **Create a new S3 bucket** type the name for the new bucket that CloudTrail should deliver logs to\.
 
 1. Choose **Create**\.
 

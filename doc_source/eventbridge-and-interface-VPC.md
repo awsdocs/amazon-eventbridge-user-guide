@@ -21,10 +21,10 @@ EventBridge currently supports VPC endpoints in the following Regions:
 + Asia Pacific \(Sydney\)
 + Asia Pacific \(Tokyo\)
 + Canada \(Central\)
-+ EU \(Frankfurt\)
-+ EU \(Ireland\)
-+ EU \(London\)
-+ EU \(Paris\)
++ Europe \(Frankfurt\)
++ Europe \(Ireland\)
++ Europe \(London\)
++ Europe \(Paris\)
 + South America \(São Paulo\)
 
 ## Create a VPC Endpoint for EventBridge<a name="create-VPC-endpoint-for-eventbridge"></a>

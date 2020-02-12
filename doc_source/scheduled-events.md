@@ -41,7 +41,7 @@ cron(fields)
 + The **W** wildcard in the Day\-of\-month field specifies a weekday\. In the Day\-of\-month field, **3W** specifies the weekday closest to the third day of the month\.
 + The **\#** wildcard in the Day\-of\-week field specifies a certain instance of the specified day of the week within a month\. For example, 3\#2 would be the second Tuesday of the month: the 3 refers to Tuesday because it is the third day of each week, and the 2 refers to the second day of that type within the month\.
 
-**Limits**
+**Limitations**
 + You can't specify the Day\-of\-month and Day\-of\-week fields in the same cron expression\. If you specify a value \(or a \*\) in one of the fields, you must use a **?** \(question mark\) in the other\.
 + Cron expressions that lead to rates faster than 1 minute are not supported\.
 
@@ -96,7 +96,7 @@ unit
 The unit of time\. Different units are required for values of 1, such as `minute`, and values over 1, such as `minutes`\.  
 Valid values: minute \| minutes \| hour \| hours \| day \| days
 
-**Limits**  
+**Limitations**  
 If the value is equal to 1, then the unit must be singular\. Similarly, for values greater than 1, the unit must be plural\. For example, rate\(1 hours\) and rate\(5 hour\) are not valid, but rate\(1 hour\) and rate\(5 hours\) are valid\.
 
 **Examples**  

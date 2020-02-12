@@ -28,6 +28,9 @@ In this tutorial, we extract the `instance-id` and `state` of an Amazon EC2 inst
 
 We achieve this by mapping the `instance` variable to the `$.detail.instance-id` JSON path from the event, and the `state` variable to the `$.detail.state` JSON path\. We then set the input template as "The EC2 instance <instance> has changed state to <state>\."
 
+**Note**  
+For more information on the event transformer, see [Transforming Target Input](transform-input.md)
+
 ## Create a Rule<a name="input-transformer-create-rule"></a>
 
 **To customize instance state change information sent to a target using the input transformer**

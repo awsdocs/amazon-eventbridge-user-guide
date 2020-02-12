@@ -9,7 +9,7 @@ All events that are delivered via CloudTrail have `AWS API Call via CloudTrail` 
 **Note**  
 You might accidentally create rules that lead to infinite loops, where a rule is fired repeatedly\. For example, a rule might detect that ACLs have changed on an S3 bucket and trigger software to change them to the desired state\. If you don't write the rule carefully, the subsequent change to the ACLs fires the rule again, creating an infinite loop\.  
 To prevent this, write the rules so that the triggered actions don't refire the same rule\. For example, your rule could fire only if ACLs are found to be in a bad state instead of after any change\.   
-An infinite loop can quickly cause higher than expected charges\. We recommend that you use budgeting, which alerts you when charges exceed your specified limit\. For more information, see [Managing Your Costs with Budgets](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-managing-costs.html) in the *AWS Billing and Cost Management User Guide*\.
+An infinite loop can quickly cause higher than expected charges\. We recommend that you use budgeting, which alerts you when charges exceed your specified quota\. For more information, see [Managing Your Costs with Budgets](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-managing-costs.html) in the *AWS Billing and Cost Management User Guide*\.
 
 **To create a rule that triggers on an API call via CloudTrail**
 
