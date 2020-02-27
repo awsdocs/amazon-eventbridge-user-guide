@@ -1680,7 +1680,7 @@ The following are examples of Amazon Macie events\.
 
 ## AWS Management Console Sign\-in Events<a name="console-event-type"></a>
 
-AWS Management Console sign\-in events can be detected by CloudWatch Events only in the US East \(N\. Virginia\) Region\.
+AWS Management Console sign\-in events can be detected by CloudWatch Events\. For information on regional sign\-in events see: [Logging Regional Sign\-in Events](https://docs.aws.amazon.com/IAM/latest/UserGuide/cloudtrail-integration.html#cloudtrail-integration_signin-regions)\.
 
 The following is an example of a console sign\-in event:
 

@@ -1,4 +1,4 @@
-# Logging Amazon EventBridge API Calls with AWS CloudTrail<a name="logging-cw-api-calls-eventbridge"></a>
+# Logging and Monitoring in Amazon EventBridge<a name="logging-cw-api-calls-eventbridge"></a>
 
 Amazon EventBridge is integrated with AWS CloudTrail, a service that provides a record of actions taken by a user, role, or an AWS service in EventBridge\. CloudTrail captures API calls made by or on behalf of your AWS account\. The calls captured include calls from the CloudWatch console and code calls to the EventBridge API operations\. If you create a trail, you can enable continuous delivery of CloudTrail events to an Amazon S3 bucket, including events for EventBridge\. If you don't configure a trail, you can still view the most recent events in the CloudTrail console in **Event history**\. Using the information collected by CloudTrail, you can determine the request that was made to EventBridge, the IP address from which the request was made, who made the request, when it was made, and additional details\. 
 

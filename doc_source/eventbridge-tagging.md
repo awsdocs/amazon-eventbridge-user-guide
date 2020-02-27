@@ -14,6 +14,7 @@ The following sections provide more information about tags for EventBridge\.
 
 The following resources in EventBridge support tagging: 
 + Rules
++ Event buses
 
 For information about adding and managing tags, see [Managing Tags](#tagging-add-edit-delete)\.
 

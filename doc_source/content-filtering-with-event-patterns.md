@@ -1,11 +1,12 @@
 # Content\-based Filtering with Event Patterns<a name="content-filtering-with-event-patterns"></a>
 
-Amazon EventBridge supports declarative filtering using event patterns\. With event pattern content filtering you can write complex rules that only trigger under very specific conditions\. For instance, you might want a rule that will trigger only when a field of the event is within a specific numeric range, or only if a specific field does not exist in the event JSON\. Content filtering allows you to create complex rules in your event patterns, so that the rule will only call a target if your filtering conditions are met\.
+Amazon EventBridge supports declarative filtering using event patterns\. With event pattern content filtering you can write complex rules that only trigger under very specific conditions\. For instance, you might want a rule that will trigger only when a field of the event is within a specific numeric range, if the event comes from a specific IP address, or only if a specific field does not exist in the event JSON\. Content filtering allows you to create complex rules in your event patterns, so that the rule will only call a target if your filtering conditions are met\.
 
 **Topics**
 + [Prefix Matching](#filtering-prefix-matching)
 + [Anything\-but Matching](#filtering-anything-but)
 + [Numeric Matching](#filtering-numeric-matching)
++ [IP Address Matching](#filtering-ip-matching)
 + [Exists Matching](#filtering-exists-matching)
 + [Complex Example with Multiple Matching](#filtering-complex-example)
 
@@ -128,6 +129,18 @@ The following shows numeric matching for an event pattern\.
 ```
 
 This pattern will only match evaluations that are true for all the fields\. Numeric matching only works with values that are JSON numbers, and is limited to values between \-1\.0e9 and \+1\.0e9 inclusive, with 15 digits of precision \(six digits to the right of the decimal point\)\.
+
+## IP Address Matching<a name="filtering-ip-matching"></a>
+
+IP address matching is available for both IPv4 and IPv6 addresses\.
+
+```
+{
+  "detail": {
+    "source-ip": [ { "cidr": "10.0.0.0/24" } ]
+  }
+}
+```
 
 ## Exists Matching<a name="filtering-exists-matching"></a>
 
