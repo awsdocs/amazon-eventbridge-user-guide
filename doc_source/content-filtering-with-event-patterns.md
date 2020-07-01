@@ -178,7 +178,7 @@ But, it would also match the following event because `c-count` is not a leaf nod
   "detail-type": [ "EC2 Instance State-change Notification" ],
   "resources": [ "arn:aws:ec2:us-east-1:123456789012:instance/i-02ebd4584a2ebd341" ],
   "detail": {
-    "state": [ "initializing", "running" ]
+    "state": [ "initializing", "running" ],
     "c-count" : {
        "c1" : 100
     }
@@ -193,7 +193,7 @@ Suppose you wanted to make an Elasticsearch full\-text index of a bunch of event
 ```
 {
   "detail": {
-  "description": [ { "exists": true } ],
+    "description": [ { "exists": true } ],
   }
 }
 ```
