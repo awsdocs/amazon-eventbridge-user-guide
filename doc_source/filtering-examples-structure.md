@@ -13,10 +13,10 @@ Event patterns have the same structure as the Events they match\. They look much
   "region": "us-west-1",
   "resources": [
     "arn:aws:ec2:us-west-1:123456789012:instance/ i-1234567890abcdef0"
-],
-"detail": {
-  "instance-id": " i-1234567890abcdef0",
-  "state": "terminated"
+  ],
+  "detail": {
+    "instance-id": " i-1234567890abcdef0",
+    "state": "terminated"
   }
 }
 ```
@@ -108,23 +108,23 @@ This works for numbers too\. Consider the following Amazon Macie event \(truncat
     "arn:aws:macie:us-east-1:123456789012:trigger/trigger_id"
   ],
   "detail": {
-  "notification-type": "ALERT_CREATED",
-  "name": "Scanning bucket policies",
-  "tags": [
-  "Custom_Alert",
-  "Insider"
-  ],
-  "url": "https://lb00.us-east-1.macie.aws.amazon.com/111122223333/posts/alert_id",
-  "alert-arn": "arn:aws:macie:us-east-1:123456789012:trigger/trigger_id/alert/alert_
-  "risk-score": 80,
-  "trigger": {
-    "rule-arn": "arn:aws:macie:us-east-1:123456789012:trigger/trigger_id",
-    "alert-type": "basic",
-    "created-at": "2017-01-02 19:54:00.644000",
-    "description": "Alerting on failed enumeration of large number of bucket policie
-    "risk": 8
-},
-"created-at": "2017-04-18T00:21:12.059000",
+    "notification-type": "ALERT_CREATED",
+    "name": "Scanning bucket policies",
+    "tags": [
+      "Custom_Alert",
+      "Insider"
+    ],
+    "url": "https://lb00.us-east-1.macie.aws.amazon.com/111122223333/posts/alert_id",
+    "alert-arn": "arn:aws:macie:us-east-1:123456789012:trigger/trigger_id/alert/alert_
+    "risk-score": 80,
+    "trigger": {
+      "rule-arn": "arn:aws:macie:us-east-1:123456789012:trigger/trigger_id",
+      "alert-type": "basic",
+      "created-at": "2017-01-02 19:54:00.644000",
+      "description": "Alerting on failed enumeration of large number of bucket policie
+      "risk": 8
+    },
+    "created-at": "2017-04-18T00:21:12.059000",
 .
 .
 .
