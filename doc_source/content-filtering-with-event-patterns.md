@@ -42,7 +42,7 @@ Anything\-but matching matches anything except what's provided in the rule\.
 
 You can use `anything-but` with strings and numeric values, including lists that contain only strings, or only numbers\.
 
-The following shows single `anyting-but` matching, first with strings and then with numbers\.
+The following shows single `anything-but` matching, first with strings and then with numbers\.
 
 ```
 {

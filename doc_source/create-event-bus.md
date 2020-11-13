@@ -8,7 +8,7 @@ You can create two types of additional event buses in your account:
   For more information, see [Receiving Events from an SaaS Partner](create-partner-event-bus.md)\.
 + *Custom event buses*, which can receive events from your custom applications and services\.
 
-  Each event bus in your account can have up to 100 EventBridge rules associated with it, so if your account has many rules, you might want to create custom event buses to associate with some of the rules for your custom application events\. Another reason to create custom event buses is to apply different permissions to different event buses\. When you set permissions on an event bus, you can specify which other accounts or entire organizations can send events to the event bus\.
+  Each event bus in your account can have up to 300 EventBridge rules associated with it, so if your account has many rules, you might want to create custom event buses to associate with some of the rules for your custom application events\. Another reason to create custom event buses is to apply different permissions to different event buses\. When you set permissions on an event bus, you can specify which other accounts or entire organizations can send events to the event bus\.
 
 ## Creating a Custom Event Bus<a name="create-custom-event-bus"></a>
 
