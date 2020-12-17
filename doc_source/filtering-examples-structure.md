@@ -2,7 +2,7 @@
 
 Event patterns have the same structure as the Events they match\. They look much like the events they are filtering\. Rules use event patterns to select events and route them to targets\. A pattern either matches an event or it doesn't\. The following is an example of a simple AWS Event which you might encounter on EventBridge\.
 
-```
+```json
 {
   "version": "0",
   "id": "6a7e8feb-b491-4cf7-a9f1-bf3703467718",
@@ -13,17 +13,17 @@ Event patterns have the same structure as the Events they match\. They look much
   "region": "us-west-1",
   "resources": [
     "arn:aws:ec2:us-west-1:123456789012:instance/ i-1234567890abcdef0"
-],
-"detail": {
-  "instance-id": " i-1234567890abcdef0",
-  "state": "terminated"
+  ],
+  "detail": {
+    "instance-id": " i-1234567890abcdef0",
+    "state": "terminated"
   }
 }
 ```
 
 Event patterns have the same structure as the events they match\. For example, the following event pattern allows you to subscribe to only events from Amazon EC2\.
 
-```
+```json
 {
   "source": [ "aws.ec2" ]
 }
@@ -33,7 +33,7 @@ The pattern simply quotes the fields you want to match and provides the values y
 
 The sample event above, like most events, has a nested structure\. Suppose you want to process all `instance-termination` events\. Create an event pattern like the following\.
 
-```
+```json
 {
   "source": [ "aws.ec2" ],
   "detail-type": [ "EC2 Instance State-change Notification" ],
@@ -51,9 +51,9 @@ Only specify fields that you care about\. In the previous example, you only prov
 
 Match values are always in arrays\. Note that the value to match is in a JSON array, surrounded by “\[” and “\]”\. This is so you can provide multiple values\. For example, if you were interested in events from Amazon EC2 or Fargate, you could specify the following\.
 
-```
+```json
 {
-    "source": [ "aws.ec2", "aws.fargate" ]
+  "source": [ "aws.ec2", "aws.fargate" ]
 }
 ```
 
@@ -63,7 +63,7 @@ This matches on events where the value for the `"source"` field is either `"aws.
 
 You can match on all of the JSON data types\. Consider the following example Amazon EC2 Auto Scaling event\.
 
-```
+```json
 {
   "version": "0",
   "id": "3e3c153a-8339-4e30-8c35-687ebef853fe",
@@ -82,19 +82,19 @@ You can match on all of the JSON data types\. Consider the following example Ama
 
 For the above example, you can match on the ` “responseElements”` field as follows\.
 
-```
+```json
 {
   "source": [ "aws.autoscaling" ],
   "detail-type": [ "EC2 Instance Launch Successful" ],
   "detail": {
-   "responseElements": [ null ]
+    "responseElements": [ null ]
   }
 }
 ```
 
 This works for numbers too\. Consider the following Amazon Macie event \(truncated for brevity\)\.
 
-```
+```json
 {
   "version": "0",
   "id": "3e355723-fca9-4de3-9fd7-154c289d6b59",
@@ -108,31 +108,30 @@ This works for numbers too\. Consider the following Amazon Macie event \(truncat
     "arn:aws:macie:us-east-1:123456789012:trigger/trigger_id"
   ],
   "detail": {
-  "notification-type": "ALERT_CREATED",
-  "name": "Scanning bucket policies",
-  "tags": [
-  "Custom_Alert",
-  "Insider"
-  ],
-  "url": "https://lb00.us-east-1.macie.aws.amazon.com/111122223333/posts/alert_id",
-  "alert-arn": "arn:aws:macie:us-east-1:123456789012:trigger/trigger_id/alert/alert_
-  "risk-score": 80,
-  "trigger": {
-    "rule-arn": "arn:aws:macie:us-east-1:123456789012:trigger/trigger_id",
-    "alert-type": "basic",
-    "created-at": "2017-01-02 19:54:00.644000",
-    "description": "Alerting on failed enumeration of large number of bucket policie
-    "risk": 8
-},
-"created-at": "2017-04-18T00:21:12.059000",
-.
-.
-.
+    "notification-type": "ALERT_CREATED",
+    "name": "Scanning bucket policies",
+    "tags": [
+      "Custom_Alert",
+      "Insider"
+    ],
+    "url": "https://lb00.us-east-1.macie.aws.amazon.com/111122223333/posts/alert_id",
+    "alert-arn": "arn:aws:macie:us-east-1:123456789012:trigger/trigger_id/alert/alert"
+    "risk-score": 80,
+    "trigger": {
+      "rule-arn": "arn:aws:macie:us-east-1:123456789012:trigger/trigger_id",
+      "alert-type": "basic",
+      "created-at": "2017-01-02 19:54:00.644000",
+      "description": "Alerting on failed enumeration of large number of bucket policy",
+      "risk": 8
+    },
+    "created-at": "2017-04-18T00:21:12.059000"
+  }
+}
 ```
 
 If you want to match anything that has a risk score of 80 and a trigger risk of 8, do the following\.
 
-```
+```json
 {
   "source": ["aws.macie"],
   "detail-type": ["Macie Alert"],
@@ -149,7 +148,7 @@ If you want to match anything that has a risk score of 80 and a trigger risk of 
 
 The following example event is used to show how the subsequent event patterns would match with this event JSON\.
 
-```
+```json
 {
   "version": "0",
   "id": "6a7e8feb-b491-4cf7-a9f1-bf3703467718",
@@ -170,7 +169,7 @@ The following example event is used to show how the subsequent event patterns wo
 
 Event patterns are represented as JSON objects with a structure that is similar to that of events, for example:
 
-```
+```json
 {
   "source": [ "aws.ec2" ],
   "detail-type": [ "EC2 Instance State-change Notification" ],
@@ -193,7 +192,7 @@ When you write patterns to match events, you can use the `TestEventPattern` API 
 
 The following event patterns would match the previous example event\. The first pattern matches because one of the instance values specified in the pattern matches the event \(and the pattern does not specify any additional fields not contained in the event\)\. The second one matches because the "terminated" state is contained in the event\.
 
-```
+```json
 {
   "resources": [
     "arn:aws:ec2:us-east-1:123456789012:instance/i-12345678",
@@ -202,7 +201,7 @@ The following event patterns would match the previous example event\. The first 
 }
 ```
 
-```
+```json
 {
   "detail": {
     "state": [ "terminated" ]
@@ -212,7 +211,7 @@ The following event patterns would match the previous example event\. The first 
 
 These event patterns do not match the event at the top of this page\. The first pattern does not match because the pattern specifies a "pending" value for state, and this value does not appear in the event\. The second pattern does not match because the resource value specified in the pattern does not appear in the event\. 
 
-```
+```json
 {
   "source": [ "aws.ec2" ],
   "detail-type": [ "EC2 Instance State-change Notification" ],
@@ -222,7 +221,7 @@ These event patterns do not match the event at the top of this page\. The first 
 }
 ```
 
-```
+```json
 {
   "source": [ "aws.ec2" ],
   "detail-type": [ "EC2 Instance State-change Notification" ],
