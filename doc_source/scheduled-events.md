@@ -100,7 +100,7 @@ Valid values: minute \| minutes \| hour \| hours \| day \| days
 If the value is equal to 1, then the unit must be singular\. Similarly, for values greater than 1, the unit must be plural\. For example, rate\(1 hours\) and rate\(5 hour\) are not valid, but rate\(1 hour\) and rate\(5 hours\) are valid\.
 
 **Examples**  
-The following examples show how to use rate expressions with the AWS CLI [put\-rule](https://docs.aws.amazon.com/cli/latest/reference/events/put-rule.html) command\. The first example triggers the rule minute, the next triggers it every five minutes, the third example triggers it once an hour, and the final example triggers it once per day\.
+The following examples show how to use rate expressions with the AWS CLI [put\-rule](https://docs.aws.amazon.com/cli/latest/reference/events/put-rule.html) command\. The first example triggers the rule every minute, the next triggers it every five minutes, the third example triggers it once an hour, and the final example triggers it once per day\.
 
 ```
 aws events put-rule --schedule-expression "rate(1 minute)" --name MyRule2
