@@ -88,6 +88,10 @@ If the rule is triggered by an event from an AWS service, you can also use the `
 
 ScheduleExpressions are in UTC\. Make sure you have set the schedule for rule to self\-trigger in the UTC timezone\. If the ScheduleExpression is correct, then follow the steps under [I have just created/modified a rule but it did not match a test event](#rule-does-not-match)\.
 
+**Note**  
+Depending on caching, the first instance of a scheduled rule may be dropped\.  
+ It can take a short period for rules to take effect\. Any trigger that arrives within this period may not match your created or updated schedule\.
+
 ## My rule did not trigger at the time that I expected<a name="rule-did-not-trigger-on-time"></a>
 
 EventBridge doesn't support setting an exact start time when you create a rule to run every time period\. The count down to run time begins as soon as you create the rule\.

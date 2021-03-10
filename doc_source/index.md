@@ -1,7 +1,7 @@
 # Amazon EventBridge User Guide
 
 -----
-*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2021 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -17,13 +17,16 @@ Amazon's trademarks and trade dress may not be used in
 + [What Is Amazon EventBridge?](what-is-amazon-eventbridge.md)
 + [Setting Up Amazon EventBridge](getting-set-up-eventbridge.md)
 + [Getting Started with Amazon EventBridge](eventbridge-getting-set-up.md)
-   + [Creating an EventBridge Rule That Triggers on an Event from an AWS Resource](create-eventbridge-rule.md)
-   + [Creating an EventBridge Rule That Triggers on an AWS API Call Using AWS CloudTrail](create-eventbridge-cloudtrail-rule.md)
-   + [Creating an EventBridge Rule That Triggers on a Schedule](create-eventbridge-scheduled-rule.md)
-   + [Receiving Events from an SaaS Partner](create-partner-event-bus.md)
-      + [Creating a Rule That Triggers on an SaaS Partner Event](create-rule-partner-events.md)
-   + [Creating an Event Bus](create-event-bus.md)
-   + [Deleting or Disabling an EventBridge Rule](delete-or-disable-rule.md)
++ [Creating a rule for an AWS service](create-eventbridge-rule.md)
++ [Creating an EventBridge Rule That Triggers on an AWS API Call Using AWS CloudTrail](create-eventbridge-cloudtrail-rule.md)
++ [Creating an EventBridge Rule That Triggers on a Schedule](create-eventbridge-scheduled-rule.md)
++ [Creating an Event Bus](create-event-bus.md)
++ [Deleting or Disabling an EventBridge Rule](delete-or-disable-rule.md)
++ [Event retry policy and using dead-letter queues](rule-dlq.md)
++ [EventBridge archives and event replays](eb-archives.md)
++ [Amazon EventBridge integration with AWS X-Ray](eb-xray-integ.md)
++ [API destinations](api-destinations.md)
+   + [API destination partners](api-destination-partners.md)
 + [Amazon EventBridge Tutorials](eventbridge-tutorials.md)
    + [Tutorial: Use EventBridge to Relay Events to AWS Systems Manager Run Command](ec2-run-command.md)
    + [Tutorial: Log the State of an Amazon EC2 Instance Using EventBridge](log-ec2-instance-state.md)
@@ -55,6 +58,11 @@ Amazon's trademarks and trade dress may not be used in
 + [Using EventBridge with Interface VPC Endpoints](eventbridge-and-interface-VPC.md)
 + [Monitoring Usage with CloudWatch Metrics](eventbridge-monitoring-cloudwatch-metrics.md)
 + [Amazon EventBridge Managed Rules](eventbridge-managed-rules.md)
++ [Amazon EventBridge Targets](eventbridge-targets.md)
+   + [API Gateway Target](targets-apigateway.md)
++ [Receiving events from a SaaS partner](create-partner-event-bus.md)
+   + [Configure EventBridge to receive events from a SaaS integration](eb-saas-receive-events.md)
+   + [Receiving events from Salesforce](eventbridge-salesforce-events.md)
 + [Security in Amazon EventBridge](security-eventbridge.md)
    + [Data Protection in Amazon EventBridge](data-protection.md)
    + [Tag-based Policies](tag-based-policies.md)
@@ -62,12 +70,16 @@ Amazon's trademarks and trade dress may not be used in
       + [Overview of Managing Access Permissions to Your EventBridge Resources](iam-access-control-identity-based-eventbridge.md)
       + [Using Identity-Based Policies (IAM Policies) for EventBridge](iam-identity-based-access-control-eventbridge.md)
       + [Using Resource-Based Policies for EventBridge](resource-based-policies-eventbridge.md)
+      + [Using Resource-Based Policies with the EventBridge Schema Registry](resource-based-policies-schemas.md)
       + [EventBridge Permissions Reference](permissions-reference-eventbridge.md)
       + [Using IAM Policy Conditions for Fine-Grained Access Control](policy-keys-eventbridge.md)
    + [Logging and Monitoring in Amazon EventBridge](logging-cw-api-calls-eventbridge.md)
+   + [Compliance Validation in Amazon EventBridge](compliance-validation.md)
    + [Resilience in Amazon EventBridge](disaster-recovery-resiliency.md)
+   + [Infrastructure Security in Amazon EventBridge](infrastructure-security.md)
+   + [Configuration and Vulnerability Analysis in Amazon EventBridge](configuration-vulnerability.md)
 + [Tagging Your Amazon EventBridge Resources](eventbridge-tagging.md)
 + [Amazon EventBridge Quotas](cloudwatch-limits-eventbridge.md)
 + [Troubleshooting Amazon EventBridge](eventbridge-troubleshooting.md)
 + [Document History](document-history-eventbridge.md)
-+ [AWS Glossary](glossary.md)
++ [AWS glossary](glossary.md)

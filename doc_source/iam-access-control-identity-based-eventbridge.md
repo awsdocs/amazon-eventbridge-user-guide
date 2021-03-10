@@ -21,6 +21,8 @@ In EventBridge, the primary resource is a rule\. EventBridge supports other reso
 
 | Resource Type | ARN Format | 
 | --- | --- | 
+|  Archive  |  `arn:aws:events:region:account:archive/archive-name`  | 
+|  Replay  |  `arn:aws:events:region:account:replay/replay-name`  | 
 |  Rule  |  `arn:aws:events:region:account:rule/[event-bus-name]/rule-name`  | 
 |  Event bus  |  `arn:aws:events:region:account:event-bus/event-bus-name`  | 
 |  All EventBridge resources  |  `arn:aws:events:*`  | 

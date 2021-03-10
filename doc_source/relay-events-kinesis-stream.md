@@ -1,6 +1,6 @@
 # Tutorial: Relay Events to an Amazon Kinesis Stream Using EventBridge<a name="relay-events-kinesis-stream"></a>
 
-You can relay AWSAWS API call events in EventBridge to a stream in Amazon Kinesis\.
+You can relay AWS API call events in EventBridge to a stream in Amazon Kinesis\.
 
 ## Prerequisite<a name="stream-prerequisite"></a>
 

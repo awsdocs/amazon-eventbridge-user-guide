@@ -24,4 +24,8 @@ In this tutorial you will generate and download code bindings from an EventBridg
 
    It may take a few seconds for your download to begin\. The download file will be a zip file of code bindings for the language you selected\.
 
+1. Unzip the downloaded file and add it to your project\.
+
+   The downloaded package contains a README file that explains how to configure the package's dependencies in various frameworks\.
+
 Use these code bindings in your own code to help quickly build applications using this EventBridge event\.

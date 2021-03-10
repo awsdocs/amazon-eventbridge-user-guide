@@ -31,6 +31,8 @@ For security reasons, we recommend that you use the root credentials only to cre
       
   + **Applications running on Amazon EC2** – Instead of storing access keys in the EC2 instance for use by applications running on the instance and making AWS API requests, you can use an IAM role to manage temporary credentials for these applications\. To assign an AWS role to an EC2 instance and make it available to all of its applications, you can create an instance profile that is attached to the instance\. An instance profile contains the role and enables programs running on the EC2 instance to get temporary credentials\. For more information, see [Using Roles for Applications on Amazon EC2](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html) in the *IAM User Guide*\.
 
+    
+
 ## Access Control<a name="access-control-eventbridge"></a>
 
 You can have valid credentials to authenticate your requests, but unless you have permissions you cannot create or access EventBridge resources\. For example, you must have permissions to invoke AWS Lambda, Amazon Simple Notification Service \(Amazon SNS\), and Amazon Simple Queue Service \(Amazon SQS\) targets associated with your EventBridge rules\.
@@ -39,4 +41,5 @@ The following sections describe how to manage permissions for EventBridge\. We r
 + [Overview of Managing Access Permissions to Your EventBridge Resources](iam-access-control-identity-based-eventbridge.md)
 + [Using Identity\-Based Policies \(IAM Policies\) for EventBridge](iam-identity-based-access-control-eventbridge.md)
 + [Using Resource\-Based Policies for EventBridge](resource-based-policies-eventbridge.md)
++ [Using Resource\-Based Policies with the EventBridge Schema Registry](resource-based-policies-schemas.md)
 + [EventBridge Permissions Reference](permissions-reference-eventbridge.md)

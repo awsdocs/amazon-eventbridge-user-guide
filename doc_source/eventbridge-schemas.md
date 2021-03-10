@@ -1,10 +1,18 @@
 # Amazon EventBridge Schema Registry<a name="eventbridge-schemas"></a>
 
-The EventBridge Schema Registry allows you to discover, create, and manage OpenAPI schemas for events on EventBridge\. You can find schemas for existing AWS services, create and upload custom schemas, or generate a schema based on events on an event bus\. For all schemas in EventBridge you can generate and download code bindings to help quickly build applications that use those events\.
+The EventBridge Schema Registry allows you to discover, create, and manage OpenAPI or JSONSchema Draft4 specification schemas for events on EventBridge\. You can find schemas for existing AWS services, create and upload custom schemas, or generate a schema based on events on an event bus\. For all schemas in EventBridge you can generate and download code bindings to help quickly build applications that use those events\. You can also export AWS registry and your discovered schemas in OpenAPI 3 format to JSONSchema format\.
 
 Schemas are available for the events of all AWS services on Amazon EventBridge\. You can also create or upload schemas, or automatically infer schemas directly from events on an event bus\. Once you have found or created a schema for an event, you can download code bindings for popular programming languages\. You can browse, search, create, upload, and generate code bindings for schemas\. You can manage schemas from the Amazon EventBridge console, using the API, or directly in your IDE using the AWS Toolkits\. You can quickly build serverless apps that use events using the AWS Serverless Application Model\.
 
-For information about using the EventBridge Schema Registry with the API, or through Amazon CloudFront, see the following\.
+EventBridge supports both OpenAPI 3 and JSONSchema Draft4 formats\. Consider the additional following differences when determining the format to use\.
++ JSONSchema format supports additional keywords that are not supported in OpenAPI, such as `$schema, additionalItems`\.
++ There are minor differences in how keywords are handled, such as `type` and `format`\.
++ OpenAPI does not support JSONSchema Hyper\-Schema hyperlinks in JSON documents\.
++ Tools for OpenAPI tend to focus on build\-time, whereas tools for JSONSchema tend to focus on run\-time operations, such as client tools for schema validation\.
+
+For a practical use case, consider using JSONSchema format to implement client\-side validation so that you can ensure that events sent to EventBridge conform to the schema\. You can use JSONSchema to define a contract for valid JSON documents, and then use a [JSON schema validator](https://json-schema.org/implementations.html) before sending the associated events\.
+
+For information about using the EventBridge Schema Registry with the API, or through AWS CloudFormation, see the following\.
 + [Amazon EventBridge Schema Registry API Reference](https://docs.aws.amazon.com/eventbridge/latest/schema-reference/index.html)
 + [EventSchemas Resource Type Reference](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_EventSchemas.html) in AWS CloudFormation
 
@@ -63,9 +71,9 @@ To create a registry using the Amazon EventBridge Schema Registry API, use the [
 
 ## Upload or Create Schemas<a name="eventbridge-schemas-create"></a>
 
-Schemas are defined using JSON files, using the [OpenAPI Specification](https://swagger.io/docs/specification/)\. You can create or upload your own event schemas in EventBridge using this specification\. You can download a template, or you can edit a template directly in the EventBridge console\. 
+Schemas are defined using JSON files using either the [OpenAPI Specification](https://swagger.io/specification/) or the [JSONSchema Draft4 specification](https://json-schema.org/specification-links.html#draft-4)\. You can create or upload your own event schemas in EventBridge using either of these specifications\. You can download a template, or you can edit a template directly in the EventBridge console\. 
 
-**To create a schema from a downloaded template**
+**To create an OpenAPI schema from a downloaded template**
 
 1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.
 
@@ -73,7 +81,7 @@ Schemas are defined using JSON files, using the [OpenAPI Specification](https://
 
 1. In the **Getting started** section under **Schema template**, choose **Download**\.
 
-1. Alternatively, you can download the JSON from the following code example\.
+1. Alternatively, you can copy the JSON from the following code example\.
 
    ```
    {
@@ -131,7 +139,9 @@ Schemas are defined using JSON files, using the [OpenAPI Specification](https://
 
 1. Under **Schema details** enter a name for your schema\.
 
-1. Optionally, enter a description for the schema you created\.
+1. Optionally, enter a description for the schema to create\.
+
+1. For **Schema type**, choose either **OpenAPI 3\.0** or **JSON Schema Draft 4**\.
 
 1. With the **Create** tab selected, either drag your schema file to the text box, or paste the schema source\.
 
@@ -147,7 +157,11 @@ Schemas are defined using JSON files, using the [OpenAPI Specification](https://
 
 1. Under **Schema details** enter a name for your schema\.
 
-1. Optionally, enter a description for the schema you created\.
+1. For **Schema type**, choose either **OpenAPI 3\.0** or **JSON Schema Draft 4**\.
+
+1. Optionally, enter a description for the schema to create\.
+
+1. For **Schema type**, choose either **OpenAPI 3\.0** or **JSON Schema Draft 4**\.
 
 1. With the **Create** tab selected, choose **Load template**\.
 
@@ -172,6 +186,10 @@ With the JSON of an event, you can automatically generate a schema for those typ
 1. Under **Schema details** enter a name for your schema\.
 
 1. Optionally, enter a description for the schema you created\.
+
+1. For **Schema type**, choose **OpenAPI 3\.0**\.
+
+   You cannot use **Discover from JSON** to create a JSONSchema schema\.
 
 1. Select **Discover from JSON**
 
@@ -204,9 +222,9 @@ With the JSON of an event, you can automatically generate a schema for those typ
    }
    ```
 
-1. Select **Discover schema**\.
+1. Choose **Discover schema**\.
 
-1. EventBridge will generate an OpenAPI schema for the event\. For example, the following is the generated schema for the event you pasted in\.
+1. EventBridge generates an OpenAPI schema for the event\. For example, the following is the generated schema for the event you pasted in\.
 
    ```
    {

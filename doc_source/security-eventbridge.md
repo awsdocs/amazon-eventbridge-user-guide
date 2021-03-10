@@ -7,6 +7,9 @@ This section provides information about Amazon EventBridge security and authenti
 + [Tag\-based Policies](tag-based-policies.md)
 + [Identity and Access Management in Amazon EventBridge](auth-and-access-control-eventbridge.md)
 + [Logging and Monitoring in Amazon EventBridge](logging-cw-api-calls-eventbridge.md)
++ [Compliance Validation in Amazon EventBridge](compliance-validation.md)
 + [Resilience in Amazon EventBridge](disaster-recovery-resiliency.md)
++ [Infrastructure Security in Amazon EventBridge](infrastructure-security.md)
++ [Configuration and Vulnerability Analysis in Amazon EventBridge](configuration-vulnerability.md)
 
 Amazon EventBridge uses IAM to control access to other AWS services and resources\. For an overview of how IAM works, see [Overview of Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_access-management.html) in the *IAM User Guide*\. For an overview of security credentials, see [AWS Security Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html) in the *Amazon Web Services General Reference*\.

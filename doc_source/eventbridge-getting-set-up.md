@@ -1,14 +1,6 @@
 # Getting Started with Amazon EventBridge<a name="eventbridge-getting-set-up"></a>
 
-Use the procedures in this section to create and delete EventBridge rules and event buses\. For tutorials on specific scenarios and specific targets, see [Amazon EventBridge Tutorials](eventbridge-tutorials.md)\.
-
-**Topics**
-+ [Creating an EventBridge Rule That Triggers on an Event from an AWS Resource](create-eventbridge-rule.md)
-+ [Creating a Rule That Triggers on an AWS API Call via CloudTrail](create-eventbridge-cloudtrail-rule.md)
-+ [Creating a Rule That Triggers on a Schedule](create-eventbridge-scheduled-rule.md)
-+ [Receiving Events from an SaaS Partner](create-partner-event-bus.md)
-+ [Creating an Event Bus](create-event-bus.md)
-+ [Deleting or Disabling a Rule](delete-or-disable-rule.md)
+Use EventBridge rules to determine which events you want to trigger a target\. For tutorials on specific scenarios and specific targets, see [Amazon EventBridge Tutorials](eventbridge-tutorials.md)\.
 
 **Limitations**
 + The targets you associate with a rule must be in the same Region as the rule\.
@@ -18,7 +10,7 @@ Use the procedures in this section to create and delete EventBridge rules and ev
 
   ```
   {
-                  "Sid": "Allow CWE to use the key",
+                  "Sid": "Allow EventBridge to use the key",
                   "Effect": "Allow",
                   "Principal": {
                                   "Service": "events.amazonaws.com"

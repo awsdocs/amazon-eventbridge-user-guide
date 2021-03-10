@@ -27,7 +27,7 @@ Prefix matching only works on string\-valued fields\.
 
 ### Prefix Matching Example<a name="filtering-prefix-matching-example"></a>
 
-Suppose you want to process all AWS Auto Scaling events from European regions\. The following event pattern shows how to matches on that\.
+Suppose you want to process all AWS Auto Scaling events from European regions\. The following event pattern shows how to match on that\.
 
 ```
 {
@@ -42,7 +42,7 @@ Anything\-but matching matches anything except what's provided in the rule\.
 
 You can use `anything-but` with strings and numeric values, including lists that contain only strings, or only numbers\.
 
-The following shows single `anyting-but` matching, first with strings and then with numbers\.
+The following shows single `anything-but` matching, first with strings and then with numbers\.
 
 ```
 {

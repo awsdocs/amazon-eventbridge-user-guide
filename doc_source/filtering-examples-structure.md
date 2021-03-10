@@ -12,10 +12,10 @@ Event patterns have the same structure as the Events they match\. They look much
   "time": "2017-12-22T18:43:48Z",
   "region": "us-west-1",
   "resources": [
-    "arn:aws:ec2:us-west-1:123456789012:instance/ i-1234567890abcdef0"
+    "arn:aws:ec2:us-west-1:123456789012:instance/i-1234567890abcdef0"
 ],
 "detail": {
-  "instance-id": " i-1234567890abcdef0",
+  "instance-id": "i-1234567890abcdef0",
   "state": "terminated"
   }
 }
@@ -25,7 +25,7 @@ Event patterns have the same structure as the events they match\. For example, t
 
 ```
 {
-  "source": [ "aws.ec2" ]
+  "source": ["aws.ec2"]
 }
 ```
 
@@ -35,10 +35,10 @@ The sample event above, like most events, has a nested structure\. Suppose you w
 
 ```
 {
-  "source": [ "aws.ec2" ],
-  "detail-type": [ "EC2 Instance State-change Notification" ],
+  "source": ["aws.ec2"],
+  "detail-type": ["EC2 Instance State-change Notification"],
   "detail": {
-    "state": [ "terminated" ]
+    "state": ["terminated"]
   }
 }
 ```
@@ -47,13 +47,15 @@ The sample event above, like most events, has a nested structure\. Suppose you w
 
 Only specify fields that you care about\. In the previous example, you only provide values for three fields: The top\-level fields `“source” ` and `“detail-type”`, and the `“state”` field inside the `“detail”` object field\. EventBridge ignores all the other fields in the event while applying the filter\.
 
+
+
 ## Match Values<a name="filtering-match-values"></a>
 
 Match values are always in arrays\. Note that the value to match is in a JSON array, surrounded by “\[” and “\]”\. This is so you can provide multiple values\. For example, if you were interested in events from Amazon EC2 or Fargate, you could specify the following\.
 
 ```
 {
-    "source": [ "aws.ec2", "aws.fargate" ]
+    "source": ["aws.ec2", "aws.fargate"]
 }
 ```
 
@@ -80,19 +82,19 @@ You can match on all of the JSON data types\. Consider the following example Ama
 }
 ```
 
-For the above example, you can match on the ` “responseElements”` field as follows\.
+For the above example, you can match on the `“responseElements”` field as follows\.
 
 ```
 {
-  "source": [ "aws.autoscaling" ],
-  "detail-type": [ "EC2 Instance Launch Successful" ],
+  "source": ["aws.autoscaling"],
+  "detail-type": ["EC2 Instance Launch Successful"],
   "detail": {
-   "responseElements": [ null ]
+   "responseElements": [null]
   }
 }
 ```
 
-This works for numbers too\. Consider the following Amazon Macie event \(truncated for brevity\)\.
+This works for numbers too\. Consider the following Amazon Macie Classic event \(truncated for brevity\)\.
 
 ```
 {
@@ -172,10 +174,10 @@ Event patterns are represented as JSON objects with a structure that is similar 
 
 ```
 {
-  "source": [ "aws.ec2" ],
-  "detail-type": [ "EC2 Instance State-change Notification" ],
+  "source": ["aws.ec2"],
+  "detail-type": ["EC2 Instance State-change Notification"],
   "detail": {
-    "state": [ "running" ]
+    "state": ["running"]
   }
 }
 ```
@@ -205,7 +207,7 @@ The following event patterns would match the previous example event\. The first 
 ```
 {
   "detail": {
-    "state": [ "terminated" ]
+    "state": ["terminated"]
   }
 }
 ```
@@ -214,18 +216,18 @@ These event patterns do not match the event at the top of this page\. The first 
 
 ```
 {
-  "source": [ "aws.ec2" ],
-  "detail-type": [ "EC2 Instance State-change Notification" ],
+  "source": ["aws.ec2"],
+  "detail-type": ["EC2 Instance State-change Notification"],
   "detail": {
-    "state": [ "pending" ]
+    "state": ["pending"]
   }
 }
 ```
 
 ```
 {
-  "source": [ "aws.ec2" ],
-  "detail-type": [ "EC2 Instance State-change Notification" ],
-  "resources": [ "arn:aws:ec2:us-east-1::image/ami-12345678" ]
+  "source": ["aws.ec2"],
+  "detail-type": ["EC2 Instance State-change Notification"],
+  "resources": ["arn:aws:ec2:us-east-1::image/ami-12345678"]
 }
 ```

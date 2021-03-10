@@ -27,7 +27,7 @@ To invoke your AWS Lambda function using a EventBridge rule, add the following p
       "AWS:SourceArn": "arn:aws:events:region:account-id:rule/rule-name"
     }
   },
-  "Sid": "TrustCWEToInvokeMyLambdaFunction"
+  "Sid": "InvokeLambdaFunction"
 }
 ```
 
@@ -35,7 +35,7 @@ To invoke your AWS Lambda function using a EventBridge rule, add the following p
 + At a command prompt, enter the following command\.
 
   ```
-  aws lambda add-permission --statement-id "TrustCWEToInvokeMyLambdaFunction" \
+  aws lambda add-permission --statement-id "InvokeLambdaFunction" \
   --action "lambda:InvokeFunction" \
   --principal "events.amazonaws.com" \
   --function-name "arn:aws:lambda:region:account-id:function:function-name" \
@@ -80,7 +80,7 @@ EventBridge does not support the use of `Condition` blocks in Amazon SNS topic p
 
    ```
    {
-     "Sid": "TrustCWEToPublishEventsToMyTopic",
+     "Sid": "PublishEventsToMyTopic",
      "Effect": "Allow",
      "Principal": {
        "Service": "events.amazonaws.com"
@@ -93,7 +93,7 @@ EventBridge does not support the use of `Condition` blocks in Amazon SNS topic p
    After you convert the statement to a string, it should look like the following\.
 
    ```
-   {\"Sid\":\"TrustCWEToPublishEventsToMyTopic\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"events.amazonaws.com\"},\"Action\":\"sns:Publish\",\"Resource\":\"arn:aws:sns:region:account-id:topic-name\"}
+   {\"Sid\":\"PublishEventsToMyTopic\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"events.amazonaws.com\"},\"Action\":\"sns:Publish\",\"Resource\":\"arn:aws:sns:region:account-id:topic-name\"}
    ```
 
 1. After you've added the statement string to the statement collection, use the `aws sns set-topic-attributes` command to set the new policy\.
@@ -101,7 +101,7 @@ EventBridge does not support the use of `Condition` blocks in Amazon SNS topic p
    ```
    aws sns set-topic-attributes --topic-arn "arn:aws:sns:region:account-id:topic-name" \
    --attribute-name Policy \
-   --attribute-value "{\"Version\":\"2012-10-17\",\"Id\":\"__default_policy_ID\",\"Statement\":[{\"Sid\":\"__default_statement_ID\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"*\"},\"Action\":[\"SNS:GetTopicAttributes\",\"SNS:SetTopicAttributes\",\"SNS:AddPermission\",\"SNS:RemovePermission\",\"SNS:DeleteTopic\",\"SNS:Subscribe\",\"SNS:ListSubscriptionsByTopic\",\"SNS:Publish\",\"SNS:Receive\"],\"Resource\":\"arn:aws:sns:region:account-id:topic-name\",\"Condition\":{\"StringEquals\":{\"AWS:SourceOwner\":\"account-id\"}}}, {\"Sid\":\"TrustCWEToPublishEventsToMyTopic\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"events.amazonaws.com\"},\"Action\":\"sns:Publish\",\"Resource\":\"arn:aws:sns:region:account-id:topic-name\"}]}"
+   --attribute-value "{\"Version\":\"2012-10-17\",\"Id\":\"__default_policy_ID\",\"Statement\":[{\"Sid\":\"__default_statement_ID\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"*\"},\"Action\":[\"SNS:GetTopicAttributes\",\"SNS:SetTopicAttributes\",\"SNS:AddPermission\",\"SNS:RemovePermission\",\"SNS:DeleteTopic\",\"SNS:Subscribe\",\"SNS:ListSubscriptionsByTopic\",\"SNS:Publish\",\"SNS:Receive\"],\"Resource\":\"arn:aws:sns:region:account-id:topic-name\",\"Condition\":{\"StringEquals\":{\"AWS:SourceOwner\":\"account-id\"}}}, {\"Sid\":\"PublishEventsToMyTopic\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"events.amazonaws.com\"},\"Action\":\"sns:Publish\",\"Resource\":\"arn:aws:sns:region:account-id:topic-name\"}]}"
    ```
 
 For more information, see the [SetTopicAttributes](https://docs.aws.amazon.com/sns/latest/api/API_SetTopicAttributes.html) action in the *Amazon Simple Notification Service API Reference*\.
@@ -126,7 +126,7 @@ To allow a EventBridge rule to invoke an Amazon SQS queue, use the `aws sqs get-
 
    ```
    {
-     "Sid": "TrustCWEToSendEventsToMyQueue",
+     "Sid": "EventsToMyQueue",
      "Effect": "Allow",
      "Principal": {
         "Service": "events.amazonaws.com"
@@ -144,14 +144,14 @@ To allow a EventBridge rule to invoke an Amazon SQS queue, use the `aws sqs get-
 1. Next, convert the preceding statement into a string\. After you convert the policy to a string, it should look like the following\.
 
    ```
-   {\"Sid\": \"TrustCWEToSendEventsToMyQueue\", \"Effect\": \"Allow\", \"Principal\": {\"Service\": \"events.amazonaws.com\"}, \"Action\": \"sqs:SendMessage\", \"Resource\": \"arn:aws:sqs:region:account-id:queue-name\", \"Condition\": {\"ArnEquals\": {\"aws:SourceArn\": \"arn:aws:events:region:account-id:rule/rule-name\"}}
+   {\"Sid\": \"EventsToMyQueue\", \"Effect\": \"Allow\", \"Principal\": {\"Service\": \"events.amazonaws.com\"}, \"Action\": \"sqs:SendMessage\", \"Resource\": \"arn:aws:sqs:region:account-id:queue-name\", \"Condition\": {\"ArnEquals\": {\"aws:SourceArn\": \"arn:aws:events:region:account-id:rule/rule-name\"}}
    ```
 
 1. Create a file called `set-queue-attributes.json` with the following content\.
 
    ```
    {
-       "Policy": "{\"Version\":\"2012-10-17\",\"Id\":\"arn:aws:sqs:region:account-id:queue-name/SQSDefaultPolicy\",\"Statement\":[{\"Sid\": \"TrustCWEToSendEventsToMyQueue\", \"Effect\": \"Allow\", \"Principal\": {\"Service\": \"events.amazonaws.com\"}, \"Action\": \"sqs:SendMessage\", \"Resource\": \"arn:aws:sqs:region:account-id:queue-name\", \"Condition\": {\"ArnEquals\": {\"aws:SourceArn\": \"arn:aws:events:region:account-id:rule/rule-name\"}}}]}"
+       "Policy": "{\"Version\":\"2012-10-17\",\"Id\":\"arn:aws:sqs:region:account-id:queue-name/SQSDefaultPolicy\",\"Statement\":[{\"Sid\": \"EventsToMyQueue\", \"Effect\": \"Allow\", \"Principal\": {\"Service\": \"events.amazonaws.com\"}, \"Action\": \"sqs:SendMessage\", \"Resource\": \"arn:aws:sqs:region:account-id:queue-name\", \"Condition\": {\"ArnEquals\": {\"aws:SourceArn\": \"arn:aws:events:region:account-id:rule/rule-name\"}}}]}"
    }
    ```
 

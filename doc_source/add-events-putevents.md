@@ -4,7 +4,44 @@ The `PutEvents` action sends multiple events to EventBridge in a single request\
 
 Each `PutEvents` request can support a limited number of entries\. For more information, see [Amazon EventBridge Quotas](cloudwatch-limits-eventbridge.md)\. The `PutEvents` operation attempts to process all entries in the natural order of the request\. Each event has a unique id that is assigned by EventBridge after you call `PutEvents`\.
 
-The following example Java code sends two identical events to EventBridge:
+In the following example Java code sends two identical events to EventBridge\.
+
+------
+#### [ AWS SDK for Java Version 2\.x ]
+
+```
+EventBridgeClient eventBridgeClient =
+    EventBridgeClient.builder().build();
+
+PutEventsRequestEntry requestEntry = PutEventsRequestEntry.builder()
+    .resources("resource1", "resource2")
+    .source("com.mycompany.myapp")
+    .detailType("myDetailType")
+    .detail("{ \"key1\": \"value1\", \"key2\": \"value2\" }")
+    .build();
+
+List & lt;
+PutEventsRequestEntry > requestEntries = new ArrayList & lt;
+PutEventsRequestEntry > ();
+requestEntries.add(requestEntry);
+
+PutEventsRequest eventsRequest = PutEventsRequest.builder()
+    .entries(requestEntries)
+    .build();
+
+PutEventsResponse result = eventBridgeClient.putEvents(eventsRequest);
+
+for (PutEventsResultEntry resultEntry: result.entries()) {
+    if (resultEntry.eventId() != null) {
+        System.out.println("Event Id: " + resultEntry.eventId());
+    } else {
+        System.out.println("PutEvents failed with Error Code: " + resultEntry.errorCode());
+    }
+}
+```
+
+------
+#### [ AWS SDK for Java Version 1\.0 ]
 
 ```
 PutEventsRequestEntry requestEntry = new PutEventsRequestEntry()
@@ -27,6 +64,8 @@ for (PutEventsResultEntry resultEntry : result.getEntries()) {
     }
 }
 ```
+
+------
 
 The `PutEvents` result includes an array of response entries\. Each entry in the response array directly correlates with an entry in the request array using natural ordering, from the top to the bottom of the request and response\. The response `Entries` array always includes the same number of entries as the request array\.
 

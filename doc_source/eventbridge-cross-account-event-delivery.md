@@ -13,34 +13,49 @@ The overall process is as follows:
 
 The AWS Region where the receiver account adds permissions to the event bus must be the same region where the sender account creates the rule to send events to the receiver account\.
 
-Events sent from one account to another are charged to the sending account as custom events\. The receiving account is not charged\. For more information, see [Amazon CloudWatch Pricing](https://aws.amazon.com/eventbridge/pricing/)\.
+Events sent from one account to another are charged to the sending account as custom events\. The receiving account is not charged\. For more information, see [Amazon EventBridge Pricing](https://aws.amazon.com/eventbridge/pricing/)\.
 
 If a receiver account sets up a rule that sends events received from a sender account on to a third account, these events are not sent to the third account\.
 
 ## Enabling Your AWS Account to Receive Events from Other AWS Accounts<a name="receiving-events-from-another-account"></a>
 
-To receive events from other accounts or organizations, you must first edit the permissions on your account's default *event bus*\. The default event bus accepts events from AWS services, other authorized AWS accounts, and `PutEvents` calls\.
-
-When you edit the permissions on your default event bus to grant permission to other AWS accounts, you can specify accounts by account ID or organization ID\. Or you can choose to receive events from all AWS accounts\.
+To receive events from other accounts or organizations, you must first edit the permissions on your account's default *event bus*\. The default event bus accepts events from AWS services, other authorized AWS accounts, and `PutEvents` calls\. The permissions for the event bus are granted or denied using a resource\-based policy attached to the event bus\. In the policy, you can grant permissions to other AWS accounts using the account ID, or to an AWS Organization using the organization ID\.
 
 **Warning**  
 If you choose to receive events from all AWS accounts, be careful to create rules that match only the events to receive from others\. To create more secure rules, make sure that the event pattern for each rule contains an `Account` field with the account IDs of one or more accounts from which to receive events\. Rules that have an event pattern containing an Account field do not match events sent from accounts that are not listed in the `Account` field\. For more information, see [Events and Event Patterns in EventBridge](eventbridge-and-event-patterns.md)\.
 
-**To enable your account to receive events from other AWS accounts using the console**
+**To add a resource\-based policy to an event bus that grants permission to another AWS account**
 
-1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
+1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.
 
-1. In the navigation pane, choose **Event Buses**, **Add Permission**\.
+1. Choose **Event buses** in the left navigation pane\.
 
-1. Choose **AWS Account** or **Organization**\.
+1. Choose the name of the bus in the **Name** to manage permissions for\.
 
-   If you choose **AWS Account**, enter the 12\-digit AWS account ID of the account from which to receive events\. To receive events from all other AWS accounts, choose **Everybody\(\*\)**\.
+   If a resource policy is attached to the event bus, the policy is displayed\.
 
-   If you choose **Organization**, choose **My organization** to grant permissions to all accounts in the organization of which the current account is a member\. Or choose **Another organization** and enter the organization ID of that organization\. You must include the `o-` prefix when you type the organization ID\.
+1. Choose **Manage permissions**\.
 
-1. Choose **Add**\.
+1. Enter the policy that includes the permissions to grant for the event bus\. The following example grants permission for the account 111112222333 to use all EventBridge API actions against the event bus in the account 123456789012\.
 
-1. You can repeat these steps to add other accounts or organizations\.
+   ```
+   {
+      "Version": "2012-10-17",
+      "Statement": [
+          {
+           "Sid": "sid1",
+           "Effect": "Allow",
+           "Principal": {"AWS":"arn:aws:iam::111112222333:root"},
+           "Action": "events:*",
+           "Resource": "arn:aws:events:us-east-1:123456789012:event-bus/default"
+           }
+       ]
+     }
+   ```
+
+   Replace the account IDs in the policy to the other AWS account for the `Principal`\. Use the account ID for the current account for the `Resource`\.
+
+1. Choose **Update**\.
 
 **To enable your account to receive events from other AWS accounts using the AWS CLI**
 
@@ -73,7 +88,7 @@ If you choose to receive events from all AWS accounts, be careful to create rule
 
 ## Sending Events to Another AWS Account<a name="sending-events-to-another-account"></a>
 
-To send events to another account, configure a EventBridge rule that has the default event bus of another AWS account as the target\. The default event bus of that receiving account must also be configured to receive events from your account\.
+To send events to another account, configure a EventBridge rule that has the default event bus of another AWS account as the target\. The default event bus of that receiving account must also be configured to receive events from your account\. The resource\-based policy for the event bus must grant your account permission to send events to it\.
 
 **To send events from your account to another AWS account using the console**
 
