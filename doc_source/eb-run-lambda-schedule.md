@@ -2,7 +2,7 @@
 
 You can set up a [rule](eb-rules.md) to run an [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) function on a schedule\. This tutorial shows how to use the AWS Management Console or the AWS CLI to create the rule\. If you want to use the AWS CLI but haven't installed it, see the [Installing, updating, and uninstalling the AWS CLI version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)\.
 
-For schedules, EventBridge doesn't provide second\-level precision in [schedule expressions](eb-create-rule-schedule.md)\. EV; doesn't provide second\-level precision in schedule expressions\. The finest resolution using a cron expression is one minute\. Due to the distributed nature of EventBridge and the target services, there can be a delay of several seconds between the time the scheduled rule is triggered and the time the target service runs the target resource\. 
+For schedules, EventBridge doesn't provide second\-level precision in [schedule expressions](eb-create-rule-schedule.md)\. The finest resolution using a cron expression is one minute\. Due to the distributed nature of EventBridge and the target services, there can be a delay of several seconds between the time the scheduled rule is triggered and the time the target service runs the target resource\. 
 
 **Topics**
 + [Step 1: Create an AWS Lambda function](#eb-create-lambda-function)
