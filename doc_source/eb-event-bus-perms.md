@@ -169,7 +169,7 @@ The following example policy grants account 123456789012 permission to create, d
       "Sid": "InvoiceProcessingRuleCreation",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::123412341234:root"
+        "AWS": "arn:aws:iam::123456789012:root"
       },
       "Action": [
         "events:PutRule",
