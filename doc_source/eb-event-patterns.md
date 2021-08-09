@@ -54,7 +54,7 @@ EventBridge ignores the fields in the event that aren't included in the event pa
 
 The values that event patterns match follow JSON rules\. You can include strings enclosed in quotation marks \("\), numbers, and the keywords `true`, `false`, and `null`\.
 
-For strings, EventBridge uses exact character\-by\-characther matching without case\-folding or any other string normalization\.
+For strings, EventBridge uses exact character\-by\-character matching without case\-folding or any other string normalization\.
 
 For numbers, EventBridge uses string representation\. For example, 300, 300\.0, and 3\.0e2 are not considered equal\.
 
