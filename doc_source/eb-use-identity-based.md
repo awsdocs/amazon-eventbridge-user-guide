@@ -136,7 +136,22 @@ You can also create your own custom IAM policies to allow permissions for EventB
 
 ## Permissions required for EventBridge to access targets using IAM roles<a name="eb-target-permissions"></a>
 
-For EventBridge to access targets that are a Kinesis stream, a Systems Manager Run Command, an AWS Step Functions state machine, or an Amazon Elastic Container Service task, you must specify an IAM role for accessing that target, and the role must have a certain policy attached\.
+For EventBridge to access targets that are an API destination, a Kinesis stream, a Systems Manager Run Command, an AWS Step Functions state machine, or an Amazon Elastic Container Service task, you must specify an IAM role for accessing that target, and the role must have a certain policy attached\.
+
+If the target is an API destination, the role that you specify must include the following policy\.
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+             "Action": [ "events:InvokeApiDestination" ],
+            "Resource": [ "arn:aws:events:::api-destination/*" ]
+        }
+     ]
+}
+```
 
 If the target is a Kinesis stream, the role used to send event data to that target must include the following policy\.
 
@@ -165,8 +180,8 @@ If the target is Systems Manager run command, and you specify one or more `Insta
                 "Action": "ssm:SendCommand",
                 "Effect": "Allow",
                 "Resource": [
-                     "arn:aws:ec2:{{region}}:{{accountId}}:instance/[[instanceIds]]",
-                     "arn:aws:ssm:{{region}}:*:document/{{documentName}}"
+                     "arn:aws:ec2:region:accountId:instance/instanceIds",
+                     "arn:aws:ssm:region:*:document/documentName"
                 ]
            }
      ]
@@ -183,7 +198,7 @@ If the target is Systems Manager run command, and you specify one or more tags f
                 "Action": "ssm:SendCommand",
                 "Effect": "Allow",
                 "Resource": [
-                     "arn:aws:ec2:{{region}}:{{accountId}}:instance/*"
+                     "arn:aws:ec2:region:accountId:instance/*"
                 ],
                 "Condition": {
                     "StringEquals": {
@@ -197,7 +212,7 @@ If the target is Systems Manager run command, and you specify one or more tags f
                 "Action": "ssm:SendCommand",
                 "Effect": "Allow",
                 "Resource": [
-                     "arn:aws:ssm:{{region}}:*:document/{{documentName}}"
+                     "arn:aws:ssm:region:*:document/documentName"
                 ]
            }
      ]
@@ -230,11 +245,23 @@ If the target is an Amazon ECS task, the role that you specify must include the 
             "ecs:RunTask"
         ],
         "Resource": [
-            "arn:aws:ecs:*:{{account-id}}:task-definition/{{task-definition-name}}"
+            "arn:aws:ecs:*:account-id:task-definition/task-definition-name"
         ],
         "Condition": {
             "ArnLike": {
-                "ecs:cluster": "arn:aws:ecs:*:{{account-id}}:cluster/{{cluster-name}}"
+                "ecs:cluster": "arn:aws:ecs:*:account-id:cluster/cluster-name"
+            }
+        }
+    },
+    {
+        "Effect": "Allow",
+        "Action":"iam:PassRole",
+        "Resource": [
+            "*"
+        ],
+        "Condition": {
+            "StringLike": {
+                "iam:PassedToService": "ecs-tasks.amazonaws.com"
             }
         }
     }]

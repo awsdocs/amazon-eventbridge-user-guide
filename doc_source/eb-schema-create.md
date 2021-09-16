@@ -263,12 +263,15 @@ If you have the JSON of an event, you can automatically create a schema for that
 
 ## Create a schema from events on an event bus<a name="eb-schemas-infer"></a>
 
-EventBridge can infer schemas by discovering events\. To infer schemas, you turn on event discovery on an event bus\. Schemas discovered by EventBridge appear in **Discovered schemas registry** on the **Schemas** page\.
+EventBridge can infer schemas by discovering events\. To infer schemas, you turn on event discovery on an event bus and every unique schema is added to the schema registry, including those for cross\-account events\. Schemas discovered by EventBridge appear in **Discovered schemas registry** on the **Schemas** page\.
 
 If the contents of events on the event bus change, EventBridge creates new versions of the related EventBridge schema\.
 
 **Note**  
 Enabling event discovery on an event bus can incur a cost\. The first five million processed events in each month are free\.
+
+**Note**  
+EventBridge infers schemas from cross\-account events by default but you can disable it by updating the `cross-account` property\. Fore more information, see [Discoverers](https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-discoverers.html) in the EventBridge Schema Registry API Refernce\.
 
 **To enable schema discovery on an event bus**
 

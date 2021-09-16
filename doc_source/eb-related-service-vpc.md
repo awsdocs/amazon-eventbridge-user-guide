@@ -29,6 +29,7 @@ EventBridge currently supports VPC endpoints in the following Regions:
 + Europe \(London\)
 + Europe \(Milan\)
 + Europe \(Paris\)
++ Europe \(Stockholm\)
 + South America \(São Paulo\)
 
 ## Creating a VPC Endpoint for EventBridge<a name="eb-create-VPC-endpoint"></a>

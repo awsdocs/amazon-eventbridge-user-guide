@@ -154,7 +154,7 @@ Basic \(Username/Password\) – When configuring the endpoint for EventBridge, t
 ## TriggerMesh<a name="eb-api-destination-triggermesh"></a>
 
 **API destination invocation endpoint URL**  
-Use the information in the [Event Source for HTTP](https://docs.triggermesh.io/sources/http/) topic to formulate the endpoint URL\. An endpoint URL includes the event source name and user namespace in the following format:  
+Use the information in the [Event Source for HTTP](https://docs.triggermesh.io/sources) topic to formulate the endpoint URL\. An endpoint URL includes the event source name and user namespace in the following format:  
 https://*source\-name*\.*user\-namespace*\.cloud\.triggermesh\.io  
 Include the Basic authorization parameters in the request to the endpoint\.
 
@@ -165,7 +165,7 @@ Basic
 None
 
 **TriggerMesh documentation**  
-[Event Source for HTTP](https://docs.triggermesh.io/sources/http/)
+[Event Source for HTTP](https://docs.triggermesh.io/sources)
 
 **Commonly used API operations**  
 Not applicable

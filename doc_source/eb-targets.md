@@ -14,12 +14,14 @@ You can configure the following targets for events in the EventBridge console:
 + AWS CodeBuild project
 + AWS CodePipeline
 + Amazon Elastic Compute Cloud \(Amazon EC2\) `CreateSnapshot` API call
++ EC2 Image Builder
 + Amazon EC2 `RebootInstances` API call
 + Amazon EC2 `StopInstances` API call
 + Amazon EC2 `TerminateInstances` API call
 + Amazon ECS task
 + [Event bus in a different AWS account or AWS Region](eb-cross-account.md)
 + Firehose delivery stream \(Amazon Kinesis Data Firehose\)
++ [Incident Manager response plan](https://docs.aws.amazon.com//incident-manager/latest/userguide/incident-creation.html#incident-tracking-auto-eventbridge)
 + Inspector assessment template \(Amazon Kinesis Data Streams\)
 + Kinesis stream \(Kinesis Data Streams\)
 + AWS Lambda function
@@ -53,5 +55,5 @@ When you specify `InputPath` or `InputTransformer`, you must use JSON dot notati
 
 To make API calls on the resources that you own, EventBridge needs appropriate permission\. For AWS Lambda and Amazon SNS resources, EventBridge uses [resource\-based policies](eb-use-resource-based.md)\. For EC2 instances, Kinesis data streams, and Step Functions state machines, EventBridge uses IAM roles that you specify in the `RoleARN` parameter in `PutTargets`\. You can invoke an API Gateway REST endpoint with configured IAM authorization, but the role is optional if you haven't configured authorization\. For more information, see [Amazon EventBridge and AWS Identity and Access Management](eb-iam.md)\.
 
-If another account is in the same Region and has granted you permission, then you can send events to that account\. For more information, see [Sending and receiving Amazon EventBridge events between AWS accounts and Regions](eb-cross-account.md)\.
+If another account is in the same Region and has granted you permission, then you can send events to that account\. For more information, see [Sending and receiving Amazon EventBridge events between AWS accounts](eb-cross-account.md)\.
 

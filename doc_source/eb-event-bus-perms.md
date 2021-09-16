@@ -4,7 +4,7 @@ The default [event bus](eb-event-bus.md) in your AWS account only allows [events
 
 EventBridge APIs that accept an event bus `Name` parameter such as `PutRule`, `PutTargets`, `DeleteRule`, `RemoveTargets`, `DisableRule`, and `EnableRule` also accept the event bus ARN\. Use these parameters to reference cross\-account or cross\-Region event buses through the APIs\. For example, you can call `PutRule` to create a [rule](eb-rules.md) on an event bus in a different account without needing to assume a role\.
 
-You can use the example policies in this topic to grant permission to send events to a different account or Region\. For information about creating a rule to send events to a different account or Region, see [Sending and receiving Amazon EventBridge events between AWS accounts and Regions](eb-cross-account.md)\.
+You can use the example policies in this topic to grant permission to send events to a different account or Region\. For information about creating a rule to send events to a different account or Region, see [Sending and receiving Amazon EventBridge events between AWS accounts](eb-cross-account.md)\.
 
 **Topics**
 + [Managing event bus permissions](#eb-event-bus-permissions-manage)
@@ -169,7 +169,7 @@ The following example policy grants account 123456789012 permission to create, d
       "Sid": "InvoiceProcessingRuleCreation",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::123412341234:root"
+        "AWS": "arn:aws:iam::123456789012:root"
       },
       "Action": [
         "events:PutRule",
@@ -180,7 +180,7 @@ The following example policy grants account 123456789012 permission to create, d
         "events:PutTargets",
         "events:RemoveTargets"
       ],
-      "Resource": "arn:aws:events:us-east-1:123412341234:rule/central-event-bus/*",
+      "Resource": "arn:aws:events:us-east-1:123456789012:rule/central-event-bus/*",
       "Condition": {
         "StringEqualsIfExists": {
           "events:creatorAccount": "${aws:PrincipalAccount}",

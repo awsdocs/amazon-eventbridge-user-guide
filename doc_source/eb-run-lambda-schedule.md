@@ -2,7 +2,7 @@
 
 You can set up a [rule](eb-rules.md) to run an [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) function on a schedule\. This tutorial shows how to use the AWS Management Console or the AWS CLI to create the rule\. If you want to use the AWS CLI but haven't installed it, see the [Installing, updating, and uninstalling the AWS CLI version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)\.
 
-For schedules, EventBridge doesn't provide second\-level precision in [schedule expressions](eb-create-rule-schedule.md)\. EV; doesn't provide second\-level precision in schedule expressions\. The finest resolution using a cron expression is one minute\. Due to the distributed nature of EventBridge and the target services, there can be a delay of several seconds between the time the scheduled rule is triggered and the time the target service runs the target resource\. 
+For schedules, EventBridge doesn't provide second\-level precision in [schedule expressions](eb-create-rule-schedule.md)\. The finest resolution using a cron expression is one minute\. Due to the distributed nature of EventBridge and the target services, there can be a delay of several seconds between the time the scheduled rule is triggered and the time the target service runs the target resource\. 
 
 **Topics**
 + [Step 1: Create an AWS Lambda function](#eb-create-lambda-function)
@@ -159,21 +159,21 @@ If you see the Lambda event in the CloudWatch logs, you've successfully complete
 
 You can now delete the resources that you created for this tutorial, unless you want to retain them\. By deleting AWS resources that you are no longer using, you prevent unnecessary charges to your AWS account\.
 
-**To delete the EventBridge rule**
+**To delete the EventBridge rule\(s\)**
 
 1. Open the [Rules page](https://console.aws.amazon.com/events/home#/rule) of the EventBridge console\.
 
-1. Select the rule that you created\.
+1. Select the rule\(s\) that you created\.
 
 1. Choose **Delete**\.
 
 1. Choose **Delete**\.
 
-**To delete the Lambda function**
+**To delete the Lambda function\(s\)**
 
 1. Open the [Functions page](https://console.aws.amazon.com/lambda/home#/functions) of the Lambda console\.
 
-1. Select the function that you created\.
+1. Select the function\(s\) that you created\.
 
 1. Choose **Actions**, **Delete**\.
 

@@ -1,4 +1,4 @@
-# Receiving events from SalesForce<a name="eb-saas-salesforce"></a>
+# Receiving events from Salesforce<a name="eb-saas-salesforce"></a>
 
 You can use Amazon EventBridge to receive [events](eb-events.md) from Salesforce by configuring a flow in [Amazon AppFlow](https://aws.amazon.com/appflow/) that uses Salesforce as a data source\. Amazon AppFlow then sends Salesforce events to EventBridge by using a [partner event bus](eb-saas.md)\.
 
@@ -128,7 +128,7 @@ Ensure that the Amazon AppFlow flow that is triggered from Salesforce events wit
 
 1. Choose **Create**\.
 
-The target service receives all Salesforce events configured for your account\. To filter the events or send some events to different targets, you can use \. 
+The target service receives all Salesforce events configured for your account\. To filter the events or send some events to different targets, you can use [content\-based filtering with event patterns](eb-event-patterns-content-based-filtering.md)\. 
 
 **Note**  
 For events larger than 256KB, Amazon AppFlow doesn't send the full event to EventBridge\. Instead, Amazon AppFlow puts the event into an S3 bucket in your account, and then sends an event to EventBridge with a pointer to the Amazon S3 bucket\. You can use the pointer to get the full event from the bucket\.

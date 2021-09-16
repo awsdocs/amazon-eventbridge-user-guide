@@ -7,7 +7,7 @@ To do this, you define JSON paths from the event and assign their outputs to dif
 **Note**  
 If you specify a variable to match a JSON path that doesn't exist in the event, that variable isn't created and doesn't appear in the output\.
 
-In this tutorial, you create a rule that runs when any instance changes state\. Youextract the `instance-id` and `state` of an Amazon EC2 instance from the event\. Then you use the input transformer to put that data into the message that goes to an Amazon SNS topic\. The 
+In this tutorial, you create a rule that runs when any instance changes state\. You extract the `instance-id` and `state` of an Amazon EC2 instance from the event\. Then you use the input transformer to put that data into the message that goes to an Amazon SNS topic\. The 
 
 For example, the rule in this tutorial matches the following Amazon EC2 instance state\-change notification event\.
 
@@ -29,7 +29,7 @@ For example, the rule in this tutorial matches the following Amazon EC2 instance
 }
 ```
 
-The input transformer maps the `instance` variable to the `$.detail.instance-id` JSON path from the event, and the `state` variable to the `$.detail.state` JSON path\. Then EventBridge puts the variables intothe input template "The EC2 instance <instance> has changed state to <state>\." The result is the following Amazon SNS message\.
+The input transformer maps the `instance` variable to the `$.detail.instance-id` JSON path from the event, and the `state` variable to the `$.detail.state` JSON path\. Then EventBridge puts the variables into the input template "The EC2 instance <instance> has changed state to <state>\." The result is the following Amazon SNS message\.
 
 ```
 The EC2 instance i-1234567890abcdef0 has changed state to stopped.
@@ -68,7 +68,7 @@ Create a rule to use the input transformer to customize the instance state infor
 
    1. Choose **Any state**, **Any instance**\.
 
-1. For **Select event bus**, choose **AWS default event bus**\. When an AWS; service in your account emits an event, it goes to your account’s default event bus\. 
+1. For **Select event bus**, choose **AWS default event bus**\. When an AWS service in your account emits an event, it goes to your account’s default event bus\. 
 
 1. For **Target**, choose **SNS topic**\.
 
@@ -90,11 +90,11 @@ If you see the rule in the list of rules, you've successfully created the rule\.
 
 You can now delete the resources that you created for this tutorial, unless you want to retain them\. By deleting AWS resources that you are no longer using, you prevent unnecessary charges to your AWS account\.
 
-**To delete the EventBridge rule**
+**To delete the EventBridge rule\(s\)**
 
 1. Open the [Rules page](https://console.aws.amazon.com/events/home#/rule) of the EventBridge console\.
 
-1. Select the rule that you created\.
+1. Select the rule\(s\) that you created\.
 
 1. Choose **Delete**\.
 

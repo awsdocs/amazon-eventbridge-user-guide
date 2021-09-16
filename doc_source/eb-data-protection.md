@@ -10,11 +10,11 @@ For data protection purposes, we recommend that you protect AWS account credenti
 + Use advanced managed security services such as Amazon Macie, which assists in discovering and securing personal data that is stored in Amazon S3\.
 + If you require FIPS 140\-2 validated cryptographic modules when accessing AWS through a command line interface or an API, use a FIPS endpoint\. For more information about the available FIPS endpoints, see [Federal Information Processing Standard \(FIPS\) 140\-2](http://aws.amazon.com/compliance/fips/)\.
 
-We strongly recommend that you never put sensitive identifying information, such as your customers' account numbers, into free\-form fields such as a **Name** field\. This includes when you work with EventBridge or other AWS services using the console, API, AWS CLI, or AWS SDKs\. Any data that you enter into EventBridge or other services might get picked up for inclusion in diagnostic logs\. When you provide a URL to an external server, don't include credentials information in the URL to validate your request to that server\.
+We strongly recommend that you never put confidential or sensitive information, such as your customers' email addresses, into tags or free\-form fields such as a **Name** field\. This includes when you work with EventBridge or other AWS services using the console, API, AWS CLI, or AWS SDKs\. Any data that you enter into tags or free\-form fields used for names may be used for billing or diagnostic logs\. If you provide a URL to an external server, we strongly recommend that you do not include credentials information in the URL to validate your request to that server\.
 
 ## Encryption at rest<a name="eb-encryption-at-rest"></a>
 
-EventBridge encrypts event metadata and message data that it stores\. By default, EventBridge encrypts data using 256\-bit Advanced Encryption Standard \(AES\-256\) under an [AWS owned CMK](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk), which helps secure your data from unauthorized access\. There is no additional charge for encrypting your data by using the AWS owned CMK\.
+EventBridge encrypts event metadata and message data that it stores\. By default, EventBridge encrypts data using 256\-bit Advanced Encryption Standard \(AES\-256\) under an [AWS owned key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk), which helps secure your data from unauthorized access\. There is no additional charge for encrypting your data by using the AWS owned key\.
 
 ## Encryption in transit<a name="eb-encryption-in-transit"></a>
 

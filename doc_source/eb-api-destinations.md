@@ -20,7 +20,7 @@ When you create an API destination, you specify a connection to use for it\. A *
 
 For Basic and API Key authorization, EventBridge populates the required authorization headers for you\. For OAuth authorization, EventBridge also exchanges your client ID and secret for an access token and then manages it securely\. When you create a connection, you can also include the header, body, and query parameters that are required for authorization with an endpoint\. You can use the same connection for more than one API destination if the authorization for the endpoint is the same\.
 
-When you create a connection and add authorization parameters, EventBridge creates a secret in AWS Secrets Manager\. The cost of storing the Secrets Manager secret is included with the charge for using an API destination\.
+When you create a connection and add authorization parameters, EventBridge creates a secret in AWS Secrets Manager\. The cost of storing the Secrets Manager secret is included with the charge for using an API destination\. To learn more about best practices for using secrets with API destinations, see [AWS::Events::ApiDestination](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-apidestination.html) in the *CloudFormation User Guide*\.
 
 **Note**  
 To successfully create or update a connection, you must use an account that has permission to use Secrets Manager\. The required permission is included in the [AmazonEventBridgeFullAccess policy](eb-use-identity-based.md#eb-full-access-policy)\. The same permission is granted to the [service\-linked role](#eb-api-destination-slr) that's created in your account for the connection\.
@@ -111,7 +111,7 @@ Each API destination requires a connection\. A *connection* specifies the author
 
 1. Choose **Create**\.
 
-After you create an API destination, you can select it as the target of a [rule](eb-rules.md)\. 
+After you create an API destination, you can select it as the target of a [rule](eb-rules.md)\. To use an API destination as a target, you must provide an IAM role with the correct permissions\. For more information, see [Permissions required for EventBridge to access targets using IAM roles](eb-use-identity-based.md#eb-target-permissions)
 
 ## Service\-linked role for API destinations<a name="eb-api-destination-slr"></a>
 

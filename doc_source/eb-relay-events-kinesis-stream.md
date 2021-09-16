@@ -120,21 +120,21 @@ You can use the AWS CLI to get the record from the stream to verify that the eve
 
 You can now delete the resources that you created for this tutorial, unless you want to retain them\. By deleting AWS resources that you are no longer using, you prevent unnecessary charges to your AWS account\.
 
-**To delete the EventBridge rule**
+**To delete the EventBridge rule\(s\)**
 
 1. Open the [Rules page](https://console.aws.amazon.com/events/home#/rule) of the EventBridge console\.
 
-1. Select the rule that you created\.
+1. Select the rule\(s\) that you created\.
 
 1. Choose **Delete**\.
 
 1. Choose **Delete**\.
 
-**To delete the Kinesis stream**
+**To delete the Kinesis stream\(s\)**
 
 1. Open the [Data streams page](https://console.aws.amazon.com/kinesis/home#/streams/list) of the Kinesis console\.
 
-1. Select the stream that you created\.
+1. Select the stream\(s\) that you created\.
 
 1. Choose **Actions**, **Delete**\.
 

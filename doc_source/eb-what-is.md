@@ -23,4 +23,4 @@ When you build serverless applications that use EventBridge, it can be helpful t
 
 To organize AWS resources or to track costs in EventBridge, you can assign a custom label, or *[tag](eb-tagging.md)*, to AWS resources\. Using [tag\-based policies](eb-tag-policies.md), you can control what resources can and can’t do within EventBridge\.
 
-In addition to tag\-based policies, EventBridge supports [identity\-based](eb-use-identity-based.md) and [resource\-based](eb-use-resource-based.md) policies to control access to EventBridge\. Use identity\-based policies to control the permissions of a group, role, or user\. Use resource\-based policies to give specific permissions to each resource , such as a Lambda function or Amazon SNS queue\.
+In addition to tag\-based policies, EventBridge supports [identity\-based](eb-use-identity-based.md) and [resource\-based](eb-use-resource-based.md) policies to control access to EventBridge\. Use identity\-based policies to control the permissions of a group, role, or user\. Use resource\-based policies to give specific permissions to each resource , such as a Lambda function or Amazon SNS topic\.

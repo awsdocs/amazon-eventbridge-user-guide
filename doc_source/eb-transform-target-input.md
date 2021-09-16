@@ -8,6 +8,7 @@ For a tutorial on using input transformer, see [Tutorial: Use input transformer 
 + [Predefined variables](#eb-transform-input-predefined)
 + [Input Transform Examples](#eb-transform-input-examples)
 + [Transforming input by using the EventBridge API](#eb-transform-input-api)
++ [Transforming input by using AWS CloudFormation](#eb-transform-input-cfn)
 + [Common Issues with Transforming Input](#eb-transform-input-issues)
 
 ## Predefined variables<a name="eb-transform-input-predefined"></a>
@@ -71,6 +72,10 @@ The *Input Template* is a template for the information you want to pass to your 
 ## Transforming input by using the EventBridge API<a name="eb-transform-input-api"></a>
 
 For information about using the EventBridge API to transform input, see [Use Input Transformer to extract data from an event and input that data to the target](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutTargets.html#API_PutTargets_Example_2)\.
+
+## Transforming input by using AWS CloudFormation<a name="eb-transform-input-cfn"></a>
+
+For information about using AWS CloudFormation to transform input, see [AWS::Events::Rule InputTransformer](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-events-rule-inputtransformer.html)\.
 
 ## Common Issues with Transforming Input<a name="eb-transform-input-issues"></a>
 

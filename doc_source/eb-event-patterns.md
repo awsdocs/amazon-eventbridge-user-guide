@@ -54,11 +54,28 @@ EventBridge ignores the fields in the event that aren't included in the event pa
 
 The values that event patterns match follow JSON rules\. You can include strings enclosed in quotation marks \("\), numbers, and the keywords `true`, `false`, and `null`\.
 
-For strings, EventBridge uses exact character\-by\-characther matching without case\-folding or any other string normalization\.
+For strings, EventBridge uses exact character\-by\-character matching without case\-folding or any other string normalization\.
 
 For numbers, EventBridge uses string representation\. For example, 300, 300\.0, and 3\.0e2 are not considered equal\.
 
 When you write event patterns to match events, you can use the `TestEventPattern` API or the `test-event-pattern` CLI command to test that your pattern matches the correct events\. For more information, see [TestEventPattern](https://docs.aws.amazon.com/AmazonCloudWatchEvents/latest/APIReference/API_TestEventPattern.html)\.
+
+Here's a summary of all the comparison operators available in EventBridge:
+
+
+| **Comparison** | **Example** | **Rule syntax** | 
+| --- | --- | --- | 
+|  Null  |  UserID is null  |  “UserID”: \[ null \]  | 
+|  Empty  |  LastName is empty  |  “LastName”: \[“”\]  | 
+|  Equals  |  Name is “Alice”  |  “Name”: \[ “Alice” \]  | 
+|  And  |  Location is “New York” and Day is “Monday”  |  “Location”: \[ “New York” \], “Day”: \[“Monday”\]  | 
+|  Or  |  PaymentType is “Credit” or “Debit”  |  “PaymentType”: \[ “Credit”, “Debit”\]  | 
+|  Not  |  Weather is anything but “Raining”  |  “Weather”: \[ \{ “anything\-but”: \[ “Raining” \] \} \]  | 
+|  Numeric \(equals\)  |  Price is 100  |  “Price”: \[ \{ “numeric”: \[ “=”, 100 \] \} \]  | 
+|  Numeric \(range\)  |  Price is more than 10, and less than or equal to 20  |  “Price”: \[ \{ “numeric”: \[ “>”, 10, “≤", 20 \] \} \]  | 
+|  Exists  |  ProductName exists  |  “ProductName”: \[ \{ “exists”: true \} \]  | 
+|  Does not exist  |  ProductName does not exist  |  “ProductName”: \[ \{ “exists”: false \} \]  | 
+|  Begins with  |  Region is in the US  |  “Region”: \[ \{“prefix”: “us\-“ \} \]  | 
 
 ### Match Values<a name="eb-filtering-match-values"></a>
 

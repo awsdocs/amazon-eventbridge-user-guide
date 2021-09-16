@@ -86,9 +86,9 @@ aws lambda add-permission \
 
 When you make a change to a [rule](eb-rules.md) or to its [targets](eb-targets.md), incoming [events](eb-events.md) might not immediately start or stop matching to new or updated rules\. Allow a short period of time for changes to take effect\. 
 
-If events still don't matchafter a short period of time, check the CloudWatch metrics `TriggeredRules`, `Invocations`, and `FailedInvocations` for your rule\. For more information about these metrics, see [Amazon CloudWatch Events Metrics and Dimensions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cwe-metricscollected.html) in the *Amazon CloudWatch User Guide*\. 
+If events still don't match after a short period of time, check the CloudWatch metrics `TriggeredRules`, `Invocations`, and `FailedInvocations` for your rule\. For more information about these metrics, see [Monitoring Amazon EventBridge](eb-monitoring.md)\.
 
-If the rule is intended to match an event from an AWS service, use the `TestEventPattern` action to test the event pattern of your rule matches a test event\. For more information, see [TestEventPattern](https://docs.aws.amazon.com/AmazonCloudWatchEvents/latest/APIReference/API_TestEventPattern.html) in the *Amazon CloudWatch Events API Reference*\.
+If the rule is intended to match an event from an AWS service, use the `TestEventPattern` action to test the event pattern of your rule matches a test event\. For more information, see [TestEventPattern](https://docs.aws.amazon.com/AmazonCloudWatchEvents/latest/APIReference/API_TestEventPattern.html) in the *Amazon EventBridge API Reference*\.
 
 ## My rule didn't run at the time I specified in the `ScheduleExpression`<a name="eb-rule-did-not-trigger"></a>
 
@@ -175,6 +175,8 @@ If your Amazon SQS queue is encrypted, you must include the following section in
 
 ## My rule runs, but I don't see any messages published into my Amazon SNS topic<a name="eb-no-messages-published-sns"></a>
 
+**Scenario 1**
+
 You need permission for messages to be published into your Amazon SNS topic\. Use the following command using the AWS CLI, replacing us\-east\-1 with your Region and using your topic ARN\.
 
 ```
@@ -223,6 +225,25 @@ aws sns set-topic-attributes --region us-east-1 --topic-arn "arn:aws:sns:us-east
 
 **Note**  
 If the policy is incorrect, you can also edit the [rule](eb-rules.md) in the EventBridge console by removing and then adding it back to the rule\. EventBridge sets the correct permissions on the [target](eb-targets.md)\.
+
+**Scenario 2**
+
+If your SNS topic is encrypted, you must include the following section in your KMS key policy\.
+
+```
+{
+                "Sid": "Allow CWE to use the key",
+                "Effect": "Allow",
+                "Principal": {
+                                "Service": "events.amazonaws.com"
+                },
+                "Action": [
+                                "kms:Decrypt",
+                                "kms:GenerateDataKey"
+                ],
+                "Resource": "*"
+}
+```
 
 ## My Amazon SNS topic still has permissions for EventBridge even after I deleted the rule associated with the Amazon SNS topic<a name="eb-sns-permissions-persist"></a>
 

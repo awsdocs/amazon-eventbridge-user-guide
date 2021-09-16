@@ -31,7 +31,7 @@ Events that are delivered by CloudTrail have `AWS API Call via CloudTrail` as th
 
 **source**  
 Identifies the service that generated the event\. All events that come from AWS services begin with "aws\." Customer\-generated events can have any value here, as long as it doesn't begin with "aws\." We recommend the use of Java package\-name style reverse domain\-name strings\.  
-To find the correct value for `source` for an AWS service, see the table in [Amazon Resource Names \(ARNs\)](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#genref-aws-service-namespaces)\. For example, the `source` value for Amazon CloudFront is `aws.cloudfront`\.
+To find the correct value for `source` for an AWS service, see [The condition keys table](https://docs.aws.amazon.com/service-authorization/latest/reference/reference_policies_actions-resources-contextkeys.html#context_keys_table), select a service from the list, and look for the **service prefix**\. For example, the `source` value for Amazon CloudFront is `aws.cloudfront`\.
 
 **account**  
 The 12\-digit number identifying an AWS account\.

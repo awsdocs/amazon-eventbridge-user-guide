@@ -92,7 +92,7 @@ The following shows numeric matching for an event pattern that only matches even
 
 ## IP address matching<a name="eb-filtering-ip-matching"></a>
 
-You can use IP address matching for IPv4 and IPv6 addresses\. The following event pattern shows IP address matching to IP addresses that start with 10\.0\.0 and end with a number between 0 and 24\.
+You can use IP address matching for IPv4 and IPv6 addresses\. The following event pattern shows IP address matching to IP addresses that start with 10\.0\.0 and end with a number between 0 and 255\.
 
 ```
 {
@@ -108,12 +108,12 @@ You can use IP address matching for IPv4 and IPv6 addresses\. The following even
 
 Exists matching only works on leaf nodes\. It does not work on intermediate nodes\.
 
-The following event pattern matches any event that does not have a `detail.c-count` field\.
+The following event pattern matches any event that has a `detail.state` field\.
 
 ```
 {
   "detail": {
-    "c-count": [ { "exists": false  } ]
+    "state": [ { "exists": true  } ]
   }
 }
 ```
@@ -130,14 +130,13 @@ The preceding event pattern matches the following event\.
 }
 ```
 
-The preceding event pattern also matches the following event because `c-count` isn't a leaf node\.
+The preceding event pattern does NOT match the following event because it doesn't have a `detail.state` field\.
 
 ```
 {
   "detail-type": [ "EC2 Instance State-change Notification" ],
   "resources": [ "arn:aws:ec2:us-east-1:123456789012:instance/i-02ebd4584a2ebd341" ],
   "detail": {
-    "state": [ "initializing", "running" ]
     "c-count" : {
        "c1" : 100
     }
@@ -160,3 +159,16 @@ You can combine multiple matching rules into a more complex event pattern\. For 
   }
 }
 ```
+
+**Note**  
+When building event patterns, if you include a key more than once the last reference will be the one used to evaluate events\. For example, for the following pattern:  
+
+```
+{
+  "detail": {
+    "location": [ { "prefix": "us-" } ],
+    "location": [ { "anything-but": "us-east" } ]
+  }
+}
+```
+only `{ "anything-but": "us-east" }` will be taken into account when evaluatng the `location`\.

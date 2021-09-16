@@ -3,7 +3,9 @@
 The following tutorials show you how to create EventBridge [rules](eb-rules.md) for certain tasks and [target](eb-targets.md)\.
 
 **Topics**
++ [Archive and replay events](eb-tutorial-archive-replay.md)
 + [Create rule based on CloudTrail API call](eb-ct-api-tutorial.md)
++ [Create a sample application](eb-tutorial-get-started.md)
 + [Download code bindings for events using the EventBridge schema registry](eb-schema-download-binding-tutorial.md)
 + [Log Auto Scaling group states](eb-log-as-group-state.md)
 + [Log AWS API calls](eb-log-api-call.md)

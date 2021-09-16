@@ -70,11 +70,11 @@ If you see the rule in the list of rules, you've successfully created the rule\.
 
 You can now delete the resources that you created for this tutorial, unless you want to retain them\. By deleting AWS resources that you are no longer using, you prevent unnecessary charges to your AWS account\.
 
-**To delete the EventBridge rule**
+**To delete the EventBridge rule\(s\)**
 
 1. Open the [Rules page](https://console.aws.amazon.com/events/home#/rule) of the EventBridge console\.
 
-1. Select the rule that you created\.
+1. Select the rule\(s\) that you created\.
 
 1. Choose **Delete**\.
 

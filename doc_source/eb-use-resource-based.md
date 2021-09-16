@@ -55,8 +55,7 @@ The following example allows EventBridge to write to all log groups that have na
             ],
             "Effect": "Allow",
             "Principal": {
-                "Service": "events.amazonaws.com"
-                "Service": "delivery.logs.amazonaws.com"
+                "Service": ["events.amazonaws.com", "delivery.logs.amazonaws.com"]
             },
             "Resource": "arn:aws:logs:region:account:log-group:/aws/events/*:*",
             "Sid": "TrustEventsToStoreLogEvent"
