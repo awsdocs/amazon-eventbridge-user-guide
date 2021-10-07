@@ -171,4 +171,4 @@ When building event patterns, if you include a key more than once the last refer
   }
 }
 ```
-only `{ "anything-but": "us-east" }` will be taken into account when evaluatng the `location`\.
+only `{ "anything-but": "us-east" }` will be taken into account when evaluating the `location`\.
