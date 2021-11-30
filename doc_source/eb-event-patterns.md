@@ -157,7 +157,7 @@ Consider the following Amazon Macie Classic event, which is truncated\.
       "rule-arn": "arn:aws:macie:us-east-1:123456789012:trigger/trigger_id",
       "alert-type": "basic",
       "created-at": "2017-01-02 19:54:00.644000",
-      "description": "Alerting on failed enumeration of large number of bucket policie
+      "description": "Alerting on failed enumeration of large number of bucket policies"
       "risk": 8
     },
 "created-at": "2017-04-18T00:21:12.059000",
