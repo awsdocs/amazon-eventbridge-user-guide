@@ -114,7 +114,7 @@ To set up the example application, you'll use the AWS CLI and Git to create the 
 
    1. For `AWS Region`, enter the Region\. For example, `us-west-2`\.
 
-   1. For `Confirm changes before delpoy`, enter `Y`\.
+   1. For `Confirm changes before deploy`, enter `Y`\.
 
    1. For `Allow SAM CLI IAM role creation`, enter `Y`
 
