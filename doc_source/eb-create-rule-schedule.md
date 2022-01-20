@@ -7,6 +7,8 @@ EventBridge supports cron expressions and rate expressions\. Rate expressions ar
 **Note**  
 EventBridge doesn't provide second\-level precision in schedule expressions\. The finest resolution using a cron expression is one minute\. Due to the distributed nature of EventBridge and the target services, there can be a delay of several seconds between the time the scheduled rule is triggered and the time the target service runs the target resource\. 
 
+
+
 **Topics**
 + [Cron Expressions](#eb-cron-expressions)
 + [Rate Expressions](#eb-rate-expressions)

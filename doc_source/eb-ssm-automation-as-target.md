@@ -1,4 +1,4 @@
-# Tutorial: Set AWS Systems Manager automation as an EventBridge target<a name="eb-ssm-automation-as-target"></a>
+# Tutorial: Set AWS Systems Manager Automation as an EventBridge target<a name="eb-ssm-automation-as-target"></a>
 
 You can use EventBridge to invoke [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html) Automation on a regular timed schedule or when specific [events](eb-events.md) are detected\. This tutorial assumes that you're invoking Systems Manager Automation based on specific events\.
 

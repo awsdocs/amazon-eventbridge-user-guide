@@ -2,6 +2,8 @@
 
 Event patterns have the same structure as the [events](eb-events.md) they match\. [Rules](eb-rules.md) use event patterns to select events and send them to targets\. An event pattern either matches an event or it doesn't\.
 
+
+
 **Topics**
 + [Create event patterns](#eb-create-pattern)
 + [Example events and event patterns](#eb-filtering-data-types)
@@ -72,7 +74,7 @@ Here's a summary of all the comparison operators available in EventBridge:
 |  Or  |  PaymentType is “Credit” or “Debit”  |  “PaymentType”: \[ “Credit”, “Debit”\]  | 
 |  Not  |  Weather is anything but “Raining”  |  “Weather”: \[ \{ “anything\-but”: \[ “Raining” \] \} \]  | 
 |  Numeric \(equals\)  |  Price is 100  |  “Price”: \[ \{ “numeric”: \[ “=”, 100 \] \} \]  | 
-|  Numeric \(range\)  |  Price is more than 10, and less than or equal to 20  |  “Price”: \[ \{ “numeric”: \[ “>”, 10, “≤", 20 \] \} \]  | 
+|  Numeric \(range\)  |  Price is more than 10, and less than or equal to 20  |  “Price”: \[ \{ “numeric”: \[ “>”, 10, “<=", 20 \] \} \]  | 
 |  Exists  |  ProductName exists  |  “ProductName”: \[ \{ “exists”: true \} \]  | 
 |  Does not exist  |  ProductName does not exist  |  “ProductName”: \[ \{ “exists”: false \} \]  | 
 |  Begins with  |  Region is in the US  |  “Region”: \[ \{“prefix”: “us\-“ \} \]  | 
@@ -157,7 +159,7 @@ Consider the following Amazon Macie Classic event, which is truncated\.
       "rule-arn": "arn:aws:macie:us-east-1:123456789012:trigger/trigger_id",
       "alert-type": "basic",
       "created-at": "2017-01-02 19:54:00.644000",
-      "description": "Alerting on failed enumeration of large number of bucket policie
+      "description": "Alerting on failed enumeration of large number of bucket policies",
       "risk": 8
     },
 "created-at": "2017-04-18T00:21:12.059000",

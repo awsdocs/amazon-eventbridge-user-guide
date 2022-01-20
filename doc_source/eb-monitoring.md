@@ -2,6 +2,8 @@
 
 EventBridge sends metrics to Amazon CloudWatch every minute for everything from the number of matched [events](eb-events.md) to the number of times a [target](eb-targets.md) is invoked by a [rule](eb-rules.md)\.
 
+
+
 **Topics**
 + [EventBridge metrics](#eb-metrics)
 + [Dimensions for EventBridge metrics](#eb-metrics-dimensions)

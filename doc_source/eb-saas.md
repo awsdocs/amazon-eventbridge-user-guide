@@ -2,6 +2,8 @@
 
 To receive [events](eb-events.md) from SaaS partner applications and services, you need a partner event source from the partner\. Then you can create a partner [event bus](eb-event-bus.md) and match it to the partner event source\.
 
+
+
 **Topics**
 + [Supported SaaS partner integrations](#eb-supported-integrations)
 + [Configuring Amazon EventBridge to receive events from a SaaS integration](#eb-saas-integration)
@@ -66,9 +68,13 @@ Partner event sources are available in the following Regions\.
 | `ap-east-1` | Asia Pacific \(Hong Kong\) | 
 | `ap-northeast-1` | Asia Pacific \(Tokyo\) | 
 | `ap-northeast-2` | Asia Pacific \(Seoul\) | 
+| `ap-northeast-3` | Asia Pacific \(Osaka\) | 
 | `ap-southeast-1` | Asia Pacific \(Singapore\) | 
 | `ap-southeast-2` | Asia Pacific \(Sydney\) | 
-| `ap-south-1` | Asia Pacific \(Mumbai\) | 
+| `ap-southeast-3` | Asia Pacific \(Jakarta\) | 
+| `cn-north-1` | China \(Beijing\) | 
+| `cn-northwest-1` | China \(Ningxia\) | 
+| `me-south-1` | Middle East \(Bahrain\) | 
 | `sa-east-1` | South America \(São Paulo\) | 
 
 ## Configuring Amazon EventBridge to receive events from a SaaS integration<a name="eb-saas-integration"></a>
@@ -111,15 +117,17 @@ Before you can create [rules](eb-rules.md) for [events](eb-events.md) from SaaS 
 
 1. For **Define pattern**, choose **Event pattern**\.
 
-1. Choose **Pre\-defined pattern by service**\.
+1. For **Define pattern**, do the following:
 
-1. For **Service provider**, choose **Service partners**\.
+   1. Choose **Event pattern**\.
 
-1. For **Service name**, choose the name of the partner\.
+   1. Choose **Pre\-defined pattern by service**\.
 
-1. For **Event type**, choose **All Events** or choose the type of event to use for this rule\. If you choose **All Events**, all events that come from this partner event source match the rule\.
+   1. For **Service provider**, choose **Service partners**\.
 
-1. \(Optional\) To customize the event pattern, choose **Edit**, make your changes, and then choose **Save**\.
+   1. For **Service name**, choose the name of the partner\.
+
+   1. To customize the event pattern to match all events from this service, choose **Edit**, make your changes, and then choose **Save**\.
 
 1. For **Service event bus**, select the event bus that corresponds to this partner\.
 
@@ -130,8 +138,6 @@ Before you can create [rules](eb-rules.md) for [events](eb-events.md) from SaaS 
 1. For many target types, EventBridge needs permissions to send events to the target\. In these cases, EventBridge can create the IAM role needed for your rule to run: 
    + To create an IAM role automatically, choose **Create a new role for this specific resource**
    + To use an IAM role that you created before, choose **Use existing role**
-
-1. \(Optional\) Choose **Add target** to add another target for this rule\.
 
 1. \(Optional\) Enter one or more tags for the rule\. For more information, see [Amazon EventBridge tags](eb-tagging.md)\.
 

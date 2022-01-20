@@ -19,3 +19,4 @@ You can pass the following trace header information through EventBridge:
 
 **Note**  
 The trace header doesn't count towards the `PutEventsRequestEntry` event size\. For more information, see [Calculating Amazon EventBridge PutEvents event entry size](eb-putevent-size.md)\.
+

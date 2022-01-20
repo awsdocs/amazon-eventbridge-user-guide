@@ -1,11 +1,11 @@
 # Tutorial: Run an Amazon ECS task when a file is uploaded to an Amazon S3 bucket<a name="eb-ecs-tutorial"></a>
 
-You can use EventBridge to run Amazon ECS tasks when specific AWS [events](eb-events.md) occur\.
+AWS Systems Manager You can use EventBridge to run Amazon ECS tasks when specific AWS [events](eb-events.md) occur\.
 
 In this tutorial, you set up an EventBridge [rule](eb-rules.md) that runs an [Amazon ECS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html) task when a file is uploaded to a specific [Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) bucket by using the Amazon S3 PUT operation\.
 
 **Note**  
-This tutorial assumes that you have already created the task definition in Amazon ECS\.
+This tutorial assumes that you have already created the task definition in Amazon ECS\. For more information, see [Amazon ECS task definitions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html)\.
 
 **Topics**
 + [Step 1: Create a Rule](#eb-run-ecs-s3-create-rule)

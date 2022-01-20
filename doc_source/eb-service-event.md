@@ -6,6 +6,8 @@ Many AWS services generate [events](eb-events.md) that EventBridge receives\. Wh
 
 All events that are delivered by CloudTrail have `AWS API Call via CloudTrail` as the value for `detail-type`\. 
 
+When using CloudTrail with Amazon S3, you need to configure CloudTrail to log data events\. For more information, see [Enabling CloudTrail event logging for S3 buckets and objects ](https://docs.aws.amazon.com/AmazonS3/latest/dev/enable-cloudtrail-logging-for-s3.html)\.
+
 Some occurrences in AWS services can be reported to EventBridge both by the service itself and by CloudTrail\. For example, an Amazon EC2 API call that starts or stops an instance generates EventBridge events as well as events through CloudTrail\. 
 
 **Important**  
@@ -43,6 +45,7 @@ The following table shows AWS services that generate events\. Choose the service
 | AWS Data Exchange | Best effort | 
 | Amazon Data Lifecycle Manager | Best effort | 
 | AWS DataSync | Best effort | 
+| [Amazon DevOps Guru](https://docs.aws.amazon.com/devops-guru/latest/userguide/working-with-eventbridge.html) | Best effort | 
 | [AWS Elastic Beanstalk](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/AWSHowTo.eventbridge.html) | Best effort | 
 | [Amazon Elastic Block Store](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-cloud-watch-events.html) | Best effort | 
 | Amazon Elastic Block Store volume modifications | Best effort | 
@@ -83,6 +86,7 @@ The following table shows AWS services that generate events\. Choose the service
 | [Savings Plans](https://docs.aws.amazon.com/savingsplans/latest/userguide/automating-savingsplans-with-eventbridge.html) | Best effort | 
 | [AWS Security Hub](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cloudwatch-events.html) | Best effort | 
 | AWS Signer | Guaranteed | 
+| [Amazon Simple Storage Service \(Amazon S3\)](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/EventBridge.html) | Guaranteed | 
 | Amazon Simple Workflow Service | Best effort | 
 | [AWS Step Functions](https://docs.aws.amazon.com/step-functions/latest/dg/cw-events.html#cw-events-events) | Best effort | 
 | AWS Storage Gateway | Guaranteed | 

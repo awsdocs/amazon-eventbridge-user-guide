@@ -2,10 +2,13 @@
 
 You can configure EventBridge to send and receive [events](eb-events.md) between AWS Regions\. You can also allow or deny events from specific Regions, specific [rules](eb-rules.md) associated with the event bus, or events from specific sources\. For more information, see [Introducing cross\-Region event routing with Amazon EventBridge](http://aws.amazon.com/blogs/compute/introducing-cross-region-event-routing-with-amazon-eventbridge/)
 
-The current list of supported destination Regions is:
-+ US East \(N\. Virginia\)
-+ US West \(Oregon\)
-+ Europe \(Ireland\)
+The following Regions are NOT supported destination Regions:
++ AWS GovCloud \(US\-West\)
++ AWS GovCloud \(US\-East\)
++ China \(Ningxia\)
++ China \(Beijing\)
+
+
 
 **To create a rule that sends events to a different AWS Region using the console**
 

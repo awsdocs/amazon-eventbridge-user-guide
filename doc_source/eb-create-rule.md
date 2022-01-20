@@ -2,6 +2,8 @@
 
 To create a [rule](eb-rules.md) for [events](eb-events.md), you specify an action to take when EventBridge receives an event that matches the [event pattern](eb-event-patterns.md) in the rule\. When an event matches, EventBridge sends the event to the specified [target](eb-targets.md) and triggers the action defined in the rule\.
 
+
+
 **To create a rule that reacts to events**
 
 1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.

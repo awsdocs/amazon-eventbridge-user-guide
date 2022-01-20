@@ -8,6 +8,8 @@ When a service creates a managed rule, it can also create an [IAM policy](eb-iam
 
 You can delete managed rules by using the **Force delete** option, but you should only delete them if you're sure that the other service no longer needs the rule\. Otherwise, deleting a managed rule causes the features that rely on it to stop working\.
 
+
+
 **Topics**
 + [Creating Amazon EventBridge rules that react to events](eb-create-rule.md)
 + [Creating an Amazon EventBridge rule that runs on a schedule](eb-create-rule-schedule.md)

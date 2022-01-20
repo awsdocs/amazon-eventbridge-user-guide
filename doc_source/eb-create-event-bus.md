@@ -2,6 +2,8 @@
 
 You can create a custom [event bus](eb-event-bus.md) to receive [events](eb-events.md) from your applications\. Your applications can also send events to the default event bus\. When you create an event bus, you can attach a [resource\-based policy](eb-use-resource-based.md) to grant permissions to other accounts\. Then other accounts can send events to the event bus in the current account\.
 
+
+
 **To create a custom event bus**
 
 1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.

@@ -27,7 +27,7 @@ You can have a maximum of 10 active concurrent replays per account per AWS Regio
    + Choose **All rules** to replay events to all rules\.
    + Choose **Specify rules**, and then select the rule or rules to replay the events to\.
 
-1. Under **Replay time frame**, specify the **Date**, **Time**, and **Time zone** for the **Start time** and the **End time**\. Only events that events that occurred between the **Start time** and **End time** are replayed\. 
+1. Under **Replay time frame**, specify the **Date**, **Time**, and **Time zone** for the **Start time** and the **End time**\. Only events that occurred between the **Start time** and **End time** are replayed\. 
 
 1. Choose **Start replay**\.
 

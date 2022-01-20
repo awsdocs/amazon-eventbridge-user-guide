@@ -7,7 +7,7 @@ An *event* indicates a change in an environment such as an AWS environment, a Sa
 
 You can also set up scheduled events that are generated on a periodic basis\. 
 
-For a list of services that generate events, including sample events from each service, see [Events from AWS services](eb-service-event.md)\. 
+For a list of services that generate events, including sample events from each service, see [Events from AWS services](eb-service-event.md) and follow the links in the table\. 
 
 Events are represented as JSON objects and they all have a similar structure, and the same top\-level fields\. 
 
@@ -16,6 +16,10 @@ The contents of the **detail** top\-level field are different depending on which
 **Topics**
 + [Amazon EventBridge event patterns](eb-event-patterns.md)
 + [Adding Amazon EventBridge events with `PutEvents`](eb-putevents.md)
+
+
+
+
 
 The following fields appear in an event:
 
@@ -46,7 +50,7 @@ Identifies the AWS Region where the event originated\.
 A JSON array that contains ARNs that identify resources that are involved in the event\. The service generating the event determines whether to include these ARNs\. For example, Amazon EC2 instance state\-changes include Amazon EC2 instance ARNs, Auto Scaling events include ARNs for both instances and Auto Scaling groups, but API calls with AWS CloudTrail do not include resource ARNs\.
 
 **detail**  
-A JSON object that contains information about the event\. The service generating the event determines thecontent of this field\. The detail content can be as simple as two fields\. AWS API call events have detail objects with approximately 50 fields nested several levels deep\.
+A JSON object that contains information about the event\. The service generating the event determines the content of this field\. The detail content can be as simple as two fields\. AWS API call events have detail objects with approximately 50 fields nested several levels deep\.
 
 The following event in Amazon EventBridge indicates an Amazon EC2 instance being terminated\.
 

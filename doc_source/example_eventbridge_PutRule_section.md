@@ -1,0 +1,178 @@
+# Create an EventBridge scheduled rule using an AWS SDK<a name="example_eventbridge_PutRule_section"></a>
+
+The following code examples show how to create an Amazon EventBridge scheduled rule\.
+
+------
+#### [ C\+\+ ]
+
+**SDK for C\+\+**  
+Include the required files\.  
+
+```
+#include <aws/core/Aws.h>
+#include <aws/events/EventBridgeClient.h>
+#include <aws/events/model/PutRuleRequest.h>
+#include <aws/events/model/PutRuleResult.h>
+#include <aws/core/utils/Outcome.h>
+#include <iostream>
+```
+Create the rule\.  
+
+```
+        Aws::CloudWatchEvents::EventBridgeClient cwe;
+        Aws::CloudWatchEvents::Model::PutRuleRequest request;
+        request.SetName(rule_name);
+        request.SetRoleArn(role_arn);
+        request.SetScheduleExpression("rate(5 minutes)");
+        request.SetState(Aws::CloudWatchEvents::Model::RuleState::ENABLED);
+
+        auto outcome = cwe.PutRule(request);
+        if (!outcome.IsSuccess())
+        {
+            std::cout << "Failed to create CloudWatch events rule " <<
+                rule_name << ": " << outcome.GetError().GetMessage() <<
+                std::endl;
+        }
+        else
+        {
+            std::cout << "Successfully created CloudWatch events rule " <<
+                rule_name << " with resulting Arn " <<
+                outcome.GetResult().GetRuleArn() << std::endl;
+        }
+```
++  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/cpp/example_code/eventbridge#code-examples)\. 
++  For API details, see [PutRule](https://docs.aws.amazon.com/goto/SdkForCpp/eventbridge-2015-10-07/PutRule) in *AWS SDK for C\+\+ API Reference*\. 
+
+------
+#### [ Java ]
+
+**SDK for Java 2\.x**  
+  
+
+```
+    public static void createEBRule(EventBridgeClient eventBrClient, String ruleName) {
+
+    try {
+
+        PutRuleRequest ruleRequest = PutRuleRequest.builder()
+                 .name(ruleName)
+                .eventBusName("default")
+                .eventPattern("{\"source\":[\"aws.s3\"],\"detail-type\":[\"AWS API Call via CloudTrail\"],\"detail\":{\"eventSource\":[\"s3.amazonaws.com\"],\"eventName\":[\"DeleteBucket\"]}}")
+                .description("A test rule created by the Java API")
+                .build();
+
+        PutRuleResponse ruleResponse = eventBrClient.putRule(ruleRequest);
+        System.out.println("The ARN of the new rule is "+ ruleResponse.ruleArn());
+
+    } catch (EventBridgeException e) {
+
+        System.err.println(e.awsErrorDetails().errorMessage());
+        System.exit(1);
+    }
+  }
+```
++  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/eventbridge#readme)\. 
++  For API details, see [PutRule](https://docs.aws.amazon.com/goto/SdkForJavaV2/eventbridge-2015-10-07/PutRule) in *AWS SDK for Java 2\.x API Reference*\. 
+
+------
+#### [ JavaScript ]
+
+**SDK for JavaScript V3**  
+Create the client in a separate module and export it\.  
+
+```
+import { EventBridgeClient } from "@aws-sdk/client-eventbridge";
+// Set the AWS Region.
+const REGION = "REGION"; //e.g. "us-east-1"
+// Create an Amazon EventBridge service client object.
+export const ebClient = new EventBridgeClient({ region: REGION });
+```
+Import the SDK and client modules and call the API\.  
+
+```
+// Import required AWS SDK clients and commands for Node.js.
+import { PutRuleCommand } from "@aws-sdk/client-eventbridge";
+import { ebClient } from "./libs/eventBridgeClient.js";
+
+// Set the parameters.
+export const params = {
+  Name: "DEMO_EVENT",
+  RoleArn: "IAM_ROLE_ARN", //IAM_ROLE_ARN
+  ScheduleExpression: "rate(5 minutes)",
+  State: "ENABLED",
+};
+
+export const run = async () => {
+  try {
+    const data = await ebClient.send(new PutRuleCommand(params));
+    console.log("Success, scheduled rule created; Rule ARN:", data);
+    return data; // For unit tests.
+  } catch (err) {
+    console.log("Error", err);
+  }
+};
+// Uncomment this line to run execution within this file.
+// run();
+```
++  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/eventbridge#code-examples)\. 
++  For API details, see [PutRule](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-eventbridge/classes/putrulecommand.html) in *AWS SDK for JavaScript API Reference*\. 
+
+**SDK for JavaScript V2**  
+  
+
+```
+// Load the AWS SDK for Node.js
+var AWS = require('aws-sdk');
+// Set the region
+AWS.config.update({region: 'REGION'});
+
+// Create CloudWatchEvents service object
+var ebevents = new AWS.EventBridge({apiVersion: '2015-10-07'});
+
+var params = {
+  Name: 'DEMO_EVENT',
+  RoleArn: 'IAM_ROLE_ARN',
+  ScheduleExpression: 'rate(5 minutes)',
+  State: 'ENABLED'
+};
+
+ebevents.putRule(params, function(err, data) {
+  if (err) {
+    console.log("Error", err);
+  } else {
+    console.log("Success", data.RuleArn);
+  }
+});
+```
++  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascript/example_code/eventbridge#code-examples)\. 
++  For API details, see [PutRule](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/eventbridge-2015-10-07/PutRule) in *AWS SDK for JavaScript API Reference*\. 
+
+------
+#### [ Kotlin ]
+
+**SDK for Kotlin**  
+This is prerelease documentation for a feature in preview release\. It is subject to change\.
+  
+
+```
+suspend fun createEBRule(ruleNameVal: String) {
+
+     val request = PutRuleRequest {
+         name = ruleNameVal
+         eventBusName = "default"
+         eventPattern = "{\"source\":[\"aws.s3\"],\"detail-type\":[\"AWS API Call via CloudTrail\"],\"detail\":{\"eventSource\":[\"s3.amazonaws.com\"],\"eventName\":[\"DeleteBucket\"]}}"
+         description = "A test rule created by the AWS SDK for Kotlin"
+      }
+
+      EventBridgeClient { region = "us-west-2" }.use { eventBrClient ->
+            val ruleResponse = eventBrClient.putRule(request)
+            println("The ARN of the new rule is ${ruleResponse.ruleArn}")
+      }
+}
+```
++  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/eventbridge#code-examples)\. 
++  For API details, see [PutRule](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 
+
+------
+
+For a complete list of AWS SDK developer guides and code examples, including help getting started and information about previous versions, see [Using EventBridge with an AWS SDK](sdk-general-information-section.md)\.

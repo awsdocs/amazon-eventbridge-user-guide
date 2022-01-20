@@ -5,6 +5,8 @@ Amazon EventBridge *API destinations* are HTTP endpoints that you can invoke as 
 **Important**  
 EventBridge requests to an API destination endpoint must have a maximum client execution timeout of 5 seconds\. If the target endpoint takes longer than 5 seconds to respond, EventBridge times out the request\. EventBridge retries timed out requests up to the maximums that are configured on your retry policy\. By default the maximums are 24 hours and 185 times\. After the maximum number of retries, events are sent to your [dead\-letter queue](eb-rule-dlq.md) if you have one\.Otherwise, the event is dropped\.
 
+
+
 **Topics**
 + [Connections for API destinations](#eb-api-destination-connection)
 + [Create an API destination](#eb-api-destination-create)
@@ -115,7 +117,7 @@ After you create an API destination, you can select it as the target of a [rule]
 
 ## Service\-linked role for API destinations<a name="eb-api-destination-slr"></a>
 
-When you create a connection for an API destination, a service\-linked role named **AWSServiceRoleForAmazonEventBridgeApiDestinations** to your account\. EventBridge uses the service\-linked role to create and store a secret in Secrets Manager\. To grant the necessary permissions to the service\-linked role, EventBridge attaches the **AmazonEventBridgeApiDestinationsServiceRolePolicy** policy to the role\. The policy limits the permissions granted to only those necessary for the role to interact with the secret for the connection\. No other permissions are included, and the role can interact only with the connections in your account to manage the secret\.
+When you create a connection for an API destination, a service\-linked role named **AWSServiceRoleForAmazonEventBridgeApiDestinations** is added to your account\. EventBridge uses the service\-linked role to create and store a secret in Secrets Manager\. To grant the necessary permissions to the service\-linked role, EventBridge attaches the **AmazonEventBridgeApiDestinationsServiceRolePolicy** policy to the role\. The policy limits the permissions granted to only those necessary for the role to interact with the secret for the connection\. No other permissions are included, and the role can interact only with the connections in your account to manage the secret\.
 
 The following policy is the AmazonEventBridgeApiDestinationsServiceRolePolicy\.
 

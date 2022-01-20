@@ -21,6 +21,8 @@ Events sent from one account to another are charged to the sending account as cu
 
 If a receiver account sets up a rule that sends events received from a sender account on to a third account, these events are not sent to the third account\.
 
+
+
 ## Grant permissions to allow events from other AWS accounts<a name="eb-receiving-events-from-another-account"></a>
 
 To receive events from other accounts or organizations, you must first edit the permissions on the event bus you intend to receive events on\. The default event bus accepts events from AWS services, other authorized AWS accounts, and `PutEvents` calls\. The permissions for an event bus are granted or denied using a resource\-based policy attached to the event bus\. In the policy, you can grant permissions to other AWS accounts using the account ID, or to an AWS Organizations organization the organization ID\. To learn more about event bus permissions, including example policies, see [Permissions for Amazon EventBridge event buses](eb-event-bus-perms.md)\.

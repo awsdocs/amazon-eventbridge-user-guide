@@ -12,6 +12,10 @@ The most common event buses are:
 + A custom event bus sends events to or receives events from a different Region to aggregate events in a single location\.
 + A partner event bus receives events from a SaaS partner\. For more information, see [Receiving events from a SaaS partner with Amazon EventBridge](eb-saas.md)\.
 
+
+
+
+
 **Topics**
 + [Permissions for Amazon EventBridge event buses](eb-event-bus-perms.md)
 + [Creating an Amazon EventBridge event bus](eb-create-event-bus.md)

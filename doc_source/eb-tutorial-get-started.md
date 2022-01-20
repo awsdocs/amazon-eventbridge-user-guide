@@ -18,19 +18,24 @@ const result = await eventbridge.putEvents(params).promise()
 This directory also contains `events.js`, listing several test transactions in an Entries array\. A single event is defined in JavaScript as follows:
 
 ```
-exports.case1Handler = async (event) => {
-  console.log('--- Approved transactions ---')
-  console.log(JSON.stringify(event, null, 2))
-}
+{
+  // Event envelope fields
+  Source: 'custom.myATMapp',
+  EventBusName: 'default',
+  DetailType: 'transaction',
+  Time: new Date(),
 
-exports.case2Handler = async (event) => {
-  console.log('--- NY location transactions ---')
-  console.log(JSON.stringify(event, null, 2))
-}
-
-exports.case3Handler = async (event) => {
-  console.log('--- Unapproved transactions ---')
-  console.log(JSON.stringify(event, null, 2))
+  // Main event body
+  Detail: JSON.stringify({
+    action: 'withdrawal',
+    location: 'MA-BOS-01',
+    amount: 300,
+    result: 'approved',
+    transactionId: '123456',
+    cardPresent: true,
+    partnerBank: 'Example Bank',
+    remainingFunds: 722.34
+  })
 }
 ```
 
@@ -114,7 +119,7 @@ To set up the example application, you'll use the AWS CLI and Git to create the 
 
    1. For `AWS Region`, enter the Region\. For example, `us-west-2`\.
 
-   1. For `Confirm changes before delpoy`, enter `Y`\.
+   1. For `Confirm changes before deploy`, enter `Y`\.
 
    1. For `Allow SAM CLI IAM role creation`, enter `Y`
 

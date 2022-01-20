@@ -38,12 +38,23 @@ Although you can use your root user credentials to access EventBridge, we recomm
   "Statement": [
     {
       "Action": [
-        "events:*",
+        "events:*"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:events:*:*:*"
+    },
+    {
+      "Action": [
         "iam:PassRole"
       ],
       "Effect": "Allow",
-      "Resource": "*"
-    }
+      "Resource": "*",
+      "Condition": {
+        "StringLike": {
+          "iam:PassedToService": "events.amazonaws.com"
+        }
+      }
+    }  
   ]
 }
 ```

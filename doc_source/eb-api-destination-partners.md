@@ -130,6 +130,33 @@ password
 The grant\_type value is “password”\.  
 Username and password values are from Salesforce user credentials\.
 
+## Slack<a name="eb-api-destination-slack"></a>
+
+**API destination invocation endpoint URL**  
+For a list of endpoints and other resources, see [Using the Slack Web API](https://api.slack.com/web)
+
+**Supported authorization types**   
+OAuth 2\.0  
+When you create a Slack application and install it to your workspace, an OAuth bearer token will be created on your behalf to be used for authenticating calls by your API destination connection\.
+
+**Additional authorization parameters required**  
+Not applicable
+
+**Slack documentation**  
+[Basic app setup](https://api.slack.com/authentication/basics)  
+[Installing with OAuth](https://api.slack.com/authentication/oauth-v2)  
+[Retrieving messages](https://api.slack.com/messaging/retrieving)  
+[Sending messages](https://api.slack.com/messaging/sending)  
+[Sending messages using Incoming Webhooks](https://api.slack.com/messaging/webhooks)
+
+**Commonly used API operations**  
+https://slack\.com/api/chat\.postMessage
+
+**Additional information**  
+When configuring your EventBridge rule there are two configurations to highlight:  
++ Include a header parameter that defines the content type as “application/json;charset=utf\-8”\.
++ Use an input transformer to map the input event to the expected output for the Slack API, namely ensure that the payload sent to the Slack API has “channel” and “text” key/value pairs\.
+
 ## Splunk<a name="api-destination-splunk"></a>
 
 **API destination invocation endpoint URL**  
@@ -151,10 +178,34 @@ POST https://*SPLUNK\_HEC\_ENDPOINT*:*optional\_port*/services/collector/raw
 API Key – When configuring the endpoint for EventBridge, the API key name is “Authorization” and value is the “Splunk HEC token ID”\.  
 Basic \(Username/Password\) – When configuring the endpoint for EventBridge, the username is “Splunk” and the password is “HEC tokenID”\.
 
+## Sumo Logic<a name="api-destination-sumologic"></a>
+
+**API destination invocation endpoint URL**  
+HTTP Log and Metric Source endpoint URLs will be different for every user\. For more information, see [ HTTP Logs and Metrics Source](https://help.sumologic.com/03Send-Data/Sources/02Sources-for-Hosted-Collectors/HTTP-Source)\.
+
+**Supported authorization types**   
+Sumo Logic doesn’t require authentication on their HTTP Sources because there’s a unique key baked into the URL\. For this reason, you should make sure to treat that URL as a secret\.  
+When you configure the EventBridge API destination, an authorization type is required\. To meet this requirement, select API Key and give it a key name of “dummy\-key” and a key value of “dummy\-value”\.
+
+**Additional authorization parameters required**  
+Not applicable
+
+**Sumo Logic documentation**  
+Sumo Logic has already built hosted sources to collect logs and metrics from many AWS services and you can use the information on their website to work with those sources\. For more information, see [Amazon Web Services](https://help.sumologic.com/03Send-Data/Sources/02Sources-for-Hosted-Collectors/Amazon-Web-Services)\.  
+If you’re generating custom events from an application and want to send them to Sumo Logic as either logs or metrics, then use EventBridge API Destinations and Sumo Logic HTTP Log and Metric Source endpoints\.  
++ To sign up and create a free Sumo Logic instance, see [Start your free trial today](https://www.sumologic.com/sign-up/)\.
++ For more information about using Sumo Logic, see [ HTTP Logs and Metrics Source](https://help.sumologic.com/03Send-Data/Sources/02Sources-for-Hosted-Collectors/HTTP-Source)\.
+
+**Commonly used API operations**  
+POST https://endpoint4\.collection\.us2\.sumologic\.com/receiver/v1/http/*UNIQUE\_ID\_PER\_COLLECTOR*
+
+**Additional information**  
+None
+
 ## TriggerMesh<a name="eb-api-destination-triggermesh"></a>
 
 **API destination invocation endpoint URL**  
-Use the information in the [Event Source for HTTP](https://docs.triggermesh.io/sources) topic to formulate the endpoint URL\. An endpoint URL includes the event source name and user namespace in the following format:  
+Use the information in the [Event Source for HTTP](https://docs.triggermesh.io/concepts/sources) topic to formulate the endpoint URL\. An endpoint URL includes the event source name and user namespace in the following format:  
 https://*source\-name*\.*user\-namespace*\.cloud\.triggermesh\.io  
 Include the Basic authorization parameters in the request to the endpoint\.
 
@@ -165,7 +216,7 @@ Basic
 None
 
 **TriggerMesh documentation**  
-[Event Source for HTTP](https://docs.triggermesh.io/sources)
+[Event Source for HTTP](https://docs.triggermesh.io/concepts/sources)
 
 **Commonly used API operations**  
 Not applicable

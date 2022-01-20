@@ -18,7 +18,7 @@ For example, the following event pattern would match any event where the `"time"
 
 ```
 {
-  "time": [ { "prefix": "2017-10-02" } ],
+  "time": [ { "prefix": "2017-10-02" } ]
 }
 ```
 
@@ -171,4 +171,4 @@ When building event patterns, if you include a key more than once the last refer
   }
 }
 ```
-only `{ "anything-but": "us-east" }` will be taken into account when evaluatng the `location`\.
+only `{ "anything-but": "us-east" }` will be taken into account when evaluating the `location`\.
