@@ -121,7 +121,7 @@ The following example policy grants the account 111122223333 permission to use a
         "Sid": "sid1",
         "Effect": "Allow",
         "Principal": {"AWS":"arn:aws:iam::111112222333:root"},
-        "Action": "events:*",
+        "Action": "events:PutEvents",
         "Resource": "arn:aws:events:us-east-1:123456789012:event-bus/default"
         }
     ]
