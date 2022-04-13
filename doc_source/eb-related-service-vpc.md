@@ -21,6 +21,7 @@ EventBridge currently supports VPC endpoints in the following Regions:
 + Asia Pacific \(Seoul\)
 + Asia Pacific \(Singapore\)
 + Asia Pacific \(Sydney\)
++ Asia Pacific \(Jakarta\)
 + Asia Pacific \(Tokyo\)
 + Asia Pacific \(Osaka\)
 + Canada \(Central\)

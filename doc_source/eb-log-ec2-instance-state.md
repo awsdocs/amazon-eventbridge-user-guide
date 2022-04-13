@@ -5,7 +5,7 @@ You can create an [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welc
 **Topics**
 + [Step 1: Create an AWS Lambda function](#eb-ec2-create-lambda-function)
 + [Step 2: Create a rule](#eb-ec2-create-rule)
-+ [Step 3: Test the rule](#eb-ec2-test-rule)
++ [Step 4: Test the rule](#eb-api-test-rule)
 + [Step 4: Confirm success](#success)
 + [Step 5: Clean up your resources](#cleanup)
 
@@ -53,45 +53,51 @@ Create a rule to run the Lambda function you created in Step 1\. The rule runs w
 
 1. Choose **Create rule**\.
 
-1. Enter a name and description for the rule\.
+1. Enter a name and description for the rule\. For example, name the rule `TestRule`
 
-1. For **Define pattern**, do the following:
+1. For **Event bus**, choose the event bus that you want to associate with this rule\. If you want this rule to match events that come from your account, select **default**\. When an AWS service in your account emits an event, it always goes to your account’s default event bus\.
 
-   1. Choose **Event pattern**\.
+1. For **Rule type**, choose **Rule with an event pattern**\.
 
-   1. Choose **Pre\-defined pattern by service**\.
+1. Choose **Next**\.
 
-   1. For **Service provider**, choose **AWS**\.
+1. For **Event source**, choose **AWS services**\.
 
-   1. For **Service Name**, choose **EC2**\.
+1. For **Event pattern**, do the following:
 
-   1. For **Event type**, choose **EC2 Instance State\-change Notification**\.
+   1. For **Event source**, select **EC2** from the drop\-down list\.
 
-   1. Choose **Specific state\(s\)**, **running**\.
+   1. For **Event type**, choose **EC2 Instance State\-change Notification** from the drop\-down list\.
 
-   1. By default, the rule matches any instance group in the Region\. To make the rule match a specific instance, choose **Specific instance Id\(s\)** and enter one or more instance IDs\.
+   1. Choose **Specific states\(s\)** and choose **running** from the drop\-down list\.
 
-1. For **Select event bus**, choose **AWS default event bus**\. When an AWS service in your account emits an event, it always goes to your account’s default event bus\. 
+   1. Choose **Any instance**
 
-1. For **Target**, choose **Lambda function**\.
+1. Choose **Next**\.
 
-1. For **Function**, select the Lambda function that you created\.
+1. For **Target types**, choose **AWS service**\.
 
-1. Choose **Create**\.
+1. For **Select a target**, choose **Lambda function** from the drop\-down list\.
 
-## Step 3: Test the rule<a name="eb-ec2-test-rule"></a>
+1. For **Function**, select the Lambda function that you created in the **Step 1: Create a Lambda function** section\. In this example, select `LogEC2InstanceStateChange`\.
 
-To test your rule, launch an Amazon EC2 instance\. Wait a few minutes for the instance to launch and initialize, and then verify that your Lambda function ran\.
+1. Choose **Next**\.
 
-**To test your rule by launching an instance**
+1. Choose **Next**\.
+
+1. Review the details of the rule and choose **Create rule**\.
+
+## Step 4: Test the rule<a name="eb-api-test-rule"></a>
+
+You can test your rule by stopping an Amazon EC2 instance using the Amazon EC2 console\. Wait a few minutes for the instance to stop, and then check your AWS Lambda metrics on the CloudWatch console to verify that your function ran\.
+
+**To test your rule by stopping an instance**
 
 1. Open the Amazon EC2 console at [https://console\.aws\.amazon\.com/ec2/](https://console.aws.amazon.com/ec2/)\.
 
 1. Launch an instance\. For more information, see [Launch Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/LaunchingAndUsingInstances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.
-
-1. In the navigation pane, choose **Rules**, choose the name of the rule that you created, and then choose**Metrics for the rule**\.
+1. Stop the instance\. For more information, see [Stop and Start Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 1. To view the output from your Lambda function, do the following:
 
@@ -99,11 +105,11 @@ To test your rule, launch an Amazon EC2 instance\. Wait a few minutes for the in
 
    1. In the navigation pane, choose **Logs**\.
 
-   1. Choose the name of the log group for your Lambda function, for example `/aws/lambda/function-name`\.
+   1. Select the name of the log group for your Lambda function \(`/aws/lambda/function-name`\)\.
 
-   1. Choose the name of the log stream to view the data provided by the function for the instance that you launched\.
+   1. Select the name of the log stream to view the data provided by the function for the instance that you stopped\.
 
-1. \(Optional\) When you're finished, you can open the Amazon EC2 console and stop or terminate the instance that you launched\. For more information, see [Terminate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+1. \(Optional\) When you're finished, terminate the stopped instance\. For more information, see [Terminate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 ## Step 4: Confirm success<a name="success"></a>
 

@@ -1,6 +1,6 @@
 # Tutorial: Download code bindings for events using the EventBridge schema registry<a name="eb-schema-download-binding-tutorial"></a>
 
-You can generate [code bindings](eb-schema-code-bindings.md) for [event schemas](eb-schema.md) to speed development for Java, Python, and TypeScript\. You can get code bindings for existing AWS services, schemas you create, and for schemas you generate based on [events](eb-events.md) on an [event bus](eb-event-bus.md)\. You can generate code bindings for a schema using one of the following:
+You can generate [code bindings](eb-schema-code-bindings.md) for [event schemas](eb-schema.md) to speed development for Golang, Java, Python, and TypeScript\. You can get code bindings for existing AWS services, schemas you create, and for schemas you generate based on [events](eb-events.md) on an [event bus](eb-event-bus.md)\. You can generate code bindings for a schema using one of the following:
 + EventBridge console
 + EventBridge schema registry API
 + Your IDE with an AWS toolkit

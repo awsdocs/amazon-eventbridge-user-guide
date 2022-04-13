@@ -76,29 +76,39 @@ Create a rule to archive events that are sent to the event bus\.
 
 1. Enter a name and description for the rule\. For example, name the rule `ARTestRule`\.
 
-1. For **Define pattern**, do the following:
+   A rule can't have the same name as another rule in the same Region and on the same event bus\.
 
-   1. Choose **Event pattern**\.
+1. For **Event bus**, choose the event bus that you want to associate with this rule\. If you want this rule to match events that come from your account, select **default**\. When an AWS service in your account emits an event, it always goes to your account’s default event bus\.
 
-   1. Choose **Custom pattern** and paste the following code into the **Event pattern** field:
+1. For **Rule type**, choose **Rule with an event pattern**\.
 
-      ```
-      {
-        "detail-type": [
-          "customerCreated"
-        ]
-      }
-      ```
+1. Choose **Next**\.
 
-   1. Choose **Save**\.
+1. For **Event source**, choose **Other**\.
 
-1. For **Select event bus**, choose **AWS default event bus**\.
+1. For **Event pattern**, enter the following:
 
-1. For **Target**, choose **Lambda function**\.
+   ```
+   {
+     "detail-type": [
+       "customerCreated"
+     ]
+   }
+   ```
+
+1. Choose **Next**\.
+
+1. For **Target types**, choose **AWS service**\.
+
+1. For **Select a target**, choose **Lambda function** from the drop\-down list\.
 
 1. For **Function**, select the Lambda function that you created in the **Step 1: Create a Lambda function** section\. In this example, select `LogScheduledEvent`\.
 
-1. Choose **Create**\.
+1. Choose **Next**\.
+
+1. Choose **Next**\.
+
+1. Review the details of the rule and choose **Create rule**\.
 
 ## Step 4: Send test events<a name="eb-ar-send-test-events"></a>
 

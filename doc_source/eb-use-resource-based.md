@@ -28,6 +28,7 @@ To invoke your Amazon API Gateway endpoint by using a EventBridge rule, add the 
            "Condition": {
                "ArnEquals": {
                    "aws:SourceArn": "arn:aws:events:region:account-id:rule/rule-name"
+               }
            },
            "Resource": [
                "execute-api:/stage/GET/api"

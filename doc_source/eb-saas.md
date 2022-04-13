@@ -115,30 +115,49 @@ Before you can create [rules](eb-rules.md) for [events](eb-events.md) from SaaS 
 
 1. Enter a name and description for the rule\.
 
-1. For **Define pattern**, choose **Event pattern**\.
+   A rule can't have the same name as another rule in the same Region and on the same event bus\.
 
-1. For **Define pattern**, do the following:
+1. For **Event bus**, choose the event bus that you want to associate with this rule\. If you want this rule to match events that come from your account, select ** AWS default event bus**\. When an AWS service in your account emits an event, it always goes to your account’s default event bus\.
 
-   1. Choose **Event pattern**\.
+1. For **Rule type**, choose **Rule with an event pattern**\.
 
-   1. Choose **Pre\-defined pattern by service**\.
+1. Choose **Next**\.
 
-   1. For **Service provider**, choose **Service partners**\.
+1. For **Event source**, choose **Other**\.
 
-   1. For **Service name**, choose the name of the partner\.
+1. \(Optional\) For **Sample events**, choose the type of event\.
 
-   1. To customize the event pattern to match all events from this service, choose **Edit**, make your changes, and then choose **Save**\.
+1. For **Event pattern**, enter a JSON event pattern\.
 
-1. For **Service event bus**, select the event bus that corresponds to this partner\.
+1. Choose **Next**\.
 
-1. For **Select targets**, choose the AWS service that is to act when this type of event occurs\.
+1. For **Target types**, choose **AWS service**\.
 
-1. In the other fields in this section, enter information specific to this target type, if any is needed\. 
+1. For **Select a target**, choose the AWS service that you want to send information to when EventBridge detects an event that matches the event pattern\.
 
-1. For many target types, EventBridge needs permissions to send events to the target\. In these cases, EventBridge can create the IAM role needed for your rule to run: 
-   + To create an IAM role automatically, choose **Create a new role for this specific resource**
-   + To use an IAM role that you created before, choose **Use existing role**
+1. The fields displayed vary depending on the service you choose\. Enter information specific to this target type as needed\. 
+
+1. For many target types, EventBridge needs permissions to send events to the target\. In these cases, EventBridge can create the IAM role needed for your rule to run\. Do one of the following:
+   + To create an IAM role automatically, choose **Create a new role for this specific resource**\.
+   + To use an IAM role that you created earlier, choose **Use existing role** and select the existing role from the drop\-down list\.
+
+1. \(Optional\) For **Additional settings**, do the following:
+
+   1. For **Maximum age of event**, enter a value between one minute \(00:01\) and 24 hours \(24:00\)\.
+
+   1. For **Retry attempts**, enter a number between 0 and 185\.
+
+   1. For **Dead\-letter queue**, choose whether to use a standard Amazon SQS queue as a dead\-letter queue\. EventBridge sends events that match this rule to the dead\-letter queue if they are not successfully delivered to the target\. Do one of the following:
+      + Choose **None** to not use a dead\-letter queue\.
+      + Choose **Select an Amazon SQS queue in the current AWS account to use as the dead\-letter queue** and then select the queue to use from the drop\-down list\.
+      + Choose **Select an Amazon SQS queue in an other AWS account as a dead\-letter queue** and then enter the ARN of the queue to use\. You must attach a resource\-based policy to the queue that grants EventBridge permission to send messages to it\. For more information, see [Granting permissions to the dead\-letter queue](eb-rule-dlq.md#eb-dlq-perms)\.
+
+1. \(Optional\) Choose **Add another target** to add another target for this rule\.
+
+1. Choose **Next**\.
 
 1. \(Optional\) Enter one or more tags for the rule\. For more information, see [Amazon EventBridge tags](eb-tagging.md)\.
 
-1. Choose **Create**\.
+1. Choose **Next**\.
+
+1. Review the details of the rule and choose **Create rule**\.

@@ -78,29 +78,37 @@ Create a rule to run the Lambda function you created in step 2 whenever you stop
 
 1. Choose **Create rule**\.
 
-1. Enter a name and description for the rule\.
+1. Enter a name and description for the rule\. For example, name the rule `TestRule`
 
-1. For **Define pattern**, do the following:
+1. For **Event bus**, choose the event bus that you want to associate with this rule\. If you want this rule to match events that come from your account, select **default**\. When an AWS service in your account emits an event, it always goes to your account’s default event bus\.
 
-   1. Choose **Event pattern**\.
+1. For **Rule type**, choose **Rule with an event pattern**\.
 
-   1. Choose **Pre\-defined pattern by service**\.
+1. Choose **Next**\.
 
-   1. For **Service provider**, choose **AWS**\.
+1. For **Event source**, choose **AWS services**\.
 
-   1. For **Service Name**, choose **EC2**\.
+1. For **Event pattern**, do the following:
 
-   1. For **Event type**, choose **AWS API Call via CloudTrail**\.
+   1. For **Event source**, select **EC2** from the drop\-down list\.
 
-   1. Choose **Specific operations\(s\)** and enter `StopInstances` in the box\.
+   1. For **Event type**, select **AWS API Call via CloudTrail** from the drop\-down list\.
 
-1. For **Select event bus**, choose **AWS default event bus**\. When an AWS service in your account emits an event, it goes to your account’s default event bus\. 
+   1. Choose **Specific operation\(s\)** and enter `StopInstances`\.
 
-1. For **Targets**, choose **Add target**, **Lambda function**\.
+1. Choose **Next**\.
 
-1. For **Function**, select the Lambda function that you created\.
+1. For **Target types**, choose **AWS service**\.
 
-1. Choose **Create**\.
+1. For **Select a target**, choose **Lambda function** from the drop\-down list\.
+
+1. For **Function**, select the Lambda function that you created in the **Step 1: Create a Lambda function** section\. In this example, select `LogEC2StopInstance`\.
+
+1. Choose **Next**\.
+
+1. Choose **Next**\.
+
+1. Review the details of the rule and choose **Create rule**\.
 
 ## Step 4: Test the rule<a name="eb-api-test-rule"></a>
 
@@ -113,10 +121,6 @@ You can test your rule by stopping an Amazon EC2 instance using the Amazon EC2 c
 1. Launch an instance\. For more information, see [Launch Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/LaunchingAndUsingInstances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 1. Stop the instance\. For more information, see [Stop and Start Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html) in the *Amazon EC2 User Guide for Linux Instances*\.
-
-1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.
-
-1. In the navigation pane, choose **Rules**, choose the name of the rule that you created, and then choose **Metrics for the rule**\.
 
 1. To view the output from your Lambda function, do the following:
 

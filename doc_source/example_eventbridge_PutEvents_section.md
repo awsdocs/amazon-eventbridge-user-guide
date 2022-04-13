@@ -2,6 +2,9 @@
 
 The following code examples show how to send Amazon EventBridge events\.
 
+**Note**  
+The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
+
 ------
 #### [ C\+\+ ]
 
@@ -65,10 +68,6 @@ Send the event\.
                     .detailType("myDetailType")
                     .detail("{ \"key1\": \"value1\", \"key2\": \"value2\" }")
                     .build();
-
-            // Add the PutEventsRequestEntry to a list
-            List<PutEventsRequestEntry> list = new ArrayList<PutEventsRequestEntry>();
-            list.add(reqEntry);
 
             PutEventsRequest eventsRequest = PutEventsRequest.builder()
                     .entries(reqEntry)
@@ -223,4 +222,4 @@ suspend fun putEBEvents(resourceArn: String, resourceArn2: String) {
 
 ------
 
-For a complete list of AWS SDK developer guides and code examples, including help getting started and information about previous versions, see [Using EventBridge with an AWS SDK](sdk-general-information-section.md)\.
+For a complete list of AWS SDK developer guides and code examples, see [Using EventBridge with an AWS SDK](sdk-general-information-section.md)\. This topic also includes information about getting started and details about previous SDK versions\.

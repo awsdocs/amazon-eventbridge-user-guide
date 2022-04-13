@@ -25,25 +25,31 @@ Create a rule that takes snapshots on a schedule\. You can use a rate expression
 
 1. Enter a name and description for the rule\.
 
-1. For **Define pattern**, do the following:
+   A rule can't have the same name as another rule in the same Region and on the same event bus\.
 
-   1. Choose **Schedule**\.
+1. For **Event bus**, choose the event bus that you want to associate with this rule\. If you want this rule to match events that come from your account, select ** AWS default event bus**\. When an AWS service in your account emits an event, it always goes to your account’s default event bus\.
 
-   1. Do one of the following:
-      + Choose **Fixed rate every** and specify the schedule interval, for example, 5 minutes\. 
-      + Choose **Cron expression** and specify a cron expression, for example, every 15 minutes, Monday through Friday, starting at the current time\.
+1. For **Rule type**, choose **Schedule**\.
 
-      
+1. Choose **Next**\.
 
-1. For **Select event bus**, choose **AWS default event bus**\. You can only use the default event bus for scheduled rules\.
+1. For **Schedule pattern**, choose **A schedule that runs at a regular rate, such as every 10 minutes\.** and enter **5** and choose **Minutes** from the drop\-down list\.
 
-1. For **Target**, choose select **EC2 CreateSnapshot API call**\.
+1. Choose **Next**\.
+
+1. For **Target types**, choose **AWS service**\.
+
+1. For **Select a target**, choose **EBS Create Snapshot** from the drop\-down list\.
 
 1. For **Volume ID**, enter the volume ID of the Amazon EBS volume\.
 
-1. Choose **Create a new role for this specific resource**\. The new role grants the target permissions to access resources on your behalf\.
+1. For **Execution role**, choose **Create a new for role for this specific resource**\.
 
-1. Choose **Create**\.
+1. Choose **Next**\.
+
+1. Choose **Next**\.
+
+1. Review the details of the rule and choose **Create rule**\.
 
 ## Step 2: Test the rule<a name="eb-ebs-test-rule"></a>
 

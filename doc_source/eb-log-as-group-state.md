@@ -4,14 +4,20 @@ You can run an [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome
 
 For information about more scenarios that use Amazon EC2 Auto Scaling events, see [Getting CloudWatch Events When Your Auto Scaling Group Scales](https://docs.aws.amazon.com/autoscaling/latest/userguide/cloud-watch-events.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
-In this tutorial, you create a Lambda function, and you create a [rule](eb-rules.md) in the EventBridge console that calls that function when an Auto Scaling group launches or terminates an instance\.
+In this tutorial, you create a Lambda function, and you create a [rule](eb-rules.md) in the EventBridge console that calls that function when an Amazon EC2 Auto Scaling group launches or terminates an instance\.
 
 **Topics**
++ [Prerequisites](#eb-as-prereqs)
 + [Step 1: Create a Lambda function](#eb-as-create-lambda-function)
 + [Step 2: Create a rule](#eb-as-create-rule)
 + [Step 3: Test the rule](#eb-as-test-rule)
 + [Step 4: Confirm success](#success)
 + [Step 5: Clean up your resources](#cleanup)
+
+## Prerequisites<a name="eb-as-prereqs"></a>
+
+To complete this tutorial, you'll need the following resources:
++ An Auto Scaling group\. For more information about creating one, see [Creating an Auto Scaling group using a launch configuration](https://docs.aws.amazon.com/autoscaling/latest/userguide/create-asg.html) in the Amazon EC2 Auto Scaling User Guide\.
 
 ## Step 1: Create a Lambda function<a name="eb-as-create-lambda-function"></a>
 
@@ -57,31 +63,37 @@ Create a rule to run the Lambda function you created in Step 1\. The rule runs w
 
 1. Choose **Create rule**\.
 
-1. Enter a name and description for the rule\.
+1. Enter a name and description for the rule\. For example, name the rule `TestRule`
 
-1. For **Define pattern**, do the following:
+1. For **Event bus**, choose the event bus that you want to associate with this rule\. If you want this rule to match events that come from your account, select **default**\. When an AWS service in your account emits an event, it always goes to your account’s default event bus\.
 
-   1. Choose **Event Pattern**\.
+1. For **Rule type**, choose **Rule with an event pattern**\.
 
-   1. Choose **Pre\-defined by service**\.
+1. Choose **Next**\.
 
-   1. For **Service provider**, choose **AWS**\.
+1. For **Event source**, choose **AWS services**\.
 
-   1. For **Service Name**, choose **Auto Scaling**\.
+1. For **Event pattern**, do the following:
 
-   1. For **Event type**, choose **Instance Launch and Terminate**\.
+   1. For **Event source**, select **Auto Scaling** from the drop\-down list\.
 
-   1. To capture all successful and unsuccessful instance launch and terminate events, choose **Any instance event**\.
+   1. For **Event type**, select **Instance Launch and Terminate** from the drop\-down list\.
 
-   1. By default, the rule matches any Auto Scaling group in the Region\. To make the rule match a specific Auto Scaling group, choose **Specific group name\(s\)**, and then select one or more Auto Scaling groups\.
+   1. Choose **Any instance event** and **Any group name**\.
 
-1. For **Select event bus**, choose **AWS default event bus**\. When an AWS service in your account emits an event, it goes to your account’s default event bus\. 
+1. Choose **Next**\.
 
-1. For **Target**, choose **Lambda function**\.
+1. For **Target types**, choose **AWS service**\.
 
-1. For **Function**, select the Lambda function that you created\.
+1. For **Select a target**, choose **Lambda function** from the drop\-down list\.
 
-1. Choose **Create**\.
+1. For **Function**, select the Lambda function that you created in the **Step 1: Create a Lambda function** section\. In this example, select `LogAutoScalingEvent`\.
+
+1. Choose **Next**\.
+
+1. Choose **Next**\.
+
+1. Review the details of the rule and choose **Create rule**\.
 
 ## Step 3: Test the rule<a name="eb-as-test-rule"></a>
 
@@ -98,10 +110,6 @@ You can test your rule by manually scaling an Auto Scaling group so that it laun
    1. Select the check box for your Auto Scaling group\.
 
    1. On the **Details** tab, choose **Edit**\. For **Desired**, increase the desired capacity by one\. For example, if the current value is **2**, enter **3**\. The desired capacity must be less than or equal to the maximum size of the group\. If your new value for **Desired** is greater than **Max**, you must update **Max**\. When you're finished, choose **Save**\.
-
-1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.
-
-1. In the navigation pane, choose **Rules**, choose the name of the rule that you created, and then choose **Metrics for the rule**\.
 
 1. To view the output from your Lambda function, do the following:
 

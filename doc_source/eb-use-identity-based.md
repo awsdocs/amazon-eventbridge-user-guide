@@ -7,6 +7,7 @@ Identity\-based policies are permissions policies that you attach to IAM identit
 + [AWS managed policies for EventBridge](#eb-managed-policies)
 + [Permissions required for EventBridge to access targets using IAM roles](#eb-target-permissions)
 + [Customer\-managed policy examples](#eb-customer-managed-policies)
++ [Amazon EventBridge updates to AWS managed policies](#eb-use-identity-based-awsmanpol-updates)
 
 ## Permissions required to use EventBridge<a name="eb-console-permissions"></a>
 
@@ -63,12 +64,10 @@ You don't need to allow minimum permissions for users that are making calls only
 AWS addresses many common use cases by providing standalone IAM policies that are created and administered by AWS\. *Managed*, or predefined, policies grant the necessary permissions for common use cases, so you don't need to investigate what permissions are needed\. For more information, see [AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\.
 
 The following AWS managed policies that you can attach to users in your account are specific to EventBridge:
-+ **AmazonEventBridgeFullAccess** – Grants full access to EventBridge\.
-+ **AmazonEventBridgeReadOnlyAccess** – Grants read\-only access to EventBridge\.
++ [**AmazonEventBridgeFullAccess**](#eb-full-access-policy) – Grants full access to EventBridge\.
++ [**AmazonEventBridgeReadOnlyAccess**](#eb-read-only-access-policy) – Grants read\-only access to EventBridge\.
 
 ### AmazonEventBridgeFullAccess policy<a name="eb-full-access-policy"></a>
-
-The AmazonEventBridgeFullAccess policy was updated on March 4th, 2021 to include `iam:CreateServiceLinkedRole` and AWS Secrets Manager permissions necessary for using API destinations\.
 
 The AmazonEventBridgeFullAccess policy grants permissions to use all EventBridge actions, as well as the following permissions:
 + `iam:CreateServiceLinkedRole` – EventBridge requires this permission to create the service role in your account for API destinations\. This permission grants only the IAM service permissions to create a role in your account specifically for API destinations\.
@@ -117,6 +116,45 @@ The following JSON shows the AmazonEventBridgeFullAccess policy\.
     		}
     	]
     }
+```
+
+### AmazonEventBridgeReadOnlyAccess policy<a name="eb-read-only-access-policy"></a>
+
+The AmazonEventBridgeReadOnlyAccess policy grants permissions to use all read EventBridge actions\.
+
+The following JSON shows the AmazonEventBridgeReadOnlyAccess policy\.
+
+```
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"events:DescribeRule",
+				"events:DescribeEventBus",
+				"events:DescribeEventSource",
+				"events:ListEventBuses",
+				"events:ListEventSources",
+				"events:ListRuleNamesByTarget",
+				"events:ListRules",
+				"events:ListTargetsByRule",
+				"events:TestEventPattern",
+				"events:DescribeArchive",
+				"events:ListArchives",
+				"events:DescribeReplay",
+				"events:ListReplays",
+				"events:DescribeConnection",
+				"events:ListConnections",
+				"events:DescribeApiDestination",
+				"events:ListApiDestinations"
+				"events:ListEndpoints"
+				"events:DescribeEndpoint"
+			],
+			"Resource": "*"
+		}
+	]
+}
 ```
 
 ### IAM roles for sending events<a name="eb-events-iam-roles"></a>
@@ -440,3 +478,19 @@ You can grant an IAM policy to a user to allow access to only the rules with a p
 ```
 
 For more information about using IAM policy statements, see [Controlling Access Using Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_controlling.html) in the *IAM User Guide*\.
+
+## Amazon EventBridge updates to AWS managed policies<a name="eb-use-identity-based-awsmanpol-updates"></a>
+
+
+
+View details about updates to AWS managed policies for EventBridge since this service began tracking these changes\. For automatic alerts about changes to this page, subscribe to the RSS feed on the EventBridge Document history page\.
+
+
+
+
+| Change | Description | Date | 
+| --- | --- | --- | 
+|  [AmazonEventBridgeReadOnlyAccess](#eb-read-only-access-policy) – Update to an existing policy  |  EventBridge added permissions necessary for view endpoint information\. The following actions were added: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/eventbridge/latest/userguide/eb-use-identity-based.html)  | April 7, 2022 | 
+|  [AmazonEventBridgeReadOnlyAccess](#eb-read-only-access-policy) – Update to an existing policy  |  EventBridge added permissions necessary for view connection and API destination information\. The following actions were added: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/eventbridge/latest/userguide/eb-use-identity-based.html)  | March 4, 2021 | 
+|  [AmazonEventBridgeFullAccess](#eb-full-access-policy) – Update to an existing policy  |  EventBridge updated the policy to include `iam:CreateServiceLinkedRole` and AWS Secrets Manager permissions necessary for using API destinations\. The following actions were added: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/eventbridge/latest/userguide/eb-use-identity-based.html)  | March 4, 2021 | 
+|  EventBridge started tracking changes  |  EventBridge started tracking changes for its AWS managed policies\.  | March 4, 2021 | 

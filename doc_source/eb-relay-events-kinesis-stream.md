@@ -42,31 +42,41 @@ Create a rule to send events to your stream when you stop an Amazon EC2 instance
 
 1. Choose **Create rule**\.
 
-1. Enter a name and description for the rule\.
+1. Enter a name and description for the rule\. For example, name the rule `TestRule`
 
-1. For **Define pattern**, do the following:
+1. For **Event bus**, select **default**\.
 
-   1. Choose **Event pattern**\.
+1. For **Rule type**, choose **Rule with an event pattern**\.
 
-   1. Choose **Pre\-defined pattern by service**\.
+1. Choose **Next**\.
 
-   1. For **Service provider**, choose **AWS**\.
+1. For **Event source**, choose **AWS services**\.
 
-   1. For **Service Name**, choose **EC2**\.
+1. For **Event pattern**, do the following:
 
-   1. For **Event type**, choose **Instance State\-change Notification**\.
+   1. For **Event source**, select **EC2** from the drop\-down list\.
 
-   1. Choose **Specific state\(s\)**, **running**\.
+   1. For **Event type**, choose **EC2 Instance State\-change Notification** from the drop\-down list\.
 
-1. For **Select event bus**, choose **AWS default event bus**\. When an AWS service in your account emits an event, it goes to your account’s default event bus\. 
+   1. Choose **Specific states\(s\)** and choose **running** from the drop\-down list\.
 
-1. For **Targets**, choose **Kinesis stream**\.
+   1. Choose **Any instance**
 
-1. For **Stream**, select the stream that you created in step 1\.
+1. Choose **Next**\.
 
-1. Choose **Create a new role for this specific resource**\.
+1. For **Target types**, choose **AWS service**\.
 
-1. Choose **Create**\.
+1. For **Select a target**, choose **Kinesis stream** from the drop\-down list\.
+
+1. For **Stream**, select the Kinesis stream that you created in the **Step 1: Create an Amazon Kinesis stream** section\. In this example, select `test`\.
+
+1. For **Execution role**, choose **Create a new for role for this specific resource**\.
+
+1. Choose **Next**\.
+
+1. Choose **Next**\.
+
+1. Review the details of the rule and choose **Create rule**\.
 
 ## Step 3: Test the rule<a name="eb-stream-test-rule"></a>
 

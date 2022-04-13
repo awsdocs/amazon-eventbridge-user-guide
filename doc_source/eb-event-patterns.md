@@ -2,6 +2,11 @@
 
 Event patterns have the same structure as the [events](eb-events.md) they match\. [Rules](eb-rules.md) use event patterns to select events and send them to targets\. An event pattern either matches an event or it doesn't\.
 
+**Important**  
+In EventBridge, it is possible to create rules that lead to infinite loops, where a rule is fired repeatedly\. For example, a rule might detect that ACLs have changed on an S3 bucket, and trigger software to change them to the desired state\. If the rule is not written carefully, the subsequent change to the ACLs fires the rule again, creating an infinite loop\.  
+To prevent this, write the rules so that the triggered actions do not re\-fire the same rule\. For example, your rule could fire only if ACLs are found to be in a bad state, instead of after any change\.   
+An infinite loop can quickly cause higher than expected charges\. We recommend that you use budgeting, which alerts you when charges exceed your specified limit\. For more information, see [Managing Your Costs with Budgets](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-managing-costs.html)\.
+
 
 
 **Topics**
@@ -46,7 +51,7 @@ The following event pattern processes all Amazon EC2 `instance-termination` even
 
 ## Create event patterns<a name="eb-create-pattern"></a>
 
-To create an event pattern, you specify the fields of an event that you want the event pattern to match\. Only specify the fields that you use for matching\. The previous event pattern example only provides values for three fields: the top\-level fields `“source”` and `“detail-type”`, and the `“state”` field inside the `“detail”` object field\. EventBridge ignores all the other fields in the event when applying the rule\.
+To create an event pattern, you specify the fields of an event that you want the event pattern to match\. Only specify the fields that you use for matching\. The previous event pattern example only provides values for three fields: the top\-level fields `"source"` and `"detail-type"`, and the `"state"` field inside the `"detail"` object field\. EventBridge ignores all the other fields in the event when applying the rule\.
 
 
 
@@ -67,21 +72,21 @@ Here's a summary of all the comparison operators available in EventBridge:
 
 | **Comparison** | **Example** | **Rule syntax** | 
 | --- | --- | --- | 
-|  Null  |  UserID is null  |  “UserID”: \[ null \]  | 
-|  Empty  |  LastName is empty  |  “LastName”: \[“”\]  | 
-|  Equals  |  Name is “Alice”  |  “Name”: \[ “Alice” \]  | 
-|  And  |  Location is “New York” and Day is “Monday”  |  “Location”: \[ “New York” \], “Day”: \[“Monday”\]  | 
-|  Or  |  PaymentType is “Credit” or “Debit”  |  “PaymentType”: \[ “Credit”, “Debit”\]  | 
-|  Not  |  Weather is anything but “Raining”  |  “Weather”: \[ \{ “anything\-but”: \[ “Raining” \] \} \]  | 
-|  Numeric \(equals\)  |  Price is 100  |  “Price”: \[ \{ “numeric”: \[ “=”, 100 \] \} \]  | 
-|  Numeric \(range\)  |  Price is more than 10, and less than or equal to 20  |  “Price”: \[ \{ “numeric”: \[ “>”, 10, “<=", 20 \] \} \]  | 
-|  Exists  |  ProductName exists  |  “ProductName”: \[ \{ “exists”: true \} \]  | 
-|  Does not exist  |  ProductName does not exist  |  “ProductName”: \[ \{ “exists”: false \} \]  | 
-|  Begins with  |  Region is in the US  |  “Region”: \[ \{“prefix”: “us\-“ \} \]  | 
+|  Null  |  UserID is null  |  "UserID": \[ null \]  | 
+|  Empty  |  LastName is empty  |  "LastName": \[""\]  | 
+|  Equals  |  Name is "Alice"  |  "Name": \[ "Alice" \]  | 
+|  And  |  Location is "New York" and Day is "Monday"  |  "Location": \[ "New York" \], "Day": \["Monday"\]  | 
+|  Or  |  PaymentType is "Credit" or "Debit"  |  "PaymentType": \[ "Credit", "Debit"\]  | 
+|  Not  |  Weather is anything but "Raining"  |  "Weather": \[ \{ "anything\-but": \[ "Raining" \] \} \]  | 
+|  Numeric \(equals\)  |  Price is 100  |  "Price": \[ \{ "numeric": \[ "=", 100 \] \} \]  | 
+|  Numeric \(range\)  |  Price is more than 10, and less than or equal to 20  |  "Price": \[ \{ "numeric": \[ ">", 10, "<=", 20 \] \} \]  | 
+|  Exists  |  ProductName exists  |  "ProductName": \[ \{ "exists": true \} \]  | 
+|  Does not exist  |  ProductName does not exist  |  "ProductName": \[ \{ "exists": false \} \]  | 
+|  Begins with  |  Region is in the US  |  "Region": \[ \{"prefix": "us\-" \} \]  | 
 
 ### Match Values<a name="eb-filtering-match-values"></a>
 
-In an event pattern, the value to match is in a JSON array, surrounded by square brackets \(“\[”, “\]”\) so that you can provide multiple values\. For example, to match events from Amazon EC2 or AWS Fargate, you could use the following pattern, which matches events where the value for the `"source"` field is either `"aws.ec2"` or `"aws.fargate"`\.
+In an event pattern, the value to match is in a JSON array, surrounded by square brackets \("\[", "\]"\) so that you can provide multiple values\. For example, to match events from Amazon EC2 or AWS Fargate, you could use the following pattern, which matches events where the value for the `"source"` field is either `"aws.ec2"` or `"aws.fargate"`\.
 
 ```
 {
@@ -116,7 +121,7 @@ You can match on the value of a field\. Consider the following Amazon EC2 Auto S
 }
 ```
 
-For the preceding event, you can use the `“responseElements”` field to match\.
+For the preceding event, you can use the `"responseElements"` field to match\.
 
 ```
 {
@@ -130,55 +135,53 @@ For the preceding event, you can use the `“responseElements”` field to match
 
 ### Value matching<a name="eb-filtering-value-example"></a>
 
-Consider the following Amazon Macie Classic event, which is truncated\.
+Consider the following Amazon Macie event, which is truncated\.
 
 ```
 {
   "version": "0",
-  "id": "3e355723-fca9-4de3-9fd7-154c289d6b59",
-  "detail-type": "Macie Alert",
+  "id": "0948ba87-d3b8-c6d4-f2da-732a1example",
+  "detail-type": "Macie Finding",
   "source": "aws.macie",
   "account": "123456789012",
-  "time": "2017-04-24T22:28:49Z",
-  "region": "us-east-1",
+  "time": "2021-04-29T23:12:15Z",
+  "region":"us-east-1",
   "resources": [
-    "arn:aws:macie:us-east-1:123456789012:trigger/trigger_id/alert/alert_id",
-    "arn:aws:macie:us-east-1:123456789012:trigger/trigger_id"
+
   ],
   "detail": {
-    "notification-type": "ALERT_CREATED",
-    "name": "Scanning bucket policies",
-    "tags": [
-      "Custom_Alert",
-      "Insider"
-    ],
-    "url": "https://lb00.us-east-1.macie.aws.amazon.com/111122223333/posts/alert_id",
-    "alert-arn": "arn:aws:macie:us-east-1:123456789012:trigger/trigger_id/alert/alert_",
-    "risk-score": 80,
-    "trigger": {
-      "rule-arn": "arn:aws:macie:us-east-1:123456789012:trigger/trigger_id",
-      "alert-type": "basic",
-      "created-at": "2017-01-02 19:54:00.644000",
-      "description": "Alerting on failed enumeration of large number of bucket policies",
-      "risk": 8
+    "schemaVersion": "1.0",
+    "id": "64b917aa-3843-014c-91d8-937ffexample",
+    "accountId": "123456789012",
+    "partition": "aws",
+    "region": "us-east-1",
+    "type": "Policy:IAMUser/S3BucketEncryptionDisabled",
+    "title": "Encryption is disabled for the S3 bucket",
+    "description": "Encryption is disabled for the Amazon S3 bucket. The data in the bucket isn’t encrypted 
+        using server-side encryption.",
+    "severity": {
+        "score": 1,
+        "description": "Low"
     },
-"created-at": "2017-04-18T00:21:12.059000",
+    "createdAt": "2021-04-29T15:46:02Z",
+    "updatedAt": "2021-04-29T23:12:15Z",
+    "count": 2,
 .
 .
 .
 ```
 
-The following event pattern matches any event that has a risk score of 80 and a trigger risk of 8\.
+The following event pattern matches any event that has a severity score of 1 and a count of 2\.
 
 ```
 {
   "source": ["aws.macie"],
-  "detail-type": ["Macie Alert"],
+  "detail-type": ["Macie Finding"],
   "detail": {
-    "risk-score": [80],
-    "trigger": {
-      "risk": [8]
-    }
+    "severity": {
+      "score": [1]
+    },
+    "count":[2]
   }
 }
 ```

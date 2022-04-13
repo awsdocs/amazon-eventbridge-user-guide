@@ -1,5 +1,10 @@
 # Matching null values and empty strings in Amazon EventBridge event patterns<a name="eb-event-patterns-null-values"></a>
 
+**Important**  
+In EventBridge, it is possible to create rules that lead to infinite loops, where a rule is fired repeatedly\. For example, a rule might detect that ACLs have changed on an S3 bucket, and trigger software to change them to the desired state\. If the rule is not written carefully, the subsequent change to the ACLs fires the rule again, creating an infinite loop\.  
+To prevent this, write the rules so that the triggered actions do not re\-fire the same rule\. For example, your rule could fire only if ACLs are found to be in a bad state, instead of after any change\.   
+An infinite loop can quickly cause higher than expected charges\. We recommend that you use budgeting, which alerts you when charges exceed your specified limit\. For more information, see [Managing Your Costs with Budgets](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-managing-costs.html)\.
+
 You can create an [event pattern](eb-event-patterns.md) that matches a field in an [event](eb-events.md) that has a null value or is an empty string\. Consider the following example event\.
 
 ```

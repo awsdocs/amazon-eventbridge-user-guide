@@ -40,17 +40,17 @@ The following table shows the condition keys and key and value pairs that you ca
 
 | Condition key | Key value pair | Evaluation types | 
 | --- | --- | --- | 
-|  events:creatorAccount  |  `"events:creatorAccount":"creatorAccount"` For *creatorAccount*, use the account ID for the account that the rule was created in\. Use this condition to authorize API calls on rules from a specific account\.  |  creatorAccount, Null  | 
-|  events:eventBusInvocation  |  `"events:eventBusInvocation":"boolean"` For *boolean*, use true when a rule sends an event to a target that is an event bus in another account\. Use false when when a `PutEvents` API call is used\.  |  eventBusInvocation, Null  | 
-|  events:source  |  `"events:source":"source "` Use *source* for the literal string for the source field of the event such as `"aws.ec2"` or `"aws.s3"`\. For more possible values for *source*, see the example events in [Events from AWS services](eb-service-event.md)\.  |  Source, Null  | 
-|  events:detail\-type  |  `"events:detail-type":"detail-type "` Where *detail\-type* is the literal string for the **detail\-type** field of the event such as `"AWS API Call via CloudTrail"` and `"EC2 Instance State-change Notification"`\.   |  Detail Type, Null  | 
-|  events: detail\.userIdentity\.principalId  |  `"events:detail.userIdentity.principalId":"principal-id"` For *principal\-id*, use the literal string for the **detail\.userIdentity\.principalId** field of the event with detail\-type `"AWS API Call via CloudTrail"` such as `"AROAIDPPEZS35WEXAMPLE:AssumedRoleSessionName."`\.  |  Principal Id, Null  | 
-|  events: detail\.service  |  `"events:detail.service":"service"` For *service*, use the literal string for the **detail\.service** field of the event, such as `"ABUSE"`\.  |  service, Null  | 
-|  events: detail\.eventTypeCode  |  `"events:detail.eventTypeCode":"eventTypeCode"` For *eventTypeCode*, use the literal string for the **detail\.eventTypeCode** field of the event, such as `"AWS_ABUSE_DOS_REPORT"`\.  |  eventTypeCode, Null  | 
-|  events:TargetArn  |  `"events:TargetArn":"target-arn "` For *target\-arn*, use the ARN of the target for the rule, for example `"arn:aws:lambda:*:*:function:*"`\.  |  ARN, Null  | 
-|  events:ManagedBy  |  Used internally by AWS services\. For a rule created by an AWS service on your behalf, the value is the principal name of the service that created the rule\.  |  Not intended for use in customer policies\.  | 
-|  aws:SourceArn  |  The ARN of the rule that is sending the event\.  |  ARN, Null  | 
 |  aws:SourceAccount  |  The account in which the rule specified by `aws:SourceArn` exists\.  |  Account Id, Null  | 
+|  aws:SourceArn  |  The ARN of the rule that is sending the event\.  |  ARN, Null  | 
+|  events:creatorAccount  |  `"events:creatorAccount":"creatorAccount"` For *creatorAccount*, use the account ID for the account that the rule was created in\. Use this condition to authorize API calls on rules from a specific account\.  |  creatorAccount, Null  | 
+|  events:detail\-type  |  `"events:detail-type":"detail-type "` Where *detail\-type* is the literal string for the **detail\-type** field of the event such as `"AWS API Call via CloudTrail"` and `"EC2 Instance State-change Notification"`\.   |  Detail Type, Null  | 
+|  events: detail\.eventTypeCode  |  `"events:detail.eventTypeCode":"eventTypeCode"` For *eventTypeCode*, use the literal string for the **detail\.eventTypeCode** field of the event, such as `"AWS_ABUSE_DOS_REPORT"`\.  |  eventTypeCode, Null  | 
+|  events: detail\.service  |  `"events:detail.service":"service"` For *service*, use the literal string for the **detail\.service** field of the event, such as `"ABUSE"`\.  |  service, Null  | 
+|  events: detail\.userIdentity\.principalId  |  `"events:detail.userIdentity.principalId":"principal-id"` For *principal\-id*, use the literal string for the **detail\.userIdentity\.principalId** field of the event with detail\-type `"AWS API Call via CloudTrail"` such as `"AROAIDPPEZS35WEXAMPLE:AssumedRoleSessionName."`\.  |  Principal Id, Null  | 
+|  events:eventBusInvocation  |  `"events:eventBusInvocation":"boolean"` For *boolean*, use true when a rule sends an event to a target that is an event bus in another account\. Use false when when a `PutEvents` API call is used\.  |  eventBusInvocation, Null  | 
+|  events:ManagedBy  |  Used internally by AWS services\. For a rule created by an AWS service on your behalf, the value is the principal name of the service that created the rule\.  |  Not intended for use in customer policies\.  | 
+|  events:source  |  `"events:source":"source "` Use *source* for the literal string for the source field of the event such as `"aws.ec2"` or `"aws.s3"`\. For more possible values for *source*, see the example events in [Events from AWS services](eb-service-event.md)\.  |  Source, Null  | 
+|  events:TargetArn  |  `"events:TargetArn":"target-arn "` For *target\-arn*, use the ARN of the target for the rule, for example `"arn:aws:lambda:*:*:function:*"`\.  |  ArrayOfARN, Null  | 
 
 For example policy statements for EventBridge, see [Managing access permissions to your Amazon EventBridge resources](eb-manage-iam-access.md)\.
 

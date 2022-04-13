@@ -2,6 +2,11 @@
 
 Amazon EventBridge supports declarative content filtering using [event patterns](eb-event-patterns.md)\. With content filtering, you can write complex event patterns that only match events under very specific conditions\. For example, you can create an event pattern that matches an event when a field of the [event](eb-events.md) is within a specific numeric range, if the event comes from a specific IP address, or only if a specific field doesn't exist in the event JSON\. 
 
+**Important**  
+In EventBridge, it is possible to create rules that lead to infinite loops, where a rule is fired repeatedly\. For example, a rule might detect that ACLs have changed on an S3 bucket, and trigger software to change them to the desired state\. If the rule is not written carefully, the subsequent change to the ACLs fires the rule again, creating an infinite loop\.  
+To prevent this, write the rules so that the triggered actions do not re\-fire the same rule\. For example, your rule could fire only if ACLs are found to be in a bad state, instead of after any change\.   
+An infinite loop can quickly cause higher than expected charges\. We recommend that you use budgeting, which alerts you when charges exceed your specified limit\. For more information, see [Managing Your Costs with Budgets](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/budgets-managing-costs.html)\.
+
 **Topics**
 + [Prefix matching](#eb-filtering-prefix-matching)
 + [Anything\-but matching](#eb-filtering-anything-but)
@@ -65,6 +70,9 @@ The following event pattern shows anything\-but matching with a list of numbers\
 ```
 
 The following event pattern shows anything\-but matching that matches any event that doesn't have the prefix `"init"` in the `"state"` field\.
+
+**Note**  
+*Anything\-but* matching only works with a single prefix, not a list\.
 
 ```
 {

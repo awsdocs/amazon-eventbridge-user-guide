@@ -14,5 +14,4 @@ You can delete managed rules by using the **Force delete** option, but you shoul
 + [Creating Amazon EventBridge rules that react to events](eb-create-rule.md)
 + [Creating an Amazon EventBridge rule that runs on a schedule](eb-create-rule-schedule.md)
 + [Disabling or deleting an Amazon EventBridge rule](eb-delete-rule.md)
-+ [Event retry policy and using dead\-letter queues](eb-rule-dlq.md)
 + [Using Amazon EventBridge and AWS Serverless Application Model templates](eb-use-sam.md)

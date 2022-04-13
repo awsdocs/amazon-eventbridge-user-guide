@@ -4,4 +4,5 @@ EventBridge can work directly with SaaS partner applications and services to sen
 
 **Topics**
 + [Create a connection to Datadog](eb-tutorial-datadog.md)
++ [Create a connection to Salesforce](eb-tutorial-salesforce.md)
 + [Create a connection to Zendesk](eb-tutorial-zendesk.md)

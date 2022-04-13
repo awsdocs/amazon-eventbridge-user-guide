@@ -156,20 +156,20 @@ An infinite loop can quickly cause higher than expected charges\. We recommend t
 
 ## My events are not delivered to the target Amazon SQS queue<a name="eb-sqs-encrypted"></a>
 
-If your Amazon SQS queue is encrypted, you must must create a customer managed KMS key and add include the following permission section in your KMS key policy. For more information, see [Configureing AWS KMS permissions](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-key-management.html#sqs-what-permissions-for-sse)
+If your Amazon SQS queue is encrypted, you must create a customer\-managed KMS key and include the following permission section in your KMS key policy\. For more information, see [Configuring AWS KMS permissions](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-key-management.html#sqs-what-permissions-for-sse)\.
 
 ```
 {
-    "Sid": "Allow EventBridge to use the key",
-    "Effect": "Allow",
-    "Principal": {
-        "Service": "events.amazonaws.com"
-    },
-    "Action": [
-        "kms:Decrypt",
-        "kms:GenerateDataKey"
-    ],
-    "Resource": "*"
+                "Sid": "Allow EventBridge to use the key",
+                "Effect": "Allow",
+                "Principal": {
+                                "Service": "events.amazonaws.com"
+                },
+                "Action": [
+                                "kms:Decrypt",
+                                "kms:GenerateDataKey"
+                ],
+                "Resource": "*"
 }
 ```
 

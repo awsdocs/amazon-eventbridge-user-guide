@@ -2,6 +2,9 @@
 
 The following code examples show how to delete an Amazon EventBridge scheduled rule\.
 
+**Note**  
+The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
+
 ------
 #### [ Java ]
 
@@ -71,4 +74,4 @@ suspend fun deleteEBRule(ruleName: String) {
 
 ------
 
-For a complete list of AWS SDK developer guides and code examples, including help getting started and information about previous versions, see [Using EventBridge with an AWS SDK](sdk-general-information-section.md)\.
+For a complete list of AWS SDK developer guides and code examples, see [Using EventBridge with an AWS SDK](sdk-general-information-section.md)\. This topic also includes information about getting started and details about previous SDK versions\.

@@ -1,8 +1,8 @@
 # Tutorial: Create a connection to Zendesk as an API destination<a name="eb-tutorial-zendesk"></a>
 
-You can use EventBridge to route [events](eb-events.md) to third\-party services like [Zendesk](https://www.zendesk.com/)\.
+You can use EventBridge to route [events](eb-events.md) to third\-party services like [https://www.zendesk.com/](https://www.zendesk.com/)\.
 
-In this tutorial, you'll use the EventBridge console to create a connection to Zendesk, an [API destination](eb-api-destinations.md) endpoint that points to Zendesk, and a [rule](eb-rules.md) to route events to Zendesk\. 
+In this tutorial, you'll use the EventBridge console to create a connection to Zendesk, an [API destination](eb-api-destinations.md) that points to Zendesk, and a [rule](eb-rules.md) to route events to Zendesk\. 
 
 **Topics**
 + [Prerequisites](#eb-zd-prereqs)
@@ -76,47 +76,71 @@ Next, create a rule to send events to Zendesk when an Amazon S3 object is create
 
 1. Choose **Create rule**\.
 
-1. Enter a name and description for the rule\. For example, enter **ZendeskRule** for the name, and **Rule to send events to ZenDesk when S3 objects are created** for the description\.
+1. Enter a name and description for the rule\. For example, enter **ZendeskRule** for the name, and **Rule to send events to Zendesk when S3 objects are created** for the description\.
 
-1. For **Define pattern**, do the following:
+1. For **Event bus**, choose **default**\.
 
-   1. Choose **Event pattern**\.
+1. For **Rule type**, choose **Rule with an event pattern**\.
 
-   1. Choose **Custom pattern**\.
+1. Choose **Next**\.
 
-   1. In the **Event pattern** box, paste the following:
+1. For **Event source**, choose **Other**\.
+
+1. For **Event pattern**, enter the following:
+
+   ```
+   {
+     "source": ["aws.s3"]
+   }
+   ```
+
+1. Choose **Next**\.
+
+1. For **Target types**, choose **EventBridge API destination**\.
+
+1. For **API destination**, choose **Use an existing API destination**, and then choose the `ZendeskAD` destination you created in step 2\.
+
+1. For **Execution role**, choose **Create a new for role for this specific resource**\.
+
+1. For **Additional settings**, do the following:
+
+   1. For **Configure target input**, choose **Input transformer** from the drop\-down list\.
+
+   1. Choose **Configure input transformer**
+
+   1. for **Sample events**, enter the following:
 
       ```
       {
-        "source": ["aws.s3"]
+        "detail":[]
       }
       ```
 
-1. For **Select event bus**, choose **AWS default event bus**\.
+   1. For **Target input transformer** do the following:
 
-1. For **Target**, choose **API destination**\.
+      1. For **Input Path**, enter the following:
 
-1. For **API destination**, choose **Use an existing API destination**, and then choose the API destination you created in step 2\.
+         ```
+         {"detail":"$.detail"}
+         ```
 
-1. Choose **Configure input** and **Input Transformer**\.
+      1. For **Input Template**, enter the following:
 
-1. For **Input Path**, paste the following:
+         ```
+         {"message": <detail>}"
+         ```
 
-   ```
-   {"detail":"$.detail"}
-   ```
+   1. Choose **Confirm\.**\.
 
-1. For **Input Template**, paste the following:
+1. Choose **Next**\.
 
-   ```
-   {"message": <detail>}
-   ```
+1. Choose **Next**\.
 
-1. Choose **Create**\.
+1. Review the details of the rule and choose **Create rule**\.
 
 ## Step 4: Test the rule<a name="eb-zd-test-rule"></a>
 
-To test your rule, create an [Amazon S3 object](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html) by uploading a file to an EventBridge\-enabled bucket\. When the event matches the rule, EventBridge will call the [ Zendesk Create Ticket API](https://developer.zendesk.com/rest_api/docs/support/tickets#create-ticket)\. The new ticket will appear in the Zendesk dashboard\.
+To test your rule, create an [Amazon S3 object](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html) by uploading a file to an EventBridge\-enabled bucket\. When the event matches the rule, EventBridge will call the [Zendesk Create Ticket API](https://developer.zendesk.com/rest_api/docs/support/tickets#create-ticket)\. The new ticket will appear in the Zendesk dashboard\.
 
 ## Step 4: Clean up your resources<a name="cleanup"></a>
 

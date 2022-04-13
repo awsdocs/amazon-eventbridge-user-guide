@@ -2,6 +2,9 @@
 
 The following code example shows how to create and trigger a rule in Amazon EventBridge\.
 
+**Note**  
+The source code for these examples is in the [AWS Code Examples GitHub repository](https://github.com/awsdocs/aws-doc-sdk-examples)\. Have feedback on a code example? [Create an Issue](https://github.com/awsdocs/aws-doc-sdk-examples/issues/new/choose) in the code examples repo\. 
+
 ------
 #### [ Ruby ]
 
@@ -877,4 +880,4 @@ run_me if $PROGRAM_NAME == __FILE__
 
 ------
 
-For a complete list of AWS SDK developer guides and code examples, including help getting started and information about previous versions, see [Using EventBridge with an AWS SDK](sdk-general-information-section.md)\.
+For a complete list of AWS SDK developer guides and code examples, see [Using EventBridge with an AWS SDK](sdk-general-information-section.md)\. This topic also includes information about getting started and details about previous SDK versions\.

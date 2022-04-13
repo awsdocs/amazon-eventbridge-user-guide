@@ -5,13 +5,13 @@ You can set up a [rule](eb-rules.md) to run an [AWS Lambda](https://docs.aws.ama
 For schedules, EventBridge doesn't provide second\-level precision in [schedule expressions](eb-create-rule-schedule.md)\. The finest resolution using a cron expression is one minute\. Due to the distributed nature of EventBridge and the target services, there can be a delay of several seconds between the time the scheduled rule is triggered and the time the target service runs the target resource\. 
 
 **Topics**
-+ [Step 1: Create an AWS Lambda function](#eb-create-lambda-function)
++ [Step 1: Create a Lambda function](#eb-create-lambda-function)
 + [Step 2: Create a Rule](#eb-schedule-create-rule)
 + [Step 3: Verify the rule](#eb-schedule-test-rule)
 + [Step 4: Confirm success](#success)
 + [Step 5: Clean up your resources](#cleanup)
 
-## Step 1: Create an AWS Lambda function<a name="eb-create-lambda-function"></a>
+## Step 1: Create a Lambda function<a name="eb-create-lambda-function"></a>
 
 Create a Lambda function to log the scheduled events\. 
 
@@ -59,19 +59,29 @@ You can use either the console or the AWS CLI to create the rule\. To use the AW
 
 1. Enter a name and description for the rule\.
 
-1. For **Define pattern**, do the following:
+   A rule can't have the same name as another rule in the same Region and on the same event bus\.
 
-   1. Choose **Schedule**\.
+1. For **Event bus**, choose the event bus that you want to associate with this rule\. If you want this rule to match events that come from your account, select ** AWS default event bus**\. When an AWS service in your account emits an event, it always goes to your account’s default event bus\.
 
-   1. Choose **Fixed rate every** and specify the schedule interval, for example, 5 minutes\.
+1. For **Rule type**, choose **Schedule**\.
 
-1. For **Select event bus**, choose **AWS default event bus**\. Scheduled rules are supported only on the default event bus\.
+1. Choose **Next**\.
 
-1. For **Target**, choose **Lambda function**\.
+1. For **Schedule pattern**, choose **A schedule that runs at a regular rate, such as every 10 minutes\.** and enter **5** and choose **Minutes** from the drop\-down list\.
 
-1. For **Function**, select the Lambda function that you created in step 1\.
+1. Choose **Next**\.
 
-1. Choose **Create**\.
+1. For **Target types**, choose **AWS service**\.
+
+1. For **Select a target**, choose **Lambda function** from the drop\-down list\.
+
+1. For **Function**, select the Lambda function that you created in the **Step 1: Create a Lambda function** section\. In this example, select `LogScheduledEvent`\.
+
+1. Choose **Next**\.
+
+1. Choose **Next**\.
+
+1. Review the details of the rule and choose **Create rule**\.
 
 **To create a rule \(AWS CLI\)**
 
@@ -133,23 +143,15 @@ You can use either the console or the AWS CLI to create the rule\. To use the AW
 
 Wait at least five minutes after completing step 2, and then you can verify that your Lambda function was invoked\.
 
-**To test your rule**
+**View the output from your Lambda function**
 
-1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.
+1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
 
-1. In the navigation pane, choose **Rules**\.
+1. In the navigation pane, choose **Logs**\.
 
-1. Choose the name of the rule that you created in step 2, and then choose **Metrics for the rule**\.
+1. Select the name of the log group for your Lambda function \(`/aws/lambda/function-name`\)\.
 
-1. To view the output from your Lambda function, do the following:
-
-   1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch/)\.
-
-   1. In the navigation pane, choose **Logs**\.
-
-   1. Select the name of the log group for your Lambda function \(`/aws/lambda/function-name`\)\.
-
-   1. Select the name of the log stream to view the data provided by the function for the instance that you launched\. 
+1. Select the name of the log stream to view the data provided by the function for the instance that you launched\.
 
 ## Step 4: Confirm success<a name="success"></a>
 

@@ -108,15 +108,21 @@ API Key
 ## Salesforce<a name="api-destination-salesforce"></a>
 
 **API destination invocation endpoint URL**  
+**Sobject–** https:// *myDomainName*\.my\.salesforce\.com/services/data/*versionNumber*/sobjects /*SobjectEndpoint*/\*  
+**Custom platform events–** https://*myDomainName*\.my\.salesforce\.com/services/data /*versionNumber*/sobjects/*customPlatformEndpoint*/\*  
 For a full list of endpoints, see [Salesforce API Reference](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_list.htm)
 
 **Supported authorization types**   
 OAuth client credentials
 
 **Additional authorization parameters required**  
-grant\_type  
-username  
-password
+[Salesforce Connected App](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_oauth_and_connected_apps.htm) Client Id and Client Secret\.  
+One of the following authorization endpoints:  
++ **Production–** https://*MyDomainName*\.my\.salesforce\.com\./services/oauth2/token
++ **Sandbox without enhanced domains–** https://*MyDomainName*\-\-* SandboxName*\.my\. salesforce\.com/services /oauth2/token
++ **Sandbox with enhanced domains–** https://*MyDomainName*\-\-* SandboxName*\.sandbox\.my\.salesforce\.com/services/oauth2/token
+The following key/value pairs:      
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/eventbridge/latest/userguide/eb-api-destination-partners.html)
 
 **Salesforce documentation**  
 [REST API Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_what_is_rest_api.htm)
@@ -126,9 +132,7 @@ password
 [Working with Records](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/using_resources_working_with_records.htm)
 
 **Additional information**  
-[Salesforce Connected App](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_oauth_and_connected_apps.htm) provides the client ID and client secret\.  
-The grant\_type value is “password”\.  
-Username and password values are from Salesforce user credentials\.
+For a tutorial explaining how to use the EventBridge console to create a connection to Salesforce, an API Destination, and a rule to route information to Salesforce, see [Tutorial: Create a connection to Salesforce as an API destination](eb-tutorial-salesforce.md)\.
 
 ## Slack<a name="eb-api-destination-slack"></a>
 
@@ -157,6 +161,33 @@ When configuring your EventBridge rule there are two configurations to highlight
 + Include a header parameter that defines the content type as “application/json;charset=utf\-8”\.
 + Use an input transformer to map the input event to the expected output for the Slack API, namely ensure that the payload sent to the Slack API has “channel” and “text” key/value pairs\.
 
+## Shopify<a name="eb-api-destination-shopify"></a>
+
+**API destination invocation endpoint URL**  
+For a list of endpoints and other resouces and methods, see [Endpoints and requests](https://shopify.dev/api/admin-rest#endpoints)
+
+**Supported authorization types**   
+OAuth, API Key
+
+**Additional authorization parameters required**  
+Not applicable
+
+**Shopify documentation**  
+[Authentication and authorization overview](https://shopify.dev/apps/auth)
+
+**Commonly used API operations**  
+POST \- /admin/api/2022\-01/products\.json  
+GET \- admin/api/2022\-01/products/\{product\_id\}\.json  
+PUT \- admin/api/2022\-01/products/\{product\_id\}\.json  
+DELETE \- admin/api/2022\-01/products/\{product\_id\}\.json
+
+**Additional information**  
+[Create an app](https://shopify.dev/apps/getting-started/create)  
+[Amazon EventBridge webhook delivery](https://shopify.dev/apps/webhooks/configuration/eventbridge)  
+[Access tokens for custom apps in the Shopify admin](https://shopify.dev/apps/auth/admin-app-access-tokens)  
+[Product](https://shopify.dev/api/admin-rest/2021-10/resources/product#top)  
+[Shopify Admin API](https://shopify.dev/api/admin)
+
 ## Splunk<a name="api-destination-splunk"></a>
 
 **API destination invocation endpoint URL**  
@@ -175,8 +206,8 @@ For both authorization types, you need an HEC token ID\. For more information, s
 POST https://*SPLUNK\_HEC\_ENDPOINT*:*optional\_port*/services/collector/raw
 
 **Additional information**  
-API Key – When configuring the endpoint for EventBridge, the API key name is “Authorization” and value is the “Splunk HEC token ID”\.  
-Basic \(Username/Password\) – When configuring the endpoint for EventBridge, the username is “Splunk” and the password is “HEC tokenID”\.
+API Key – When configuring the endpoint for EventBridge, the API key name is “Authorization” and value is the Splunk HEC token ID\.  
+Basic \(Username/Password\) – When configuring the endpoint for EventBridge, the username is “Splunk” and the password is the Splunk HEC token ID\.
 
 ## Sumo Logic<a name="api-destination-sumologic"></a>
 

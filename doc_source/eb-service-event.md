@@ -2,9 +2,13 @@
 
 Many AWS services generate [events](eb-events.md) that EventBridge receives\. When an AWS service in your account emits an event, it goes to your account’s default event bus\.
 
- AWS CloudTrail is a service that automatically records events such as AWS API calls\. You can create EventBridge rules that use the information from CloudTrail\. For more information about CloudTrail, see [What is AWS CloudTrail?](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)\. For information about creating an EventBridge rule that uses CloudTrail, see [Tutorial: Create an Amazon EventBridge rule for AWS CloudTrail API calls](eb-ct-api-tutorial.md)\.
+ AWS CloudTrail is a service that automatically records events such as AWS API calls\. You can create EventBridge rules that use the information from CloudTrail\. For more information about CloudTrail, see [What is AWS CloudTrail?](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)\. 
 
-All events that are delivered by CloudTrail have `AWS API Call via CloudTrail` as the value for `detail-type`\. 
+All events that are delivered by CloudTrail have `AWS API Call via CloudTrail` as the value for `detail-type`\. Events from API actions that start with the keywords `List`, `Get`, or `Describe` aren't processed by EventBridge, with the exception of events from the following AWS STS actions:
++ `GetFederationToken`
++ `GetSessionToken`
+
+To record events with a `detail-type` value of `AWS API Call via CloudTrail`, a CloudTrail trail with logging enabled is required\.
 
 When using CloudTrail with Amazon S3, you need to configure CloudTrail to log data events\. For more information, see [Enabling CloudTrail event logging for S3 buckets and objects ](https://docs.aws.amazon.com/AmazonS3/latest/dev/enable-cloudtrail-logging-for-s3.html)\.
 
@@ -40,7 +44,7 @@ The following table shows AWS services that generate events\. Choose the service
 | [AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/sample-build-notifications.html#sample-build-notifications-ref) | Best effort | 
 | [AWS CodeCommit](https://docs.aws.amazon.com/codecommit/latest/userguide/monitoring-events.html) | Best effort | 
 | [AWS CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/monitoring-cloudwatch-events.html) | Best effort | 
-| [AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/monitor-config-with-cloudwatchevents.html) | Best effort | 
+| [AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/security-logging-and-monitoring.html#monitor-config-with-cloudwatchevents) | Best effort | 
 | Amazon Connect | Best effort | 
 | AWS Data Exchange | Best effort | 
 | Amazon Data Lifecycle Manager | Best effort | 
@@ -64,7 +68,8 @@ The following table shows AWS services that generate events\. Choose the service
 | AWS Glue | Best effort | 
 | AWS Glue DataBrew | Best effort | 
 | [AWS Ground Station](https://docs.aws.amazon.com/ground-station/latest/ug/automating-events.html) | Best effort | 
-| AWS Health | Best effort | 
+| [AWS Health](https://docs.aws.amazon.com/health/latest/ug/cloudwatch-events-health.html) | Best effort | 
+| [Amazon Inspector](https://docs.aws.amazon.com/inspector/latest/user/findings-managing-automating-responses.html) | Best effort | 
 | [Amazon Interactive Video Service](https://docs.aws.amazon.com/ivs/latest/userguide/SUE.html) | Best effort | 
 | AWS IoT Analytics | Guaranteed | 
 | [AWS IoT Greengrass V1](https://docs.aws.amazon.com/greengrass/v1/developerguide/deployment-notifications.html) | Best effort | 
@@ -74,7 +79,6 @@ The following table shows AWS services that generate events\. Choose the service
 | AWS Key Management Service imported key material expiration | Best effort | 
 | [Amazon Location Service](https://docs.aws.amazon.com/location/latest/developerguide/location-events.html) | Guaranteed | 
 | [Amazon Macie](https://docs.aws.amazon.com/macie/latest/user/findings-publish-event-schemas.html) | Best effort | 
-| Amazon Macie Classic | Best effort | 
 | Amazon Managed Blockchain | Best effort | 
 | AWS Managed Services | Best effort | 
 | AWS OpsWorks | Guaranteed | 
@@ -84,14 +88,16 @@ The following table shows AWS services that generate events\. Choose the service
 | Amazon Relational Database Service | Best effort | 
 | AWS Resource Access Manager | Best effort | 
 | [Savings Plans](https://docs.aws.amazon.com/savingsplans/latest/userguide/automating-savingsplans-with-eventbridge.html) | Best effort | 
-| [AWS Security Hub](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cloudwatch-events.html) | Best effort | 
+| [AWS Security Hub](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cloudwatch-events.html) | Guaranteed | 
 | AWS Signer | Guaranteed | 
 | [Amazon Simple Storage Service \(Amazon S3\)](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/EventBridge.html) | Guaranteed | 
 | Amazon Simple Workflow Service | Best effort | 
 | [AWS Step Functions](https://docs.aws.amazon.com/step-functions/latest/dg/cw-events.html#cw-events-events) | Best effort | 
 | AWS Storage Gateway | Guaranteed | 
+| [AWS Support](https://docs.aws.amazon.com/awssupport/latest/user/event-bridge-support.html) | Best effort | 
 | [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/monitoring-eventbridge-events.html) | Best effort | 
 | Tag changes on resources | Best effort | 
 | AWS Transit Gateway | Best effort | 
 | [Amazon Translate](https://docs.aws.amazon.com/translate/latest/dg/monitoring-with-eventbridge.html) | Guaranteed | 
+| [AWS Trusted Advisor](https://docs.aws.amazon.com/awssupport/latest/user/cloudwatch-events-ta.html) | Best effort | 
 | [Amazon WorkSpaces](https://docs.aws.amazon.com/workspaces/latest/adminguide/cloudwatch-events.html) | Best effort  | 

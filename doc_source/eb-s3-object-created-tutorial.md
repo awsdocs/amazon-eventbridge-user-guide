@@ -24,6 +24,8 @@ Create a topic to receive the events from EventBridge\.
 
 1. In the navigation pane, choose **Topics**\.
 
+1. Choose **Create topic**\.
+
 1. For **Type**, choose **Standard**\.
 
 1. Enter **eventbridge\-test** as the name of the topic\.
@@ -64,30 +66,39 @@ Create a rule to send events to your topic when an Amazon S3 object is created\.
 
 1. Choose **Create rule**\.
 
-1. Enter **s3\-test** as the name of the rule\.
+1. Enter a name and description for the rule\. For example, name the rule `s3-test`
 
-1. For **Define pattern**, do the following:
+1. For **Event bus**, select **default**\.
 
-   1. Choose **Event pattern**\.
+1. For **Rule type**, choose **Rule with an event pattern**\.
 
-   1. Choose **Custom pattern**\.
+1. Choose **Next**\.
 
-   1. In the **Event pattern** box, paste the following:
+1. For **Event source**, choose **AWS services**\.
 
-      ```
-      {
-        "source": ["aws.s3"],
-        "detail-type": ["Object Created"]
-      }
-      ```
+1. For **Event pattern**, do the following:
 
-1. For **Select event bus**, choose **AWS default event bus**\. The *default event bus* captures events emitted by AWS services within your account\.
+   1. For **Event source**, select **Simple Storage Service \(S3\)** from the drop\-down list\.
 
-1. For **Target**, choose **SNS topic**\.
+   1. For **Event type**, choose ** Amazon S3 Event Notification** from the drop\-down list\.
 
-1. For **Topic**, select the topic that you created in step 1\. For this tutorial, select **eventbridge\-test**\.
+   1. Choose **Specific events\(s\)** and choose **Object Created** from the drop\-down list\.
 
-1. Choose **Create**\.
+   1. Choose **Any bucket**
+
+1. Choose **Next**\.
+
+1. For **Target types**, choose **AWS service**\.
+
+1. For **Select a target**, choose **SNS topic** from the drop\-down list\.
+
+1. For **Topic**, select the Kinesis stream that you created in the **Step 1: Create an SNS topic** section\. In this example, select `eventbridge-test`\.
+
+1. Choose **Next**\.
+
+1. Choose **Next**\.
+
+1. Review the details of the rule and choose **Create rule**\.
 
 ## Step 4: Test the rule<a name="eb-s3-object-created-tutorial-test-rule"></a>
 

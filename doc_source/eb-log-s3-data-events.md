@@ -88,31 +88,39 @@ Create a rule to run the Lambda function you created in Step 2\. This rule runs 
 
 1. Choose **Create rule**\.
 
-1. Enter a name and description for the rule\.
+1. Enter a name and description for the rule\. For example, name the rule `TestRule`
 
-1. For **Define pattern**, do the following:
+1. For **Event bus**, choose the event bus that you want to associate with this rule\. If you want this rule to match events that come from your account, select **default**\. When an AWS service in your account emits an event, it always goes to your account’s default event bus\.
 
-   1. Choose **Event Pattern**\.
+1. For **Rule type**, choose **Rule with an event pattern**\.
 
-   1. Choose **Pre\-defined pattern by service**\.
+1. Choose **Next**\.
 
-   1. For **Service provider**, choose **AWS**\.
+1. For **Event source**, choose **AWS services**\.
 
-   1. For **Service Name**, choose **Simple Storage Service \(S3\)**\.
+1. For **Event pattern**, do the following:
 
-   1. For **Event type**, choose **Object Level Operations**\.
+   1. For **Event source**, select **Simple Storage Service \(S3\)** from the drop\-down list\.
 
-   1. Choose **Specific operation\(s\)**, **PutObject**\.
+   1. For **Event type**, select **Object\-Level API call via CloudTrail** from the drop\-down list\.
+
+   1. Choose **Specific operation\(s\)**, and then choose **PutObject**\.
 
    1. By default, the rule matches data events for all buckets in the Region\. To match data events for specific buckets, choose **Specify bucket\(s\) by name** and enter one or more buckets\.
 
-1. For **Select event bus**, choose **AWS default event bus**\. When an AWS service in your account emits an event, it goes to your account’s default event bus\. 
+1. Choose **Next**\.
 
-1. For **Targets**, choose **Lambda function**\.
+1. For **Target types**, choose **AWS service**\.
 
-1. For **Function**, select the Lambda function that you created\.
+1. For **Select a target**, choose **Lambda function** from the drop\-down list\.
 
-1. Choose **Create**\.
+1. For **Function**, select the `LogS3DataEvents` Lambda function that you created in step 1\.
+
+1. Choose **Next**\.
+
+1. Choose **Next**\.
+
+1. Review the details of the rule and choose **Create rule**\.
 
 ## Step 4: Test the Rule<a name="eb-log-s3-test-rule"></a>
 
