@@ -113,7 +113,8 @@ API Key
 For a full list of endpoints, see [Salesforce API Reference](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_list.htm)
 
 **Supported authorization types**   
-OAuth client credentials
+OAuth client credentials  
+OAUTH tokens are refreshed when a 401 or 407 response is returned\.
 
 **Additional authorization parameters required**  
 [Salesforce Connected App](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_oauth_and_connected_apps.htm) Client Id and Client Secret\.  
@@ -141,6 +142,7 @@ For a list of endpoints and other resources, see [Using the Slack Web API](https
 
 **Supported authorization types**   
 OAuth 2\.0  
+OAUTH tokens are refreshed when a 401 or 407 response is returned\.  
 When you create a Slack application and install it to your workspace, an OAuth bearer token will be created on your behalf to be used for authenticating calls by your API destination connection\.
 
 **Additional authorization parameters required**  
@@ -167,7 +169,8 @@ When configuring your EventBridge rule there are two configurations to highlight
 For a list of endpoints and other resouces and methods, see [Endpoints and requests](https://shopify.dev/api/admin-rest#endpoints)
 
 **Supported authorization types**   
-OAuth, API Key
+OAuth, API Key  
+OAUTH tokens are refreshed when a 401 or 407 response is returned\.
 
 **Additional authorization parameters required**  
 Not applicable

@@ -16,10 +16,10 @@ In this tutorial, you create a rule that matches an event with `detail-type: "cu
 **Topics**
 + [Step 1: Create an Amazon SNS topic](#eb-input-transformer-tutorial-create-topic)
 + [Step 2: Create an Amazon SNS subscription](#eb-input-transformer-tutorial-create-sns)
-+ [Step 1: Create a rule](#eb-input-transformer-create-rule)
++ [Step 3: Create a rule](#eb-input-transformer-create-rule)
 + [Step 4: Send test events](#eb-input-transformer-send-test-events)
-+ [Step 2: Confirm success](#success)
-+ [Step 3: Clean up your resources](#cleanup)
++ [Step 5: Confirm success](#success)
++ [Step 6: Clean up your resources](#cleanup)
 
 ## Step 1: Create an Amazon SNS topic<a name="eb-input-transformer-tutorial-create-topic"></a>
 
@@ -61,7 +61,7 @@ Create a subscription to get emails with the transformed information\.
 
 1. Confirm the subscription by choosing **Confirm subscription** in the email you receive from AWS notifications\.
 
-## Step 1: Create a rule<a name="eb-input-transformer-create-rule"></a>
+## Step 3: Create a rule<a name="eb-input-transformer-create-rule"></a>
 
 Create a rule to use the input transformer to customize the instance state information that goes to a target\.
 
@@ -157,11 +157,11 @@ Now that you've set up the SNS topic and the rule, we'll send test events to mak
 
 1. Choose **Send**\.
 
-## Step 2: Confirm success<a name="success"></a>
+## Step 5: Confirm success<a name="success"></a>
 
 If you get an email from AWS notifications that matches the expected output, you've successfully completed the tutorial\.
 
-## Step 3: Clean up your resources<a name="cleanup"></a>
+## Step 6: Clean up your resources<a name="cleanup"></a>
 
 You can now delete the resources that you created for this tutorial, unless you want to retain them\. By deleting AWS resources that you are no longer using, you prevent unnecessary charges to your AWS account\.
 

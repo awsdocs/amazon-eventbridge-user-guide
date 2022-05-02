@@ -49,6 +49,7 @@ When defining a rule in the console, select the **Input Transformer** option und
 
 ```
 {
+  "timestamp" : "$.time",
   "instance" : "$.detail.instance-id", 
   "state" : "$.detail.state"
 }
@@ -68,6 +69,7 @@ The *Input Template* is a template for the information you want to pass to your 
 |  **JSON with a mix of variables and static information**  |  <pre>{<br />  "instance" : <instance>,<br />  "state": [ 9, <state>, true ],<br />  "Transformed" : "Yes"<br />}<br /></pre> |  <pre>{<br />  "instance" : "i-0123456789",<br />  "state": [<br />    9,<br />    "RUNNING",<br />    true<br />  ],<br />  "Transformed" : "Yes"<br />}</pre>  | 
 |  **Including reserved variables in JSON**  |  <pre>{<br />  "instance" : <instance>,<br />  "state": <state>,<br />  "ruleArn" : <aws.events.rule-arn>,<br />  "ruleName" : <aws.events.rule-name>,<br />  "originalEvent" : <aws.events.event><br />}</pre> |  <pre>{<br />  "instance" : "i-0123456789",<br />  "state": "RUNNING",<br />  "ruleArn" : "arn:aws:events:us-east-2:123456789012:rule/example",<br />  "ruleName" : "example",<br />  "originalEvent" : {<br />    ... // commented for brevity<br />  }<br />}</pre>  | 
 |  **Including reserved variables in a string**  | <pre>"<aws.events.rule-name> triggered"</pre> |  <pre>"example triggered"</pre>  | 
+|  **Amazon CloudWatch log group**  | <pre>{<br />  "timestamp" : <timestamp>,<br />  "message": "instance \"<instance>\" is in <state>"<br />}</pre> |  <pre>{<br />  "timestamp" : 2015-11-11T21:29:54Z,<br />  "message": "instance "i-0123456789" is in RUNNING<br />)</pre>  | 
 
 ## Transforming input by using the EventBridge API<a name="eb-transform-input-api"></a>
 

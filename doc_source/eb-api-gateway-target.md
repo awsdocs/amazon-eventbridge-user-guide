@@ -3,7 +3,7 @@
 You can use Amazon API Gateway to create, publish, maintain, and monitor REST APIs\. Amazon EventBridge supports sending events to an API Gateway REST endpoint\. When you specify an API Gateway endpoint as a [target](eb-targets.md), each [event](eb-events.md) sent to the target maps to a request sent to the endpoint\.
 
 **Important**  
-EventBridge supports using API Gateway *Edge\-optimized* and *Regional* endpoints as targets\. *Private* endpoints are not currently supportted. To learn more about endpoints, see [https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-endpoint-types.html](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-endpoint-types.html)\.
+EventBridge supports using API Gateway *Edge\-optimized* and *Regional* endpoints as targets\. *Private* endpoints are not currently supported\. To learn more about endpoints, see [https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-endpoint-types.html](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-endpoint-types.html)\.
 
 You can use an API Gateway target for the following use cases:
 + To invoke a customer\-specified REST API hosted in API Gateway based on AWS or third\-party events\.

@@ -1,6 +1,6 @@
 # Sending and receiving Amazon EventBridge events between AWS accounts<a name="eb-cross-account"></a>
 
-You can configure EventBridge to send and receive [events](eb-events.md) between AWS accounts\. When you configure EventBridge to send or receive events between accounts, you can specify which AWS accounts can send events to or receive events from the [event bus](eb-event-bus.md) in your account\. You can also allow or deny events from specific [rules](eb-rules.md) associated with the event bus, or events from specific sources\. For more information, see [Simplifying cross\-account access with Amazon EventBridge resource policies](http://aws.amazon.com/blogs/compute/simplifying-cross-account-access-with-amazon-eventbridge-resource-policies/)
+You can configure EventBridge to send and receive [events](eb-events.md) between [event buses](eb-event-bus.md) in AWS accounts\. When you configure EventBridge to send or receive events between accounts, you can specify which AWS accounts can send events to or receive events from the event bus in your account\. You can also allow or deny events from specific [rules](eb-rules.md) associated with the event bus, or events from specific sources\. For more information, see [Simplifying cross\-account access with Amazon EventBridge resource policies](http://aws.amazon.com/blogs/compute/simplifying-cross-account-access-with-amazon-eventbridge-resource-policies/)
 
 **Note**  
 If you use AWS Organizations, you can specify an organization and grant access to all accounts in that organization\. In addition, the sending event bus must have IAM roles attached to them when sending events to another account\. For more information, see [What is AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html) in the *AWS Organizations User Guide*\.
@@ -8,9 +8,9 @@ If you use AWS Organizations, you can specify an organization and grant access t
 **Note**  
 If you're using an Incident Manager response plan as a target, all the response plans that are shared with your account are available by default\.
 
-You can send and receive events between AWS accounts within the same Region in all Regions and between accounts in different Regions as long as the destination Region is a supported [cross\-Region](eb-cross-region.md) destination Region\.
+You can send and receive events between event buses in AWS accounts within the same Region in all Regions and between accounts in different Regions as long as the destination Region is a supported [cross\-Region](eb-cross-region.md) destination Region\.
 
-The steps to configure EventBridge to send events to or receive events from a different account include the following:
+The steps to configure EventBridge to send events to or receive events from an event bus in a different account include the following:
 + On the *receiver* account, edit the permissions on an event bus to allow specified AWS accounts, an organization, or all AWS accounts to send events to the receiver account\.
 + On the *sender* account, set up one or more rules that have the receiver account's event bus as the target\.
 
@@ -32,13 +32,13 @@ If you choose to receive events from all AWS accounts, be careful to create rule
 
 ## Rules for events between AWS accounts<a name="eb-writing-rules-that-match-events-from-another-account"></a>
 
-If your account is set up to receive events from other AWS accounts, you can write rules that match those events\. Set the [event pattern](eb-event-patterns.md) of the rule to match the events you are receiving from the other account\.
+If your account is set up to receive events from event buses in other AWS accounts, you can write rules that match those events\. Set the [event pattern](eb-event-patterns.md) of the rule to match the events you are receiving from event buses in the other account\.
 
-Unless you specify `account` in the event pattern of a rule, any of your account's rules, both new and existing, that match events you receive from other accounts trigger based on those events\. If you are receiving events from another account, and you want a rule to trigger only on that event pattern when it is generated from your own account, you must add `account` and specify your own account ID to the event pattern of the rule\.
+Unless you specify `account` in the event pattern of a rule, any of your account's rules, both new and existing, that match events you receive from event buses in other accounts trigger based on those events\. If you are receiving events from event buses in another account, and you want a rule to trigger only on that event pattern when it is generated from your own account, you must add `account` and specify your own account ID to the event pattern of the rule\.
 
-If you set up your AWS account to accept events from all AWS accounts, we strongly recommend that you add `account` to every EventBridge rule in your account\. This prevents rules in your account from triggering on events from unknown AWS accounts\. When you specify the `account` field in the rule, you can specify the account IDs of more than one AWS account in the field\.
+If you set up your AWS account to accept events from event buses in all AWS accounts, we strongly recommend that you add `account` to every EventBridge rule in your account\. This prevents rules in your account from triggering on events from unknown AWS accounts\. When you specify the `account` field in the rule, you can specify the account IDs of more than one AWS account in the field\.
 
-To have a rule trigger on a matching event from any AWS account that you have granted permissions to, do not specify \* in the `account` field of the rule\. Doing so would not match any events, because \* never appears in the `account` field of an event\. Instead, just omit the `account` field from the rule\.
+To have a rule trigger on a matching event from any event buses in AWS account that you have granted permissions to, do not specify \* in the `account` field of the rule\. Doing so would not match any events, because \* never appears in the `account` field of an event\. Instead, just omit the `account` field from the rule\.
 
 **To create a rule that sends events to a different AWS account using the console**
 

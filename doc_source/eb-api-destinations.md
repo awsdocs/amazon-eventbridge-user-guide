@@ -22,6 +22,8 @@ When you create an API destination, you specify a connection to use for it\. A *
 
 For Basic and API Key authorization, EventBridge populates the required authorization headers for you\. For OAuth authorization, EventBridge also exchanges your client ID and secret for an access token and then manages it securely\. When you create a connection, you can also include the header, body, and query parameters that are required for authorization with an endpoint\. You can use the same connection for more than one API destination if the authorization for the endpoint is the same\.
 
+OAUTH tokens are refreshed when a 401 or 407 response is returned\.
+
 When you create a connection and add authorization parameters, EventBridge creates a secret in AWS Secrets Manager\. The cost of storing the Secrets Manager secret is included with the charge for using an API destination\. To learn more about best practices for using secrets with API destinations, see [AWS::Events::ApiDestination](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-events-apidestination.html) in the *CloudFormation User Guide*\.
 
 **Note**  

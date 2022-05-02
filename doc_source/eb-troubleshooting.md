@@ -7,7 +7,7 @@ You can use the steps in this section to troubleshoot Amazon EventBridge\.
 + [I just created or modified a rule, but it didn't match a test event](#eb-rule-does-not-match)
 + [My rule didn't run at the time I specified in the `ScheduleExpression`](#eb-rule-did-not-trigger)
 + [My rule didn't run at the time that I expected](#eb-rule-did-not-trigger-on-time)
-+ [My rule matches IAM API calls but it didn't run](#eb-rule-did-not-trigger-iam)
++ [My rule matches AWS global service API calls but it didn't run](#eb-rule-did-not-trigger-iam)
 + [The IAM role associated with my rule is being ignored when the rule runs](#eb-iam-role-ignored)
 + [My rule has an event pattern that is supposed to match a resource, but no events match](#eb-events-do-not-match-rule)
 + [My event's delivery to the target was delayed](#eb-delayed-event-delivery)
@@ -88,7 +88,9 @@ When you make a change to a [rule](eb-rules.md) or to its [targets](eb-targets.m
 
 If events still don't match after a short period of time, check the CloudWatch metrics `TriggeredRules`, `Invocations`, and `FailedInvocations` for your rule\. For more information about these metrics, see [Monitoring Amazon EventBridge](eb-monitoring.md)\.
 
-If the rule is intended to match an event from an AWS service, use the `TestEventPattern` action to test the event pattern of your rule matches a test event\. For more information, see [TestEventPattern](https://docs.aws.amazon.com/AmazonCloudWatchEvents/latest/APIReference/API_TestEventPattern.html) in the *Amazon EventBridge API Reference*\.
+If the rule is intended to match an event from an AWS service, do one of these things:
++ Use the `TestEventPattern` action to test the event pattern of your rule matches a test event\. For more information, see [TestEventPattern](https://docs.aws.amazon.com/AmazonCloudWatchEvents/latest/APIReference/API_TestEventPattern.html) in the *Amazon EventBridge API Reference*\.
++ Use the **Sandbox** on the [EventBridge console](https://console.aws.amazon.com/events)\.
 
 ## My rule didn't run at the time I specified in the `ScheduleExpression`<a name="eb-rule-did-not-trigger"></a>
 
@@ -97,6 +99,9 @@ Make sure you have set the schedule for the [rule](eb-rules.md) in the UTC\+0 ti
 ## My rule didn't run at the time that I expected<a name="eb-rule-did-not-trigger-on-time"></a>
 
 EventBridge runs [rules](eb-rules.md) within one minute of the start time you set\. The count down to run time begins as soon as you create the rule\.
+
+**Note**  
+Scheduled rules have delivery type of `guaranteed` meaning events will be triggered for each expected time at least once\.
 
 You can use a cron expression to invoke [targets](eb-targets.md) at a specified time\. To create a rule that runs every four hours on the 0th minute, you do one of the following:
 + In the EventBridge console, you use the cron expression `0 0/4 * * ? *`\.
@@ -118,9 +123,9 @@ The finest resolution for an EventBridge rule that uses a cron expression is one
 
 Because EventBridge and target services are distributed, there can be a delay of several seconds between the time the scheduled rule runs and the time the target service performs the action on the target resource\.
 
-## My rule matches IAM API calls but it didn't run<a name="eb-rule-did-not-trigger-iam"></a>
+## My rule matches AWS global service API calls but it didn't run<a name="eb-rule-did-not-trigger-iam"></a>
 
-The IAM service is only available in the US East \(N\. Virginia\) Region, so events from AWS API calls from IAM are only available in that region\. For more information, see [Events from AWS services](eb-service-event.md)\.
+AWS global services; such as, IAM and Amazon Route 53 are only available in the US East \(N\. Virginia\) Region, so events from AWS API calls from global services are only available in that region\. For more information, see [Events from AWS services](eb-service-event.md)\.
 
 ## The IAM role associated with my rule is being ignored when the rule runs<a name="eb-iam-role-ignored"></a>
 
@@ -136,7 +141,7 @@ Some events, such as AWS API call events from CloudTrail, don't have anything in
 
 ## My event's delivery to the target was delayed<a name="eb-delayed-event-delivery"></a>
 
-EventBridge tries to deliver an [event](eb-events.md) to a [target](eb-targets.md) for up to 24 hours, except in scenarios where your target resource is constrained\. The first attempt is made as soon as the event arrives in the event stream\. If the target service is having problems, EventBridge automatically reschedules another delivery\. If 24 hours has passed since the arrival of event, EventBridge stops trying to deliver the event and publishes the `FailedInvocations` metric in CloudWatch\. We recommend that you create a CloudWatch alarm on the `FailedInvocations` metric\. 
+EventBridge tries to deliver an [event](eb-events.md) to a [target](eb-targets.md) for up to 24 hours, except in scenarios where your target resource is constrained\. The first attempt is made as soon as the event arrives in the event stream\. If the target service is having problems, EventBridge automatically reschedules another delivery\. If 24 hours has passed since the arrival of event, EventBridge stops trying to deliver the event and publishes the `FailedInvocations` metric in CloudWatch\. We recommend that you set up a DLQ to store events that couldn't successfully be delivered to a target\. For more information, see [Event retry policy and using dead\-letter queues](eb-rule-dlq.md)
 
 ## Some events were never delivered to my target<a name="eb-never-delivered-to-target"></a>
 
@@ -160,16 +165,16 @@ If your Amazon SQS queue is encrypted, you must create a customer\-managed KMS k
 
 ```
 {
-                "Sid": "Allow EventBridge to use the key",
-                "Effect": "Allow",
-                "Principal": {
-                                "Service": "events.amazonaws.com"
-                },
-                "Action": [
-                                "kms:Decrypt",
-                                "kms:GenerateDataKey"
-                ],
-                "Resource": "*"
+  "Sid": "Allow EventBridge to use the key",
+  "Effect": "Allow",
+  "Principal": {
+    "Service": "events.amazonaws.com"
+  },
+  "Action": [
+    "kms:Decrypt",
+    "kms:GenerateDataKey"
+  ],
+  "Resource": "*"
 }
 ```
 
@@ -198,7 +203,6 @@ To have the correct permission, your policy attributes similar to the following\
 \"SNS:Publish\",
 \"SNS:RemovePermission\",
 \"SNS:AddPermission\",
-\"SNS:Receive\",
 \"SNS:SetTopicAttributes\"],
 \"Resource\":\"arn:aws:sns:us-east-1:123456789012:MyTopic\",
 \"Condition\":{\"StringEquals\":{\"AWS:SourceOwner\":\"123456789012\"}}},{\"Sid\":\"Allow_Publish_Events\",
@@ -251,7 +255,7 @@ When you create a [rule](eb-rules.md) with Amazon SNS as the [target](eb-targets
 
 ## Which IAM condition keys can I use with EventBridge?<a name="eb-supported-access-policies"></a>
 
-EventBridge supports the AWS\-wide condition keys \(see [Available Keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/AvailableKeys.html) in the *IAM User Guide*\), plus the following service\-specific condition keys\. For more information, see [Using IAM policy conditions for fine\-grained access control](eb-use-conditions.md)\.
+EventBridge supports the AWS\-wide condition keys \(see [IAM and AWS STS condition context keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_iam-condition-keys.html) in the *IAM User Guide*\), plus the keys listed at [Using IAM policy conditions for fine\-grained access control](eb-use-conditions.md)\.
 
 ## How can I tell when EventBridge rules are broken?<a name="eb-create-alarm-broken-event-rules"></a>
 

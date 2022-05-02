@@ -10,7 +10,7 @@ In this tutorial, you'll use the EventBridge console to create a connection to S
 + [Step 2: Create API destination](#eb-dd-api-destination)
 + [Step 3: Create rule](#eb-dd-create-rule)
 + [Step 4: Test the rule](#eb-dd-test-rule)
-+ [Step 4: Clean up your resources](#cleanup)
++ [Step 5: Clean up your resources](#cleanup)
 
 ## Prerequisites<a name="eb-sf-prereqs"></a>
 
@@ -140,7 +140,7 @@ Next, you'll create a rule to send events to Salesforce when an Amazon S3 object
       1. For **Input Template**, enter the following:
 
          ```
-         {"message": <detail>}"
+         {"message": <detail>}
          ```
 
    1. Choose **Confirm\.**\.
@@ -153,9 +153,9 @@ Next, you'll create a rule to send events to Salesforce when an Amazon S3 object
 
 ## Step 4: Test the rule<a name="eb-dd-test-rule"></a>
 
-To test your rule, create an [Amazon S3 object](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html) by uploading a file to an EventBridge\-enabled bucket\. The information about the created abject will be sent to the Salesforce platform event\.
+To test your rule, create an [Amazon S3 object](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html) by uploading a file to an EventBridge\-enabled bucket\. The information about the created object will be sent to the Salesforce platform event\.
 
-## Step 4: Clean up your resources<a name="cleanup"></a>
+## Step 5: Clean up your resources<a name="cleanup"></a>
 
 You can now delete the resources that you created for this tutorial, unless you want to retain them\. By deleting AWS resources that you are no longer using, you prevent unnecessary charges to your AWS account\.
 

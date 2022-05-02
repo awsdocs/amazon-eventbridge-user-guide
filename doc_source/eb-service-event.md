@@ -18,7 +18,7 @@ Some occurrences in AWS services can be reported to EventBridge both by the serv
 CloudTrail is extending event delivery through EventBridge to resource owners\. Currently, CloudTrail supports both API callers and resource owners to receive events in their S3 buckets by creating trails, and delivers events to API callers through EventBridge\. With this change, resource owners in addition to API callers will be able to monitor cross\-account API calls through EventBridge\. CloudTrail’s integration with EventBridge provides a convenient way to set automated rules\-based workflows in response to events\.  
 The CloudTrail team began deploying this update on April 12, 2021 and expect to complete this update in all commercial regions early this month\. As a result, some customers might experience an increase in the EventBridge events being delivered through EventBridge coinciding with this update\. No customer action is required, but should you have any questions, please reach out to AWS Support\. 
 
-You can't use AWS API call events that are larger than 256 KB in size as event patterns\. For more information about the API calls that you can use, see [Services Supported by CloudTrail Event History](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events-supported-services.html)\.
+You can't use AWS API call events that are larger than 256 KB in size as event patterns\. For more information about the API calls that you can use, see [CloudTrail supported services and integrations](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-aws-service-specific-topics.html)\.
 
 **Note**  
 Each AWS service that generates events sends them to EventBridge as either *best effort* or *guaranteed* delivery\. *Best effort delivery* means that the service attempts to send all events to EventBridge, but in some rare cases an event might not be delivered\. *Guaranteed delivery* means that all events from the service are successfully delivered to EventBridge\.  
@@ -38,7 +38,7 @@ The following table shows AWS services that generate events\. Choose the service
 | [Amazon Braket](https://docs.aws.amazon.com/braket/latest/developerguide/braket-monitor-eventbridge.html) | Guaranteed | 
 | AWS Certificate Manager Private Certificate Authority | Best effort | 
 | [Amazon Chime](https://docs.aws.amazon.com/chime/latest/ag/automating-chime-with-cloudwatch-events.html) | Best effort | 
-| AWS CloudTrail, events delivered by | Best effort | 
+| Events from AWS CloudTrail | Best effort | 
 | [Amazon CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-and-eventbridge.html) | Guaranteed | 
 | AWS CodeArtifact | Guaranteed | 
 | [AWS CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/sample-build-notifications.html#sample-build-notifications-ref) | Best effort | 
@@ -46,6 +46,7 @@ The following table shows AWS services that generate events\. Choose the service
 | [AWS CodeDeploy](https://docs.aws.amazon.com/codedeploy/latest/userguide/monitoring-cloudwatch-events.html) | Best effort | 
 | [AWS Config](https://docs.aws.amazon.com/config/latest/developerguide/security-logging-and-monitoring.html#monitor-config-with-cloudwatchevents) | Best effort | 
 | Amazon Connect | Best effort | 
+| [AWS Control Tower](https://docs.aws.amazon.com/controltower/latest/userguide/monitoring-overview.html) | Best effort | 
 | AWS Data Exchange | Best effort | 
 | Amazon Data Lifecycle Manager | Best effort | 
 | AWS DataSync | Best effort | 
@@ -64,6 +65,7 @@ The following table shows AWS services that generate events\. Choose the service
 | [AWS Elemental MediaPackage](https://docs.aws.amazon.com/mediapackage/latest/ug/monitoring-cloudwatch-events.html) | Best effort | 
 | [AWS Elemental MediaStore](https://docs.aws.amazon.com/mediastore/latest/ug/monitoring-automating-with-cloudwatch-events.html) | Guaranteed | 
 | Amazon EMR | Best effort | 
+| [Amazon EventBridge scheduled rules](eb-create-rule-schedule.md) | Guaranteed | 
 | Amazon GameLift | Best effort | 
 | AWS Glue | Best effort | 
 | AWS Glue DataBrew | Best effort | 
@@ -84,8 +86,8 @@ The following table shows AWS services that generate events\. Choose the service
 | AWS OpsWorks | Guaranteed | 
 | [AWS Proton](https://docs.aws.amazon.com/proton/latest/adminguide/monitoring.html) | Best effort | 
 | Amazon QLDB | Guaranteed | 
+| [Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-cloudwatch-events.sample.html) | Best effort | 
 | Amazon Redshift | Guaranteed | 
-| Amazon Relational Database Service | Best effort | 
 | AWS Resource Access Manager | Best effort | 
 | [Savings Plans](https://docs.aws.amazon.com/savingsplans/latest/userguide/automating-savingsplans-with-eventbridge.html) | Best effort | 
 | [AWS Security Hub](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cloudwatch-events.html) | Guaranteed | 

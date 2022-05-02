@@ -10,7 +10,7 @@ In this tutorial, you'll use the EventBridge console to create a connection to Z
 + [Step 2: Create API destination](#eb-zd-api-destination)
 + [Step 3: Create rule](#eb-zd-create-rule)
 + [Step 4: Test the rule](#eb-zd-test-rule)
-+ [Step 4: Clean up your resources](#cleanup)
++ [Step 5: Clean up your resources](#cleanup)
 
 ## Prerequisites<a name="eb-zd-prereqs"></a>
 
@@ -127,7 +127,7 @@ Next, create a rule to send events to Zendesk when an Amazon S3 object is create
       1. For **Input Template**, enter the following:
 
          ```
-         {"message": <detail>}"
+         {"message": <detail>}
          ```
 
    1. Choose **Confirm\.**\.
@@ -142,7 +142,7 @@ Next, create a rule to send events to Zendesk when an Amazon S3 object is create
 
 To test your rule, create an [Amazon S3 object](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/upload-objects.html) by uploading a file to an EventBridge\-enabled bucket\. When the event matches the rule, EventBridge will call the [Zendesk Create Ticket API](https://developer.zendesk.com/rest_api/docs/support/tickets#create-ticket)\. The new ticket will appear in the Zendesk dashboard\.
 
-## Step 4: Clean up your resources<a name="cleanup"></a>
+## Step 5: Clean up your resources<a name="cleanup"></a>
 
 You can now delete the resources that you created for this tutorial, unless you want to retain them\. By deleting AWS resources that you are no longer using, you prevent unnecessary charges to your AWS account\.
 
