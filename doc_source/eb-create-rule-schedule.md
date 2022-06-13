@@ -151,8 +151,6 @@ You can only create scheduled rules using the default event bus\.
 
 1. Choose **Next**\.
 
-1. \(Optional\) For **Sample events**, choose the type of event\.
-
 1. For **Schedule pattern**, do one the following:
    + To use a cron expression to define the schedule, choose **A fine\-grained schedule that runs at a specific time, such as 8:00 a\.m\. PST on the first Monday of every month\.** and enter the cron expression\.
    + To use a rate expression to define the schedule, choose **A schedule that runs at a regular rate, such as every 10 minutes\.** and enter the rate expression\.

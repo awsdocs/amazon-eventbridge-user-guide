@@ -15,15 +15,12 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
     public static void deleteEBRule(EventBridgeClient eventBrClient, String ruleName) {
 
         try {
-
-           // Disable the rule - an Enabled Rule cannot be deleted
             DisableRuleRequest disableRuleRequest = DisableRuleRequest.builder()
                     .name(ruleName)
                     .eventBusName("default")
                     .build();
 
             eventBrClient.disableRule(disableRuleRequest);
-
             DeleteRuleRequest ruleRequest = DeleteRuleRequest.builder()
                     .name(ruleName)
                     .eventBusName("default")

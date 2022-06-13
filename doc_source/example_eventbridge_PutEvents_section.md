@@ -57,8 +57,8 @@ Send the event\.
     public static void putEBEvents(EventBridgeClient eventBrClient, String resourceArn, String resourceArn2 ) {
 
         try {
-            // Populate a List with the resource ARN values
-            List<String> resources = new ArrayList<String>();
+            // Populate a List with the resource ARN values.
+            List<String> resources = new ArrayList<>();
             resources.add(resourceArn);
             resources.add(resourceArn2);
 
@@ -74,7 +74,6 @@ Send the event\.
                     .build();
 
             PutEventsResponse result = eventBrClient.putEvents(eventsRequest);
-
             for (PutEventsResultEntry resultEntry : result.entries()) {
                 if (resultEntry.eventId() != null) {
                     System.out.println("Event Id: " + resultEntry.eventId());

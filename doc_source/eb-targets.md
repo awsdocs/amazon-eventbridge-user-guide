@@ -64,3 +64,21 @@ To make API calls on the resources that you own, EventBridge needs appropriate p
 
 If another account is in the same Region and has granted you permission, then you can send events to that account\. For more information, see [Sending and receiving Amazon EventBridge events between AWS accounts](eb-cross-account.md)\.
 
+
+
+If your target is encrypted, you must include the following section in your KMS key policy\.
+
+```
+{
+    "Sid": "Allow EventBridge to use the key",
+    "Effect": "Allow",
+    "Principal": {
+        "Service": "events.amazonaws.com"
+    },
+    "Action": [
+        "kms:Decrypt",
+        "kms:GenerateDataKey"
+    ],
+    "Resource": "*"
+}
+```

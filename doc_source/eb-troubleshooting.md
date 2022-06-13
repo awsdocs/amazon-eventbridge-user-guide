@@ -236,16 +236,16 @@ If your SNS topic is encrypted, you must include the following section in your K
 
 ```
 {
-                "Sid": "Allow CWE to use the key",
-                "Effect": "Allow",
-                "Principal": {
-                                "Service": "events.amazonaws.com"
-                },
-                "Action": [
-                                "kms:Decrypt",
-                                "kms:GenerateDataKey"
-                ],
-                "Resource": "*"
+  "Sid": "Allow EventBridge to use the key",
+  "Effect": "Allow",
+  "Principal": {
+    "Service": "events.amazonaws.com"
+  },
+  "Action": [
+    "kms:Decrypt",
+    "kms:GenerateDataKey"
+  ],
+  "Resource": "*"
 }
 ```
 
