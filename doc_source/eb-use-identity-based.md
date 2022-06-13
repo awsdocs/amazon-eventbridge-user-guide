@@ -147,8 +147,8 @@ The following JSON shows the AmazonEventBridgeReadOnlyAccess policy\.
 				"events:DescribeConnection",
 				"events:ListConnections",
 				"events:DescribeApiDestination",
-				"events:ListApiDestinations"
-				"events:ListEndpoints"
+				"events:ListApiDestinations",
+				"events:ListEndpoints",
 				"events:DescribeEndpoint"
 			],
 			"Resource": "*"
