@@ -8,13 +8,24 @@ Event errors are handled in different ways\. Some events are dropped or sent to 
 
 When an event delivery fails, EventBridge publishes an event to Amazon CloudWatch metrics indicating that a target `invocation` failed\. If you use a DLQ, additional metrics are sent to CloudWatch including `InvocationsSentToDLQ` and `InvocationsFailedToBeSentToDLQ`\. For more information about EventBridge metrics, see [Monitoring Amazon EventBridge](eb-monitoring.md)\.
 
-The following information is sent as part of the DLQ message metadata:
-+ The rule ARN
-+ The target ARN
-+ The error code
-+ The error message
-+ The retry condition that was exhausted
-+ The number of attempts
+Each message in your DLQ will include the following custom attributes:
++ `RULE_ARN`
++ `TARGET_ARN`
++ `ERROR_CODE`
+
+  The following is a sample of the error codes a DLQ can return:
+  + `NO_PERMISSIONS`
+  + `NO_RESOURCE`
+  + `RESOURCE_ALREADY_EXISTS`
+  + `THROTTLING`
+  + `TIMEOUT`
++ `ERROR_MESSAGE`
++ `EXHAUSTED_RETRY_CONDITION`
+
+  The following conditions can be returned:
+  + `MaximumRetryAttempts`
+  + `MaximumEventAgeInSeconds`
++ `RETRY_ATTEMPTS`
 
 
 

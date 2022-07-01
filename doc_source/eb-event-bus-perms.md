@@ -4,12 +4,13 @@ The default [event bus](eb-event-bus.md) in your AWS account only allows [events
 
 EventBridge APIs that accept an event bus `Name` parameter such as `PutRule`, `PutTargets`, `DeleteRule`, `RemoveTargets`, `DisableRule`, and `EnableRule` also accept the event bus ARN\. Use these parameters to reference cross\-account or cross\-Region event buses through the APIs\. For example, you can call `PutRule` to create a [rule](eb-rules.md) on an event bus in a different account without needing to assume a role\.
 
-You can attach the example policies in this topic to an IAM role to grant permission to send events to a different account or Region\. Use IAM roles to set organization control policies and boundaries on who can send events from your account to other accounts\. We recommend always using IAM roles when the target of a rule in an event bus\. You can attach IAM roles using `PutTarget` calls\. For information about creating a rule to send events to a different account or Region, see [Sending and receiving Amazon EventBridge events between AWS accounts](eb-cross-account.md)\.
+You can attach the example policies in this topic to an IAM role to grant permission to send events to a different account or Region\. Use IAM roles to set organization control policies and boundaries on who can send events from your account to other accounts\. We recommend always using IAM roles when the target of a rule is an event bus\. You can attach IAM roles using `PutTarget` calls\. For information about creating a rule to send events to a different account or Region, see [Sending and receiving Amazon EventBridge events between AWS accounts](eb-cross-account.md)\.
 
 **Topics**
 + [Managing event bus permissions](#eb-event-bus-permissions-manage)
 + [Example policy: Send events to the default bus in a different account](#eb-event-bus-example-policy-cross-account)
 + [Example policy: Send events to a custom bus in a different account](#eb-event-bus-example-policy-cross-account-custom-bus-source)
++ [Example policy: Send events to an event bus in the same account](#eb-event-bus-example-policy-same-account)
 + [Example policy: Send events to the same account and restrict updates](#eb-event-bus-example-policy-same-account-creator)
 + [Example policy: Send events only from a specific rule to the bus in a different Region](#eb-event-bus-example-policy-restrict-rule)
 + [Example policy: Send events only from a specific Region to a different Region](#eb-event-bus-example-policy-specific-region)
@@ -152,6 +153,27 @@ The following example policy grants the account 111122223333 permission to publi
           "events:source": "com.exampleCorp.webStore"
         }
       }
+    }
+  ]
+}
+```
+
+## Example policy: Send events to an event bus in the same account<a name="eb-event-bus-example-policy-same-account"></a>
+
+The following example policy attached to an event bus named `CustomBus1` allows the event bus to receive events from the same account and Region\.
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "events:PutEvents"
+      ],
+      "Resource": [
+        "arn:aws:events:us-east-1:123456789:event-bus/CustomBus1"
+      ]
     }
   ]
 }

@@ -6,7 +6,7 @@ When you configure EventBridge to send or receive events between event buses, yo
 
 The steps to configure EventBridge to send events to or receive events between event buses in your account include the following:
 + To use an existing IAM role, you need to give either the sender event bus permissions to the receiver event bus or the receiver event bus permissions to the sender event bus\.
-+ On the *sender* event bus, set up one or more rules that have the receiver event bus as the target and create an IAM role\.
++ On the *sender* event bus, set up one or more rules that have the receiver event bus as the target and create an IAM role\. For an example of the policy that should be attached to the role, see [Example policy: Send events to an event bus in the same account](eb-event-bus-perms.md#eb-event-bus-example-policy-same-account)\.
 + On the *receiver* event bus, edit the permissions to allow events to be passed from the other event bus\.
 + On the *receiver* event, set up one or more rules that match events that come from the sender event bus\.
 **Note**  

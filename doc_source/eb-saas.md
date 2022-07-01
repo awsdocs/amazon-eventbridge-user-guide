@@ -79,10 +79,6 @@ Partner event sources are available in the following Regions\.
 
 ## Configuring Amazon EventBridge to receive events from a SaaS integration<a name="eb-saas-integration"></a>
 
-The following procedure describes how to configure EventBridge to receive [events](eb-events.md) from a SaaS integration partner\.
-
-**To receive events from an SaaS partner**
-
 1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.
 
 1. In the navigation pane, choose **Partner event sources**\.
@@ -102,10 +98,6 @@ The following procedure describes how to configure EventBridge to receive [event
    The status of the event source changes from `Pending` to `Active`, and the name of the event bus updates to match the partner event source name\. You can now start creating rules that match events from the partner event source\. For more information, see [Creating a rule that matches SaaS partner events](#eb-create-rule-partner-events)\.
 
 ## Creating a rule that matches SaaS partner events<a name="eb-create-rule-partner-events"></a>
-
-Before you can create [rules](eb-rules.md) for [events](eb-events.md) from SaaS partner applications and services, you need a partner [event bus](eb-event-bus.md)\. Then you can match the partner event bus to the partner event source\. For more information, see [Receiving events from a SaaS partner with Amazon EventBridge](#eb-saas)\.
-
-**To create a rule that matches an event from a SaaS partner**
 
 1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.
 

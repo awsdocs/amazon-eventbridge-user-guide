@@ -30,7 +30,7 @@ The `AWS/Events` namespace includes the following metrics\.
 
 ## Dimensions for EventBridge metrics<a name="eb-metrics-dimensions"></a>
 
-EventBridge metrics have one *dimension*, or sortable attribute, which is listed below\.
+EventBridge metrics have *dimensions*, or sortable attributes, which are listed below\.
 
 
 |  Dimension  |  Description  | 

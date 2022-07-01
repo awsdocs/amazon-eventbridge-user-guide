@@ -2,7 +2,7 @@
 
 Many AWS services generate [events](eb-events.md) that EventBridge receives\. When an AWS service in your account emits an event, it goes to your account’s default event bus\.
 
- AWS CloudTrail is a service that automatically records events such as AWS API calls\. You can create EventBridge rules that use the information from CloudTrail\. For more information about CloudTrail, see [What is AWS CloudTrail?](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)\. 
+ AWS CloudTrail is a service that automatically records events such as AWS API calls\. You can create EventBridge rules that use the information from CloudTrail\. For more information about CloudTrail, see [What is AWS CloudTrail?](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html)\.
 
 All events that are delivered by CloudTrail have `AWS API Call via CloudTrail` as the value for `detail-type`\. Events from API actions that start with the keywords `List`, `Get`, or `Describe` aren't processed by EventBridge, with the exception of events from the following AWS STS actions:
 + `GetFederationToken`

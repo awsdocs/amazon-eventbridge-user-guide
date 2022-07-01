@@ -50,7 +50,7 @@ When you configure targets, there are additional parameters you can specify for 
 + `SageMakerPipelineParameters` \(Amazon SageMaker Model Building Pipelines\)
 + `SqsParameters` \(Amazon SQS queues\)
 
-Some target parameters support optional dynamic JSON path syntax\. This syntax allows you to specify JSON paths instead of static values \(for example `$.detail.state`\)\. These paths are replaced dynamically at runtime with data from the event payload itself at the specified path\. The supported syntax for dynamic parameter JSON paths is the same as when transformoning input\. For more information, see [Transforming Amazon EventBridge target input](eb-transform-target-input.md)
+Some target parameters support optional dynamic JSON path syntax\. This syntax allows you to specify JSON paths instead of static values \(for example `$.detail.state`\)\. These paths are replaced dynamically at runtime with data from the event payload itself at the specified path\. The supported syntax for dynamic parameter JSON paths is the same as when transforming input\. For more information, see [Transforming Amazon EventBridge target input](eb-transform-target-input.md)
 
 Dynamic syntax can be used on all the non\-enum fields of these parameters:
 + `EcsParameters`
