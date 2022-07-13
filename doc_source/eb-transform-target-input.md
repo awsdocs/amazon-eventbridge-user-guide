@@ -51,7 +51,8 @@ When defining a rule in the console, select the **Input Transformer** option und
 {
   "timestamp" : "$.time",
   "instance" : "$.detail.instance-id", 
-  "state" : "$.detail.state"
+  "state" : "$.detail.state",
+  "resource" : "$.resources[0]"
 }
 ```
 
