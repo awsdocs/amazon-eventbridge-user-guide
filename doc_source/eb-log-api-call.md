@@ -1,6 +1,6 @@
 # Tutorial: Log AWS API calls using EventBridge<a name="eb-log-api-call"></a>
 
-You can use an [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) function to log AWS API calls\. For example, you can create a [rule](eb-rules.md) to log any operation in [Amazon EC2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html), or you can limit this rule to log only a specific API call\. 
+You can use Amazon EventBridge [rules](eb-rules.md) to react to API calls made by an AWS service that are recorded by AWS CloudTrail\.
 
 In this tutorial, you create an [AWS CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html) trail, a Lambda function, and a rule in the EventBridge console\. The rule invokes the Lambda function when an Amazon EC2 instance is stopped\.
 

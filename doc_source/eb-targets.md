@@ -40,23 +40,25 @@ You can configure the following targets for events in the EventBridge console:
 
 ## Target parameters<a name="targets-specific-parms"></a>
 
-When you configure targets, there are additional parameters you can specify for certain AWS services\. These include the following:
-+ `BatchParameters` \(AWS Batch jobs\)
-+ `EcsParameters` \(Amazon ECS tasks\)
-+ `HttpParameters` \(Amazon API Gateway and 3rd party ApiDestination endpoints\)
-+ `KinesisParameters` \(Amazon Kinesis streams\)
-+ `RedshiftDataParameters` \(Amazon Redshift Data API clusters\)
-+ `RunCommandParameters` \(Amazon EC2 Instance commands\)
-+ `SageMakerPipelineParameters` \(Amazon SageMaker Model Building Pipelines\)
-+ `SqsParameters` \(Amazon SQS queues\)
+Some targets don't send the information in the event payload to the target, instead, they treat the event as a trigger for invoking a specific API\. EventBridge uses the [Target](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_Target.html) parameters to determine what happens with that target\. These include the following:
++ [https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_BatchParameters.html](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_BatchParameters.html) \(AWS Batch jobs\)
++ [https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_EcsParameters.html](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_EcsParameters.html) \(Amazon ECS tasks\)
++ [https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_HttpParameters.html](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_HttpParameters.html) \(Amazon API Gateway and 3rd party ApiDestination endpoints\)
++ [https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_KinesisParameters.html](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_KinesisParameters.html) \(Amazon Kinesis streams\)
++ [https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_RedshiftDataParameters.html](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_RedshiftDataParameters.html) \(Amazon Redshift Data API clusters\)
++ [https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_RunCommandParameters.html](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_RunCommandParameters.html) \(Amazon EC2 Instance commands\)
++ [https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_SageMakerPipelineParameters.html](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_SageMakerPipelineParameters.html) \(Amazon SageMaker Model Building Pipelines\)
++ [https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_SqsParameters.html](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_SqsParameters.html) \(Amazon SQS queues\)
 
-Some target parameters support optional dynamic JSON path syntax\. This syntax allows you to specify JSON paths instead of static values \(for example `$.detail.state`\)\. These paths are replaced dynamically at runtime with data from the event payload itself at the specified path\. The supported syntax for dynamic parameter JSON paths is the same as when transforming input\. For more information, see [Transforming Amazon EventBridge target input](eb-transform-target-input.md)
+### Dynamic path parameters<a name="targets-dynamic-parms"></a>
+
+Some target parameters support optional dynamic JSON path syntax\. This syntax allows you to specify JSON paths instead of static values \(for example `$.detail.state`\)\. The entire value has to be a JSON path, not just part of it\. For example, `RedshiftParameters.Sql` can be `$.detail.state` but it can't be `"SELECT * FROM $.detail.state"`\. These paths are replaced dynamically at runtime with data from the event payload itself at the specified path\. Dynamic path parameters can't reference new or transformed values resulting from input transformation\. The supported syntax for dynamic parameter JSON paths is the same as when transforming input\. For more information, see [Transforming Amazon EventBridge target input](eb-transform-target-input.md)
 
 Dynamic syntax can be used on all the non\-enum fields of these parameters:
-+ `EcsParameters`
-+ `HttpParameters` \(except `HeaderParameters`\)
-+ `RedshiftDataParameters`
-+ `SageMakerPipelineParameters`
++ [https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_EcsParameters.html](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_EcsParameters.html)
++ [https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_HttpParameters.html](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_HttpParameters.html) \(except `HeaderParameters` keys\)
++ [https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_RedshiftDataParameters.html](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_RedshiftDataParameters.html)
++ [https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_SageMakerPipelineParameters.html](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_SageMakerPipelineParameters.html)
 
 ## Permissions<a name="targets-permissions"></a>
 

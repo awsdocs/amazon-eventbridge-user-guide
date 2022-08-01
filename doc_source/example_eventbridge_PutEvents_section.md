@@ -9,6 +9,7 @@ The source code for these examples is in the [AWS Code Examples GitHub repositor
 #### [ C\+\+ ]
 
 **SDK for C\+\+**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/cpp/example_code/eventbridge#code-examples)\. 
 Include the required files\.  
 
 ```
@@ -44,13 +45,13 @@ Send the event\.
             std::cout << "Successfully posted CloudWatch event" << std::endl;
         }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/cpp/example_code/eventbridge#code-examples)\. 
 +  For API details, see [PutEvents](https://docs.aws.amazon.com/goto/SdkForCpp/eventbridge-2015-10-07/PutEvents) in *AWS SDK for C\+\+ API Reference*\. 
 
 ------
 #### [ Java ]
 
 **SDK for Java 2\.x**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/eventbridge#readme)\. 
   
 
 ```
@@ -63,15 +64,15 @@ Send the event\.
             resources.add(resourceArn2);
 
             PutEventsRequestEntry reqEntry = PutEventsRequestEntry.builder()
-                    .resources(resources)
-                    .source("com.mycompany.myapp")
-                    .detailType("myDetailType")
-                    .detail("{ \"key1\": \"value1\", \"key2\": \"value2\" }")
-                    .build();
+                .resources(resources)
+                .source("com.mycompany.myapp")
+                .detailType("myDetailType")
+                .detail("{ \"key1\": \"value1\", \"key2\": \"value2\" }")
+                .build();
 
             PutEventsRequest eventsRequest = PutEventsRequest.builder()
-                    .entries(reqEntry)
-                    .build();
+                .entries(reqEntry)
+                .build();
 
             PutEventsResponse result = eventBrClient.putEvents(eventsRequest);
             for (PutEventsResultEntry resultEntry : result.entries()) {
@@ -83,19 +84,18 @@ Send the event\.
             }
 
         } catch (EventBridgeException e) {
-
             System.err.println(e.awsErrorDetails().errorMessage());
             System.exit(1);
         }
     }
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javav2/example_code/eventbridge#readme)\. 
 +  For API details, see [PutEvents](https://docs.aws.amazon.com/goto/SdkForJavaV2/eventbridge-2015-10-07/PutEvents) in *AWS SDK for Java 2\.x API Reference*\. 
 
 ------
 #### [ JavaScript ]
 
 **SDK for JavaScript V3**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/eventbridge#code-examples)\. 
 Create the client in a separate module and export it\.  
 
 ```
@@ -138,10 +138,10 @@ export const run = async () => {
 // Uncomment this line to run execution within this file.
 // run();
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/eventbridge#code-examples)\. 
 +  For API details, see [PutEvents](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-eventbridge/classes/puteventscommand.html) in *AWS SDK for JavaScript API Reference*\. 
 
 **SDK for JavaScript V2**  
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascript/example_code/eventbridge#code-examples)\. 
   
 
 ```
@@ -174,7 +174,6 @@ ebevents.putEvents(params, function(err, data) {
   }
 });
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascript/example_code/eventbridge#code-examples)\. 
 +  For API details, see [PutEvents](https://docs.aws.amazon.com/goto/AWSJavaScriptSDK/eventbridge-2015-10-07/PutEvents) in *AWS SDK for JavaScript API Reference*\. 
 
 ------
@@ -182,41 +181,41 @@ ebevents.putEvents(params, function(err, data) {
 
 **SDK for Kotlin**  
 This is prerelease documentation for a feature in preview release\. It is subject to change\.
+ To learn how to set up and run this example, see [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/eventbridge#code-examples)\. 
   
 
 ```
 suspend fun putEBEvents(resourceArn: String, resourceArn2: String) {
 
-            // Populate a List with the resource ARN values.
-            val resourcesOb  = mutableListOf<String>()
-            resourcesOb.add(resourceArn)
-            resourcesOb.add(resourceArn2)
+    // Populate a List with the resource ARN values.
+    val resourcesOb = mutableListOf<String>()
+    resourcesOb.add(resourceArn)
+    resourcesOb.add(resourceArn2)
 
-            val reqEntry = PutEventsRequestEntry {
-                resources = resourcesOb
-                source = "com.mycompany.myapp"
-                detailType = "myDetailType"
-                detail = "{ \"key1\": \"value1\", \"key2\": \"value2\" }"
-            }
+    val reqEntry = PutEventsRequestEntry {
+        resources = resourcesOb
+        source = "com.mycompany.myapp"
+        detailType = "myDetailType"
+        detail = "{ \"key1\": \"value1\", \"key2\": \"value2\" }"
+    }
 
-            val request = PutEventsRequest {
-                entries = listOf(reqEntry)
-            }
+    val request = PutEventsRequest {
+        entries = listOf(reqEntry)
+    }
 
-            EventBridgeClient { region = "us-west-2" }.use { eventBrClient ->
-              val response = eventBrClient.putEvents(request)
-              response.entries?.forEach { resultEntry ->
+    EventBridgeClient { region = "us-west-2" }.use { eventBrClient ->
+        val response = eventBrClient.putEvents(request)
+        response.entries?.forEach { resultEntry ->
 
-               if (resultEntry.eventId != null) {
-                    println("Event Id is ${resultEntry.eventId}")
-                } else {
-                    println("Injection failed with Error Code ${resultEntry.errorCode}")
-                }
+            if (resultEntry.eventId != null) {
+                println("Event Id is ${resultEntry.eventId}")
+            } else {
+                println("Injection failed with Error Code ${resultEntry.errorCode}")
             }
         }
- }
+    }
+}
 ```
-+  Find instructions and more code on [GitHub](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/kotlin/services/eventbridge#code-examples)\. 
 +  For API details, see [PutEvents](https://github.com/awslabs/aws-sdk-kotlin#generating-api-documentation) in *AWS SDK for Kotlin API reference*\. 
 
 ------

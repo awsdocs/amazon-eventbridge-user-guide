@@ -38,6 +38,7 @@ The following table shows AWS services that generate events\. Choose the service
 | [Amazon Braket](https://docs.aws.amazon.com/braket/latest/developerguide/braket-monitor-eventbridge.html) | Guaranteed | 
 | AWS Certificate Manager Private Certificate Authority | Best effort | 
 | [Amazon Chime](https://docs.aws.amazon.com/chime/latest/ag/automating-chime-with-cloudwatch-events.html) | Best effort | 
+| [AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks-event-bridge.html) | Best effort | 
 | Events from AWS CloudTrail | Best effort | 
 | [Amazon CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch-and-eventbridge.html) | Guaranteed | 
 | AWS CodeArtifact | Guaranteed | 

@@ -112,7 +112,7 @@ If you try to update the permissions for the bus but the policy contains an erro
 
 ## Example policy: Send events to the default bus in a different account<a name="eb-event-bus-example-policy-cross-account"></a>
 
-The following example policy grants the account 111122223333 permission to use all API operations on the default event bus in the account 123456789012\.
+The following example policy grants the account 111122223333 permission to publish events to the default event bus in the account 123456789012\.
 
 ```
 {
@@ -144,7 +144,7 @@ The following example policy grants the account 111122223333 permission to publi
         "events:PutEvents"
       ],
       "Principal": {
-        "AWS": "111112222333"
+        "AWS": "arn:aws:iam::111112222333:root"
       },
       "Resource": "arn:aws:events:us-east-1:123456789012:event-bus/central-event-bus",
       "Condition": {
