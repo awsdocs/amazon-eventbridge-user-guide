@@ -122,12 +122,6 @@ You can use either the console or the AWS CLI to create the rule\. To use the AW
    --source-arn arn:aws:events:us-east-1:123456789012:rule/my-scheduled-rule
    ```
 
-1. To add the Lambda function that you created in step 1 to the rule, use the  `put-targets`command \.
-
-   ```
-   aws events put-targets --rule my-scheduled-rule --targets file://targets.json
-   ```
-
 1. Create the file `targets.json` with the following contents\.
 
    ```
@@ -137,6 +131,12 @@ You can use either the console or the AWS CLI to create the rule\. To use the AW
        "Arn": "arn:aws:lambda:us-east-1:123456789012:function:LogScheduledEvent"
      }
    ]
+   ```
+
+1. To add the Lambda function that you created in step 1 to the rule, use the  `put-targets`command \.
+
+   ```
+   aws events put-targets --rule my-scheduled-rule --targets file://targets.json
    ```
 
 ## Step 3: Verify the rule<a name="eb-schedule-test-rule"></a>
