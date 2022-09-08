@@ -20,7 +20,7 @@ For example, you could restrict access to resources that include a tag with the 
             ],
             "Resource": "*",
             "Condition": {
-                "StringEquals": {"aws:TagKey/environment": "production"}
+                "StringEquals": {"aws:ResourceTag/environment": "production"}
             }
         }
     ]

@@ -8,6 +8,7 @@ To receive [events](eb-events.md) from SaaS partner applications and services, y
 + [Supported SaaS partner integrations](#eb-supported-integrations)
 + [Configuring Amazon EventBridge to receive events from a SaaS integration](#eb-saas-integration)
 + [Creating a rule that matches SaaS partner events](#eb-create-rule-partner-events)
++ [Receiving events using AWS Lambda function URLs](eb-saas-furls.md)
 + [Receiving events from Salesforce](eb-saas-salesforce.md)
 
 ## Supported SaaS partner integrations<a name="eb-supported-integrations"></a>
@@ -17,7 +18,6 @@ EventBridge supports the following SaaS partner integrations:
 + [https://console.aws.amazon.com/events/#/partners/blitline.com?page=overview](https://console.aws.amazon.com/events/#/partners/blitline.com?page=overview)
 + [https://console.aws.amazon.com/events/#/partners/buidlhub.com?page=overview](https://console.aws.amazon.com/events/#/partners/buidlhub.com?page=overview)
 + [https://console.aws.amazon.com/events/#/partners/buildkite.com?page=overview](https://console.aws.amazon.com/events/#/partners/buildkite.com?page=overview)
-+ [https://console.aws.amazon.com/events/#/partners/camunda.com?page=overview](https://console.aws.amazon.com/events/#/partners/camunda.com?page=overview)
 + [https://console.aws.amazon.com/events/#/partners/clevertap.com?page=overview](https://console.aws.amazon.com/events/#/partners/clevertap.com?page=overview)
 + [https://console.aws.amazon.com/events/#/partners/datadoghq.com?page=overview](https://console.aws.amazon.com/events/#/partners/datadoghq.com?page=overview)
 + [https://console.aws.amazon.com/events/#/partners/epsagon.com?page=overview](https://console.aws.amazon.com/events/#/partners/epsagon.com?page=overview)

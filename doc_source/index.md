@@ -4,13 +4,13 @@
 *****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
-Amazon's trademarks and trade dress may not be used in 
-     connection with any product or service that is not Amazon's, 
-     in any manner that is likely to cause confusion among customers, 
-     or in any manner that disparages or discredits Amazon. All other 
-     trademarks not owned by Amazon are the property of their respective
-     owners, who may or may not be affiliated with, connected to, or 
-     sponsored by Amazon.
+Amazon's trademarks and trade dress may not be used in
+connection with any product or service that is not Amazon's,
+in any manner that is likely to cause confusion among customers,
+or in any manner that disparages or discredits Amazon. All other
+trademarks not owned by Amazon are the property of their respective
+owners, who may or may not be affiliated with, connected to, or
+sponsored by Amazon.
 
 -----
 ## Contents
@@ -59,6 +59,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Using Amazon EventBridge with Interface VPC Endpoints](eb-related-service-vpc.md)
    + [Amazon EventBridge integration with AWS X-Ray](eb-related-service-xray.md)
 + [Receiving events from a SaaS partner with Amazon EventBridge](eb-saas.md)
+   + [Receiving events using AWS Lambda function URLs](eb-saas-furls.md)
    + [Receiving events from Salesforce](eb-saas-salesforce.md)
 + [Amazon EventBridge tutorials](eb-tutorial.md)
    + [Amazon EventBridge get started tutorials](eb-gs-tutorials.md)

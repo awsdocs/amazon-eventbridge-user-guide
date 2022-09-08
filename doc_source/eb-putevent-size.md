@@ -38,4 +38,4 @@ int getSize(PutEventsRequestEntry entry) {
 ```
 
 **Note**  
-If the entry size is larger than 256KB, we recommend putting the event in an Amazon S3 object and including a link to that object in the `PutEvents` entry\.
+If the entry size is larger than 256KB, we recommend uploading the event to an Amazon S3 bucket and including the `Object URL` in the `PutEvents` entry\.

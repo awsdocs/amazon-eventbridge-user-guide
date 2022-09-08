@@ -66,6 +66,7 @@ The following table shows AWS services that generate events\. Choose the service
 | [AWS Elemental MediaPackage](https://docs.aws.amazon.com/mediapackage/latest/ug/monitoring-cloudwatch-events.html) | Best effort | 
 | [AWS Elemental MediaStore](https://docs.aws.amazon.com/mediastore/latest/ug/monitoring-automating-with-cloudwatch-events.html) | Guaranteed | 
 | Amazon EMR | Best effort | 
+| [Amazon EMR Serverless](https://docs.aws.amazon.com/emr/latest/EMR-Serverless-UserGuide/using-eventbridge.html) | Best effort | 
 | [Amazon EventBridge scheduled rules](eb-create-rule-schedule.md) | Guaranteed | 
 | Amazon GameLift | Best effort | 
 | AWS Glue | Best effort | 

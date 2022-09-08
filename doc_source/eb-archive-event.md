@@ -4,6 +4,9 @@ When you create an archive in EventBridge, you can determine which [events](eb-e
 
 By default, EventBridge encrypts event data in an archive using 256\-bit Advanced Encryption Standard \(AES\-256\) under an [AWS owned CMK](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk), which helps secure your data from unauthorized access\.
 
+**Note**  
+Expired events are usually deducted from the `EventCount` and `SizeBytes` values of the [https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribeArchive.html](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribeArchive.html) operation every 24 hours\. Therefore, recently expired events may not be reflected in these values\.
+
 **To create an archive for all events**
 
 1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.
@@ -60,4 +63,4 @@ By default, EventBridge encrypts event data in an archive using 256\-bit Advance
 
 1. Choose **Create archive**\.
 
-To confirm that events are successfully sent to the archive, you can use the [https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribeArchive.html](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribeArchive.html) operation of the EventBridge API to retrieve details for the archive\. The value returned for `EventCount` reflects the number of events in the archive\. If it is 0, there are no events in the archive\.
+To confirm that events are successfully sent to the archive, you can use the [https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribeArchive.html](https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_DescribeArchive.html) operation of the EventBridge API to see if the `EventCount` reflects the number of events in the archive\. If it is 0, there are no events in the archive\.

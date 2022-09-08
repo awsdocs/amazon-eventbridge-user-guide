@@ -54,24 +54,25 @@ Create the rule\.
   
 
 ```
-    public static void createEBRule(EventBridgeClient eventBrClient, String ruleName) {
+        public static void createEBRule(EventBridgeClient eventBrClient, String ruleName, String cronExpression) {
 
-        try {
-            PutRuleRequest ruleRequest = PutRuleRequest.builder()
-                .name(ruleName)
-                .eventBusName("default")
-                .eventPattern("{\"source\":[\"aws.s3\"],\"detail-type\":[\"AWS API Call via CloudTrail\"],\"detail\":{\"eventSource\":[\"s3.amazonaws.com\"],\"eventName\":[\"DeleteBucket\"]}}")
-                .description("A test rule created by the Java API")
-                .build();
+            try {
+                PutRuleRequest ruleRequest = PutRuleRequest.builder()
+                    .name(ruleName)
+                    .eventBusName("default")
+                    .scheduleExpression(cronExpression)
+                    .state("ENABLED")
+                    .description("A test rule that runs on a schedule created by the Java API")
+                    .build();
 
-            PutRuleResponse ruleResponse = eventBrClient.putRule(ruleRequest);
-            System.out.println("The ARN of the new rule is "+ ruleResponse.ruleArn());
+                PutRuleResponse ruleResponse = eventBrClient.putRule(ruleRequest);
+                System.out.println("The ARN of the new rule is "+ ruleResponse.ruleArn());
 
-        } catch (EventBridgeException e) {
-            System.err.println(e.awsErrorDetails().errorMessage());
-            System.exit(1);
+            } catch (EventBridgeException e) {
+                System.err.println(e.awsErrorDetails().errorMessage());
+                System.exit(1);
+            }
         }
-    }
 ```
 +  For API details, see [PutRule](https://docs.aws.amazon.com/goto/SdkForJavaV2/eventbridge-2015-10-07/PutRule) in *AWS SDK for Java 2\.x API Reference*\. 
 
@@ -157,17 +158,17 @@ This is prerelease documentation for a feature in preview release\. It is subjec
   
 
 ```
-suspend fun createEBRule(ruleNameVal: String) {
-
-    val request = PutRuleRequest {
-        name = ruleNameVal
+suspend fun createScRule(ruleName: String?, cronExpression: String?) {
+    val ruleRequest = PutRuleRequest {
+        name = ruleName
         eventBusName = "default"
-        eventPattern = "{\"source\":[\"aws.s3\"],\"detail-type\":[\"AWS API Call via CloudTrail\"],\"detail\":{\"eventSource\":[\"s3.amazonaws.com\"],\"eventName\":[\"DeleteBucket\"]}}"
-        description = "A test rule created by the AWS SDK for Kotlin"
+        scheduleExpression = cronExpression
+        state = RuleState.Enabled
+        description = "A test rule that runs on a schedule created by the Kotlin API"
     }
 
     EventBridgeClient { region = "us-west-2" }.use { eventBrClient ->
-        val ruleResponse = eventBrClient.putRule(request)
+        val ruleResponse = eventBrClient.putRule(ruleRequest)
         println("The ARN of the new rule is ${ruleResponse.ruleArn}")
     }
 }

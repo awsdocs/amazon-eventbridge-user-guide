@@ -42,7 +42,7 @@ The following table shows the condition keys and key and value pairs that you ca
 | --- | --- | --- | 
 |  aws:SourceAccount  |  The account in which the rule specified by `aws:SourceArn` exists\.  |  Account Id, Null  | 
 |  aws:SourceArn  |  The ARN of the rule that is sending the event\.  |  ARN, Null  | 
-|  events:creatorAccount  |  `"events:creatorAccount":"creatorAccount"` For *creatorAccount*, use the account ID for the account that the rule was created in\. Use this condition to authorize API calls on rules from a specific account\.  |  creatorAccount, Null  | 
+|  events:creatorAccount  |  `"events:creatorAccount":"creatorAccount"` For *creatorAccount*, use the account ID for the account that created the rule\. Use this condition to authorize API calls on rules from a specific account\.  |  creatorAccount, Null  | 
 |  events:detail\-type  |  `"events:detail-type":"detail-type "` Where *detail\-type* is the literal string for the **detail\-type** field of the event such as `"AWS API Call via CloudTrail"` and `"EC2 Instance State-change Notification"`\.   |  Detail Type, Null  | 
 |  events: detail\.eventTypeCode  |  `"events:detail.eventTypeCode":"eventTypeCode"` For *eventTypeCode*, use the literal string for the **detail\.eventTypeCode** field of the event, such as `"AWS_ABUSE_DOS_REPORT"`\.  |  eventTypeCode, Null  | 
 |  events: detail\.service  |  `"events:detail.service":"service"` For *service*, use the literal string for the **detail\.service** field of the event, such as `"ABUSE"`\.  |  service, Null  | 

@@ -2,6 +2,30 @@
 
 Use the information provided by the following AWS Partners to configure an API destination and connection for their service or application\.
 
+## Coralogix<a name="eb-api-destination-coralogix"></a>
+
+**API destination invocation endpoint URL**  
+For a full list of endpoints, see [Coralogix API Reference](https://coralogix.com/docs/log-query-simply-retrieve-data/)\.
+
+**Supported authorization types**   
+API Key
+
+**Additional authorization parameters required**  
+Header `"x-amz-event-bridge-access-key"`, the value is the Coralogix API Key
+
+**Coralogix documentation**  
+[Amazon EventBridge authentication](https://coralogix.com/docs/amazon-eventbridge/)
+
+**Commonly used API operations**  
+USA1 POST htttps://aws\-events\.coralogix\.us  
+APAC1 POST htttps://aws\-events\.coralogix\.in  
+APAC2 POST htttps://aws\-events\.coralogixsg\.com  
+EUROPE1 POST htttps://aws\-events\.coralogix\.com  
+EUROPE2 POST htttps://aws\-events\.eu2\.coralogix\.com
+
+**Additional information**  
+The events are stored as log entries with `applicationName=[AWS Account]` and `subsystemName=[event.source]`\.
+
 ## Datadog<a name="eb-api-destination-datadog"></a>
 
 **API destination invocation endpoint URL**  

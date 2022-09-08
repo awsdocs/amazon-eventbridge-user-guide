@@ -2,7 +2,7 @@
 
 You can run an [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html) function that logs an [events](eb-events.md) whenever an Auto Scaling group launches or terminates an Amazon EC2 instance that indicates whether an event was successful\.
 
-For information about more scenarios that use Amazon EC2 Auto Scaling events, see [Getting CloudWatch Events When Your Auto Scaling Group Scales](https://docs.aws.amazon.com/autoscaling/latest/userguide/cloud-watch-events.html) in the *Amazon EC2 Auto Scaling User Guide*\.
+For information about more scenarios that use Amazon EC2 Auto Scaling events, see [Use EventBridge to handle Auto Scaling events](https://docs.aws.amazon.com/autoscaling/latest/userguide/automating-ec2-auto-scaling-with-eventbridge.html) in the *Amazon EC2 Auto Scaling User Guide*\.
 
 In this tutorial, you create a Lambda function, and you create a [rule](eb-rules.md) in the EventBridge console that calls that function when an Amazon EC2 Auto Scaling group launches or terminates an instance\.
 
