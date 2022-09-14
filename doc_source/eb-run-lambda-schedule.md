@@ -67,7 +67,7 @@ You can use either the console or the AWS CLI to create the rule\. To use the AW
 
 1. Choose **Next**\.
 
-1. For **Schedule pattern**, choose **A schedule that runs at a regular rate, such as every 10 minutes\.** and enter **5** and choose **Minutes** from the drop\-down list\.
+1. For **Schedule pattern**, choose **A schedule that runs at a regular rate, such as every 10 minutes\.**
 
 1. Choose **Next**\.
 
