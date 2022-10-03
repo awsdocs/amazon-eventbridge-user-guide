@@ -36,7 +36,7 @@ The following table shows AWS services that generate events\. Choose the service
 | [AWS Backup](https://docs.aws.amazon.com/aws-backup/latest/devguide/eventbridge.html) | Best effort | 
 | [AWS Batch](https://docs.aws.amazon.com/batch/latest/userguide/batch_cwe_events.html) | Guaranteed | 
 | [Amazon Braket](https://docs.aws.amazon.com/braket/latest/developerguide/braket-monitor-eventbridge.html) | Guaranteed | 
-| AWS Certificate Manager Private Certificate Authority | Best effort | 
+| AWS Private Certificate Authority | Best effort | 
 | [Amazon Chime](https://docs.aws.amazon.com/chime/latest/ag/automating-chime-with-cloudwatch-events.html) | Best effort | 
 | [AWS CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks-event-bridge.html) | Best effort | 
 | Events from AWS CloudTrail | Best effort | 
@@ -91,6 +91,7 @@ The following table shows AWS services that generate events\. Choose the service
 | [Amazon RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-cloudwatch-events.sample.html) | Best effort | 
 | Amazon Redshift | Guaranteed | 
 | AWS Resource Access Manager | Best effort | 
+| [Amazon SageMaker](https://docs.aws.amazon.com/sagemaker/latest/dg/automating-sagemaker-with-eventbridge.html)  | Best effort | 
 | [Savings Plans](https://docs.aws.amazon.com/savingsplans/latest/userguide/automating-savingsplans-with-eventbridge.html) | Best effort | 
 | [AWS Security Hub](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cloudwatch-events.html) | Guaranteed | 
 | AWS Signer | Guaranteed | 

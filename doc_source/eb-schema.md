@@ -12,7 +12,16 @@ For [AWS Toolkit for JetBrains](https://docs.aws.amazon.com/toolkit-for-jetbrain
 
 
 **Topics**
++ [Schema registry API property value masking](#eb-schema-mask)
 + [Finding an Amazon EventBridge schema](eb-find-schema.md)
 + [Amazon EventBridge schema registries](eb-schema-registry.md)
 + [Creating an Amazon EventBridge schema](eb-schema-create.md)
 + [Amazon EventBridge code bindings](eb-schema-code-bindings.md)
+
+## Schema registry API property value masking<a name="eb-schema-mask"></a>
+
+Some property values of events that are used to create a schema registry may contain sensitive customer information\. To protect the customer's information, the values will be masked with asterisks \(\*\)\. Because we're masking these values, EventBridge recommends not building applications that explicitly depend on the following properties or their values:
++ **[CreateSchema](https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-registries-name-registryname-schemas-name-schemaname.html#CreateSchema)** – The `Content` property of the `requestParameters` body
++ **[GetDiscoveredSchema](https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-discover.html#GetDiscoveredSchema)** – The `Events` property of the `requestParameters` body and the `Content` property of the `responseElements` body
++ **[SearchSchemas](https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-registries-name-registryname-schemas-search.html#SearchSchemas)** – The `keywords` property of the `requestParameters`
++ **[UpdateSchema](https://docs.aws.amazon.com/eventbridge/latest/schema-reference/v1-registries-name-registryname-schemas-name-schemaname.html#UpdateSchema)** – The `Content` property of the `requestParameters`

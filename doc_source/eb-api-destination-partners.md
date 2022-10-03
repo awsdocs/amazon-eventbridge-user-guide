@@ -73,23 +73,27 @@ None
 ## MongoDB<a name="eb-api-destination-mongodb"></a>
 
 **API destination invocation endpoint URL**  
-https://webhooks\.mongodb\-realm\.com/api/client/v2\.0/app/*Realm App ID*/service/*HTTP Service Name*/incoming\_webhook/*Webhook Name*
+https://data\.mongodb\-api\.com/app/*App ID*/endpoint/
 
 **Supported authorization types**   
-API Key
+API Key  
+Email/Password  
+Custom JWT Authentication
 
 **Additional authorization parameters required**  
 None
 
 **MongoDB documentation**  
-[API Key](https://docs.mongodb.com/realm/services/configure/service-webhooks/)  
-[Authentication Providers](https://docs.mongodb.com/realm/authentication/providers/)
+[Atlas Data API](https://www.mongodb.com/docs/atlas/app-services/data-api/)  
+[Endpoints](https://www.mongodb.com/docs/atlas/app-services/data-api/generated-endpoints/#endpoints)  
+[Custom HTTPS Endpoints](https://www.mongodb.com/docs/atlas/app-services/data-api/custom-endpoints/)  
+[Authentication](https://www.mongodb.com/docs/atlas/app-services/data-api/generated-endpoints/#authentication)
 
 **Commonly used API operations**  
-POST https://webhooks\.mongodb\-realm\.com/api/client/v2\.0/app/*Realm App ID*/service/*HTTP Service Name*/incoming\_webhook/*Webhook Name*
+None
 
 **Additional information**  
-[EventbridgeAtlas](https://github.com/mongodb-developer/EventbridgeAtlas) demonstrates how you can use Realm Webhooks to perform CRUD operations on collections in MongoDB Atlas from EventBridge API endpoints\.
+None
 
 ## New Relic<a name="api-destination-new-relic"></a>
 
