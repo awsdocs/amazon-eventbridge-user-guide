@@ -15,7 +15,7 @@ You can configure the following targets for events in the EventBridge console:
 + CloudWatch log group
 + CodeBuild project
 + CodePipeline
-+ EC2 `CreateSnapshot` API call
++ EBS `CreateSnapshot` API call
 + EC2 Image Builder
 + EC2 `RebootInstances` API call
 + EC2 `StopInstances` API call
