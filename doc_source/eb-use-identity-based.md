@@ -3,69 +3,18 @@
 Identity\-based policies are permissions policies that you attach to IAM identities \.
 
 **Topics**
-+ [Permissions required to use EventBridge](#eb-console-permissions)
 + [AWS managed policies for EventBridge](#eb-managed-policies)
 + [Permissions required for EventBridge to access targets using IAM roles](#eb-target-permissions)
-+ [Customer\-managed policy examples](#eb-customer-managed-policies)
++ [Customer\-managed policy example: Using tagging to control access to rules](#eb-customer-managed-policies)
 + [Amazon EventBridge updates to AWS managed policies](#eb-use-identity-based-awsmanpol-updates)
-
-## Permissions required to use EventBridge<a name="eb-console-permissions"></a>
-
-For a user to work with the EventBridge console or API, that user must have a minimum set of permissions to access other AWS resources\. Other AWS services can send [events](eb-events.md) to EventBridge or be a [target](eb-targets.md) of an EventBridge [rule](eb-rules.md)\. The following list shows examples of AWS services and their corresponding minimum permissions:
-+ Automation
-  + `automation:CreateAction`
-  + `automation:DescribeAction`
-  + `automation:UpdateAction`
-+ Amazon EC2 Auto Scaling
-  + `autoscaling:DescribeAutoScalingGroups`
-+ AWS CloudTrail
-  + `cloudtrail:DescribeTrails`
-+ Amazon EC2
-  + `ec2:DescribeInstances`
-  + `ec2:DescribeVolumes`
-+ EventBridge
-  + `events:DeleteRule` 
-  + `events:DescribeRule` 
-  + `events:DisableRule` 
-  + `events:EnableRule` 
-  + `events:ListRuleNamesByTarget` 
-  + `events:ListRules` 
-  + `events:ListTargetsByRule` 
-  + `events:PutEvents`
-  + `events:PutRule`
-  + `events:PutTargets` 
-  + `events:RemoveTargets` 
-  + `events:TestEventPattern` 
-+ IAM
-  + `iam:ListRoles`
-+ Kinesis
-  + `kinesis:ListStreams`
-+ Lambda
-  + `lambda:AddPermission`
-  + `lambda:ListFunctions`
-  + `lambda:RemovePermission`
-+ Amazon SNS
-  + `sns:GetTopicAttributes`
-  + `sns:ListTopics`
-  + `sns:SetTopicAttributes`
-+ Amazon SWF
-  + `swf:DescribeAction`
-  + `swf:ReferenceAction`
-  + `swf:RegisterAction`
-  + `swf:RegisterDomain`
-  + `swf:UpdateAction`
-
-If you create an IAM policy that is more restrictive than the minimum required permissions, the EventBridge console won't function as intended for users with that IAM policy\. To ensure that those users can still use the EventBridge console, also attach the `AmazonEventBridgeReadOnlyAccess` managed policy to the user, as described in [AWS managed policies for EventBridge](#eb-managed-policies)\.
-
-You don't need to allow minimum permissions for users that are making calls only to the AWS CLI\.
 
 ## AWS managed policies for EventBridge<a name="eb-managed-policies"></a>
 
 AWS addresses many common use cases by providing standalone IAM policies that are created and administered by AWS\. *Managed*, or predefined, policies grant the necessary permissions for common use cases, so you don't need to investigate what permissions are needed\. For more information, see [AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\.
 
 The following AWS managed policies that you can attach to users in your account are specific to EventBridge:
-+ [**AmazonEventBridgeFullAccess**](#eb-full-access-policy) – Grants full access to EventBridge\.
-+ [**AmazonEventBridgeReadOnlyAccess**](#eb-read-only-access-policy) – Grants read\-only access to EventBridge\.
++ [**AmazonEventBridgeFullAccess**](#eb-full-access-policy) – Grants full access to EventBridge, including EventBridge Pipes, EventBridge Schemas and EventBridge Scheduler\.
++ [**AmazonEventBridgeReadOnlyAccess**](#eb-read-only-access-policy) – Grants read\-only access to EventBridge, including EventBridge Pipes, EventBridge Schemas and EventBridge Scheduler\.
 
 ### AmazonEventBridgeFullAccess policy<a name="eb-full-access-policy"></a>
 
@@ -78,45 +27,92 @@ The following JSON shows the AmazonEventBridgeFullAccess policy\.
 
 ```
 {
-    	"Version": "2012-10-17",
-    	"Statement": [{
-    			"Effect": "Allow",
-    			"Action": "events:*",
-    			"Resource": "*"
-    		}, {
-    			"Effect": "Allow",
-    			"Action": "iam:CreateServiceLinkedRole",
-    			"Resource": "arn:aws:iam::*:role/aws-service-role/AmazonEventBridgeApiDestinationsServiceRolePolicy",
-    			"Condition": {
-    				"StringEquals": {
-    					"iam:AWSServiceName": "apidestinations.events.amazonaws.com"
-    				}
-    			}
-    		},
-    		{
-    			"Effect": "Allow",
-    			"Action": [
-    				"secretsmanager:CreateSecret",
-    				"secretsmanager:UpdateSecret",
-    				"secretsmanager:DeleteSecret",
-    				"secretsmanager:GetSecretValue",
-    				"secretsmanager:PutSecretValue"
-    			],
-    			"Resource": "arn:aws:secretsmanager:*:*:secret:events!*"
-    		},
-    		{
-    			"Effect": "Allow",
-    			"Action": "iam:PassRole",
-    			"Resource": "arn:aws:iam::*:role/*",
-    			"Condition": {
-    				"StringLike": {
-    					"iam:PassedToService": "events.amazonaws.com"
-    				}
-    			}
-    		}
-    	]
-    }
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "EventBridgeActions",        
+            "Effect": "Allow",
+            "Action": [
+                "events:*",
+                "schemas:*",
+                "scheduler:*",
+                "pipes:*"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "IAMCreateServiceLinkedRoleForApiDestinations",        
+            "Effect": "Allow",
+            "Action": "iam:CreateServiceLinkedRole",
+            "Resource": "arn:aws:iam::*:role/aws-service-role/AmazonEventBridgeApiDestinationsServiceRolePolicy",
+            "Condition": {
+                "StringEquals": {
+                    "iam:AWSServiceName": "apidestinations.events.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Sid": "IAMCreateServiceLinkedRoleForAmazonEventBridgeSchemas",
+            "Effect": "Allow",
+            "Action": "iam:CreateServiceLinkedRole",
+            "Resource": "arn:aws:iam::*:role/aws-service-role/schemas.amazonaws.com/AWSServiceRoleForSchemas",
+            "Condition": {
+                "StringEquals": {
+                    "iam:AWSServiceName": "schemas.amazonaws.com"
+                }
+            }            
+        },
+        {
+            "Sid": "SecretsManagerAccessForApiDestinations",        
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:CreateSecret",
+                "secretsmanager:UpdateSecret",
+                "secretsmanager:DeleteSecret",
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:PutSecretValue"
+            ],
+            "Resource": "arn:aws:secretsmanager:*:*:secret:events!*"
+        },
+        {
+            "Sid": "IAMPassRoleAccessForEventBridge",                
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "arn:aws:iam::*:role/*",
+            "Condition": {
+                "StringLike": {
+                    "iam:PassedToService": "events.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Sid": "IAMPassRoleAccessForScheduler",        
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "arn:aws:iam::*:role/*",
+            "Condition": {
+                "StringLike": {
+                    "iam:PassedToService": "scheduler.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Sid": "IAMPassRoleAccessForPipes",        
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "arn:aws:iam::*:role/*",
+            "Condition": {
+                "StringLike": {
+                    "iam:PassedToService": "pipes.amazonaws.com"
+                }
+            }
+        }
+    ]
+}
 ```
+
+**Note**  
+The information in this section also applies to the `CloudWatchEventsFullAccess` policy\. However, it is strongly recommended that you use Amazon EventBridge instead of Amazon CloudWatch Events\.
 
 ### AmazonEventBridgeReadOnlyAccess policy<a name="eb-read-only-access-policy"></a>
 
@@ -126,36 +122,87 @@ The following JSON shows the AmazonEventBridgeReadOnlyAccess policy\.
 
 ```
 {
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Effect": "Allow",
-			"Action": [
-				"events:DescribeRule",
-				"events:DescribeEventBus",
-				"events:DescribeEventSource",
-				"events:ListEventBuses",
-				"events:ListEventSources",
-				"events:ListRuleNamesByTarget",
-				"events:ListRules",
-				"events:ListTargetsByRule",
-				"events:TestEventPattern",
-				"events:DescribeArchive",
-				"events:ListArchives",
-				"events:DescribeReplay",
-				"events:ListReplays",
-				"events:DescribeConnection",
-				"events:ListConnections",
-				"events:DescribeApiDestination",
-				"events:ListApiDestinations",
-				"events:ListEndpoints",
-				"events:DescribeEndpoint"
-			],
-			"Resource": "*"
-		}
-	]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "events:DescribeRule",
+                "events:DescribeEventBus",
+                "events:DescribeEventSource",
+                "events:ListEventBuses",
+                "events:ListEventSources",
+                "events:ListRuleNamesByTarget",
+                "events:ListRules",
+                "events:ListTargetsByRule",
+                "events:TestEventPattern",
+                "events:DescribeArchive",
+                "events:ListArchives",
+                "events:DescribeReplay",
+                "events:ListReplays",
+                "events:DescribeConnection",
+                "events:ListConnections",
+                "events:DescribeApiDestination",
+                "events:ListApiDestinations",
+                "events:DescribeEndpoint",
+                "events:ListEndpoints",
+                "schemas:DescribeCodeBinding",
+                "schemas:DescribeDiscoverer",
+                "schemas:DescribeRegistry",
+                "schemas:DescribeSchema",
+                "schemas:ExportSchema",
+                "schemas:GetCodeBindingSource",
+                "schemas:GetDiscoveredSchema",
+                "schemas:GetResourcePolicy",
+                "schemas:ListDiscoverers",
+                "schemas:ListRegistries",                
+                "schemas:ListSchemas",                                
+                "schemas:ListSchemaVersions",                                                
+                "schemas:ListTagsForResource",
+                "schemas:SearchSchemas",
+                "scheduler:GetSchedule",
+                "scheduler:GetScheduleGroup",                
+                "scheduler:ListSchedules",
+                "scheduler:ListScheduleGroups",                
+                "scheduler:ListTagsForResource",
+                "pipes:DescribePipe",
+                "pipes:ListPipes",
+                "pipes:ListTagsForResource"                
+            ],
+            "Resource": "*"
+        }
+    ]
 }
 ```
+
+**Note**  
+The information in this section also applies to the `CloudWatchEventsReadOnlyAccess` policy\. However, it is strongly recommended that you use Amazon EventBridge instead of Amazon CloudWatch Events\.
+
+### EventBridge Schema\-specific managed policies<a name="eb-schemas-access-policies"></a>
+
+[A schema](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-schema.html) defines the structure of events that are sent to EventBridge\. EventBridge provides schemas for all events that are generated by AWS services\. The following AWS managed policies specific to EventBridge Schemas are available:
++ [AmazonEventBridgeSchemasServiceRolePolicy](https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-1#/policies/arn:aws:iam::aws:policy/aws-service-role/AmazonEventBridgeSchemasServiceRolePolicy$jsonEditor)
++ [AmazonEventBridgeSchemasFullAccess](https://us-east-1.console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AmazonEventBridgeSchemasFullAccess$jsonEditor)
++ [AmazonEventBridgeSchemasReadOnlyAccess](https://us-east-1.console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AmazonEventBridgeSchemasReadOnlyAccess$jsonEditor)
+
+### EventBridge Scheduler\-specific managed policies<a name="eb-scheduler-access-policies"></a>
+
+Amazon EventBridge Scheduler is a serverless scheduler that allows you to create, run, and manage tasks from one central, managed service\. For AWS managed policies that are specific to EventBridge Scheduler, see [AWS managed policies for EventBridge Scheduler](https://docs.aws.amazon.com/scheduler/latest/UserGuide/security_iam_id-based-policies.html#security_iam_id-based-policies-managed-policies) in the *EventBridge Scheduler User Guide*\.
+
+### EventBridge Pipes\-specific managed policies<a name="eb-pipes-access-policies"></a>
+
+Amazon EventBridge Pipes connects event sources to targets\. Pipes reduces the need for specialized knowledge and integration code when developing event driven architectures\. This helps ensures consistency across your company’s applications\. The following AWS managed policies specific to EventBridge Pipes are available:
++ [AmazonEventBridgePipesFullAccess](https://us-east-1.console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AmazonEventBridgePipesFullAccess$jsonEditor)
+
+  Provides full access to Amazon EventBridge Pipes\.
+**Note**  
+This policy provides `iam:PassRole` – EventBridge Pipes requires this permission to pass an invocation role to EventBridge to create, and start pipes\.
++ [AmazonEventBridgePipesReadOnlyAccess](https://us-east-1.console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AmazonEventBridgePipesReadOnlyAccess$jsonEditor)
+
+  Provides read\-only access to Amazon EventBridge Pipes\.
++ [AmazonEventBridgePipesOperatorAccess](https://us-east-1.console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AmazonEventBridgePipesOperatorAccess$jsonEditor)
+
+  Provides read\-only and operator \(that is, the ability to stop and start running Pipes\) access to Amazon EventBridge Pipes\.
 
 ### IAM roles for sending events<a name="eb-events-iam-roles"></a>
 
@@ -174,7 +221,9 @@ You can also create your own custom IAM policies to allow permissions for EventB
 
 ## Permissions required for EventBridge to access targets using IAM roles<a name="eb-target-permissions"></a>
 
-For EventBridge to access targets that are an API destination, a Kinesis stream, a Systems Manager Run Command, an AWS Step Functions state machine, or an Amazon Elastic Container Service task, you must specify an IAM role for accessing that target, and the role must have a certain policy attached\.
+EventBridge targets typically require IAM roles that grant permission to EventBridge to invoke the target\. The following are some examples for various AWS services and targets\. For others, use the EventBridge console to create a Rule and create a new Role which will be created with a policy with well\-scoped permissions preconfigured\. 
+
+Amazon SQS, Amazon SNS, Lambda, CloudWatch Logs, and EventBridge bus targets do not use roles, and permissions to EventBridge must be granted via a resource policy\. API Gateway targets can use either resource policies or IAM roles\.
 
 If the target is an API destination, the role that you specify must include the following policy\.
 
@@ -306,17 +355,6 @@ If the target is an Amazon ECS task, the role that you specify must include the 
 }
 ```
 
-## Customer\-managed policy examples<a name="eb-customer-managed-policies"></a>
-
-The following examples show user policies that grant permissions for EventBridge actions\. These policies work when you use the EventBridge API, AWS SDKs, or the AWS CLI\.
-
-**Note**  
-All examples use the US West \(Oregon\) Region \(us\-west\-2\) and contain fictitious account IDs that you need to replace to use these policies\. 
-
-You can use the following sample IAM policies listed to limit the EventBridge access for your IAM users and roles\.
-
-### Example 1: Access to Amazon EC2 targets<a name="eb-example-policy-builtin-target"></a>
-
 The following policy allows built\-in targets in EventBridge to perform Amazon EC2 actions on your behalf\. You need to use the AWS Management Console to create rules with built\-in targets\.
 
 ```
@@ -339,8 +377,6 @@ The following policy allows built\-in targets in EventBridge to perform Amazon E
 }
 ```
 
-### Example 2: Kinesis<a name="eb-example-policy-invocation-access"></a>
-
 The following policy allows EventBridge to relay events to the Kinesis streams in your account\. 
 
 ```
@@ -359,102 +395,9 @@ The following policy allows EventBridge to relay events to the Kinesis streams i
 }
 ```
 
-### Example 3: Console access<a name="eb-example-policy-console-access"></a>
+## Customer\-managed policy example: Using tagging to control access to rules<a name="eb-customer-managed-policies"></a>
 
-The following policy allows IAM users to use the EventBridge console\.
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "ConsoleAccess",
-            "Effect": "Allow",
-            "Action": [
-                "automation:CreateAction",
-                "automation:DescribeAction",
-                "automation:UpdateAction",
-                "autoscaling:DescribeAutoScalingGroups",
-                "cloudtrail:DescribeTrails",
-                "ec2:DescribeInstances",
-                "ec2:DescribeVolumes",
-                "events:*",
-                "iam:ListRoles",
-                "kinesis:ListStreams",
-                "lambda:AddPermission",
-                "lambda:ListFunctions",
-                "lambda:RemovePermission",
-                "sns:GetTopicAttributes",
-                "sns:ListTopics",
-                "sns:SetTopicAttributes",
-                "swf:DescribeAction",
-                "swf:ReferenceAction",
-                "swf:RegisterAction",
-                "swf:RegisterDomain",
-                "swf:UpdateAction"
-            ],
-            "Resource": "*"
-        },
-        {
-            "Sid": "IAMPassRole",
-            "Effect": "Allow",
-            "Action": "iam:PassRole",
-            "Resource": [
-                "arn:aws:iam::*:role/AWS_Events_Invoke_Targets",
-                "arn:aws:iam::*:role/AWS_Events_Actions_Execution"
-            ]
-        }
-    ]
-}
-```
-
-### Example 4: EventBridgeFullAccess<a name="eb-example-policy-full-access"></a>
-
-The following policy allows all AWS resources to perform actions against EventBridge through the AWS CLI and the SDK\.
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "FullAccess",
-            "Effect": "Allow",
-            "Action": "events:*",
-            "Resource": "*"
-        },
-        {
-            "Sid": "IAMPassRole",
-            "Effect": "Allow",
-            "Action": "iam:PassRole",
-            "Resource": "arn:aws:iam::*:role/AWS_Events_Invoke_Targets"
-        }
-    ]
-}
-```
-
-### Example 5: ReadOnlyAccess<a name="eb-example-policy-readonly-access"></a>
-
-The following policy allows all AWS resources to have read\-only access to EventBridge\.
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "ReadOnlyAccess",
-            "Effect": "Allow",
-            "Action": [
-                "events:Describe*",
-                "events:List*",
-                "events:TestEventPattern"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
-```
-
-### Example 6: Using tagging to control access to rules<a name="eb-cwl-iam-policy-tagging"></a>
+The following example shows a user policy that grant permissions for EventBridge actions\. This policy works when you use the EventBridge API, AWS SDKs, or the AWS CLI\.
 
 You can grant users access to specific EventBridge rules while preventing them from accessing other rules\. To do so, you tag both sets of rules and then use IAM policies that refer to those tags\. For more information about tagging EventBridge resources, see [Amazon EventBridge tags](eb-tagging.md)\.
 
@@ -490,6 +433,15 @@ View details about updates to AWS managed policies for EventBridge since this se
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+|  [AmazonEventBridgePipesFullAccess](#eb-pipes-access-policies) – New policy added  |  EventBridge added managed policy for full permissions for using EventBridge Pipes\.  | December 1, 2022 | 
+|  [AmazonEventBridgePipesReadOnlyAccess](#eb-pipes-access-policies) – New policy added  |  EventBridge added managed policy for permissions to view EventBridge Pipes information resources\.  | December 1, 2022 | 
+|  [AmazonEventBridgePipesOperatorAccess](#eb-pipes-access-policies) – New policy added  |  EventBridge added managed policy for for permissions to view EventBridge Pipes information, as well as start and stop running pipes\.  | December 1, 2022 | 
+|  [AmazonEventBridgeFullAccess](#eb-full-access-policy) – Update to an existing policy  |  EventBridge updated the policy to include permissions necessary for using EventBridge Pipes features\.  | December 1, 2022 | 
+|  [AmazonEventBridgeReadOnlyAccess](#eb-read-only-access-policy) – Update to an existing policy  |  EventBridge added permissions necessary for view EventBridge Pipes information resources\. The following actions were added: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/eventbridge/latest/userguide/eb-use-identity-based.html)  | December 1, 2022 | 
+|  [CloudWatchEventsReadOnlyAccess](#eb-read-only-access-policy) – Update to an existing policy  |  Updated to match AmazonEventBridgeReadOnlyAccess\.  | December 1, 2022 | 
+|  [CloudWatchEventsFullAccess](#eb-full-access-policy) – Update to an existing policy  |  Updated to match AmazonEventBridgeFullAccess\.  | December 1, 2022 | 
+|  [AmazonEventBridgeFullAccess](#eb-full-access-policy) – Update to an existing policy  |  EventBridge updated the policy to include permissions necessary for using schemas and scheduler features\. The following permissions were added: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/eventbridge/latest/userguide/eb-use-identity-based.html)  | November 10, 2022 | 
+|  [AmazonEventBridgeReadOnlyAccess](#eb-read-only-access-policy) – Update to an existing policy  |  EventBridge added permissions necessary for view schema and scheduler information resources\. The following actions were added: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/eventbridge/latest/userguide/eb-use-identity-based.html)  | November 10, 2022 | 
 |  [AmazonEventBridgeReadOnlyAccess](#eb-read-only-access-policy) – Update to an existing policy  |  EventBridge added permissions necessary for view endpoint information\. The following actions were added: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/eventbridge/latest/userguide/eb-use-identity-based.html)  | April 7, 2022 | 
 |  [AmazonEventBridgeReadOnlyAccess](#eb-read-only-access-policy) – Update to an existing policy  |  EventBridge added permissions necessary for view connection and API destination information\. The following actions were added: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/eventbridge/latest/userguide/eb-use-identity-based.html)  | March 4, 2021 | 
 |  [AmazonEventBridgeFullAccess](#eb-full-access-policy) – Update to an existing policy  |  EventBridge updated the policy to include `iam:CreateServiceLinkedRole` and AWS Secrets Manager permissions necessary for using API destinations\. The following actions were added: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/eventbridge/latest/userguide/eb-use-identity-based.html)  | March 4, 2021 | 

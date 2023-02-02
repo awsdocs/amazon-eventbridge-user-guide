@@ -5,7 +5,7 @@ You can create an [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welc
 **Topics**
 + [Step 1: Create an AWS Lambda function](#eb-ec2-create-lambda-function)
 + [Step 2: Create a rule](#eb-ec2-create-rule)
-+ [Step 4: Test the rule](#eb-api-test-rule)
++ [Step 3: Test the rule](#eb-api-test-rule)
 + [Step 4: Confirm success](#success)
 + [Step 5: Clean up your resources](#cleanup)
 
@@ -87,7 +87,7 @@ Create a rule to run the Lambda function you created in Step 1\. The rule runs w
 
 1. Review the details of the rule and choose **Create rule**\.
 
-## Step 4: Test the rule<a name="eb-api-test-rule"></a>
+## Step 3: Test the rule<a name="eb-api-test-rule"></a>
 
 You can test your rule by stopping an Amazon EC2 instance using the Amazon EC2 console\. Wait a few minutes for the instance to stop, and then check your AWS Lambda metrics on the CloudWatch console to verify that your function ran\.
 
@@ -121,7 +121,7 @@ You can now delete the resources that you created for this tutorial, unless you 
 
 **To delete the EventBridge rule\(s\)**
 
-1. Open the [Rules page](https://console.aws.amazon.com/events/home#/rule) of the EventBridge console\.
+1. Open the [Rules page](https://console.aws.amazon.com/events/home#/rules) of the EventBridge console\.
 
 1. Select the rule\(s\) that you created\.
 

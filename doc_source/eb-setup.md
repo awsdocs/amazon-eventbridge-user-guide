@@ -23,6 +23,8 @@ If you already have an account, you can skip this step\. If you don't have an ac
 
    Part of the sign\-up procedure involves receiving a phone call and entering a verification code on the phone keypad\.
 
+   When you sign up for an AWS account, an *AWS account root user* is created\. The root user has access to all AWS services and resources in the account\. As a security best practice, [assign administrative access to an administrative user](https://docs.aws.amazon.com/singlesignon/latest/userguide/getting-started.html), and use only the root user to perform [tasks that require root user access](https://docs.aws.amazon.com/accounts/latest/reference/root-user-tasks.html)\.
+
 ## Sign in to the Amazon EventBridge console<a name="eb-console-signin"></a>
 
 **To sign in to the Amazon EventBridge console**

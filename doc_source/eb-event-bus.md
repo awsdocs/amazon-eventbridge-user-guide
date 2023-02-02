@@ -19,3 +19,4 @@ The most common event buses are:
 **Topics**
 + [Permissions for Amazon EventBridge event buses](eb-event-bus-perms.md)
 + [Creating an Amazon EventBridge event bus](eb-create-event-bus.md)
++ [Generate an AWS CloudFormation template from an Amazon EventBridge event bus](eb-generate-event-bus-template.md)

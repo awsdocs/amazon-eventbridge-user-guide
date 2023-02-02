@@ -10,6 +10,7 @@ You use the AWS CLI to add permissions to your targets\. For information about h
 + [AWS Lambda permissions](#eb-lambda-permissions)
 + [Amazon SNS permissions](#eb-sns-permissions)
 + [Amazon SQS permissions](#eb-sqs-permissions)
++ [EventBridge Pipes specifics](#eb-pipes-identity-diff)
 
 ## Amazon API Gateway permissions<a name="eb-api-gateway-permissions"></a>
 
@@ -226,3 +227,7 @@ If the SQS queue already has a policy, you need to copy the original policy and 
    ```
 
 For more information, see [Amazon SQS Policy Examples](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSExamples.html) in the *Amazon Simple Queue Service Developer Guide*\.
+
+## EventBridge Pipes specifics<a name="eb-pipes-identity-diff"></a>
+
+EventBridge Pipes does not support resource\-based policies and has no APIs which support resource based policy conditions\.

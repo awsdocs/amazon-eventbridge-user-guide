@@ -32,7 +32,15 @@ EventBridge currently supports VPC endpoints in the following Regions:
 + Europe \(Paris\)
 + Europe \(Stockholm\)
 + South America \(São Paulo\)
++ Middle East \(UAE\)
 
 ## Creating a VPC Endpoint for EventBridge<a name="eb-create-VPC-endpoint"></a>
 
 To use EventBridge with your VPC, create an interface VPC endpoint for EventBridge and choose **com\.amazonaws\.*Region*\.events** as the service name\. For more information, see [Creating an Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html#create-interface-endpoint.html) in the *Amazon VPC User Guide*\.
+
+## EventBridge Pipes specifics<a name="eb-pipes-vpc-diff"></a>
+
+Full EventBridge Pipes support for Interface VPC endpoints is not available\. To use the following sources within a VPC with EventBridge Pipes, see the following:
++ [Amazon MSK network configuration](eb-pipes-msk.md#pipes-msk-vpc-config)
++ [Self managed Apache Kafka network configuration](eb-pipes-kafka.md#pipes-kafka-vpc-config)
++ [Amazon MQ network configuration](eb-pipes-mq.md#pipes-mq-vpc-config)

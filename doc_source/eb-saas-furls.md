@@ -17,6 +17,8 @@ The following SaaS providers are currently available for use with EventBridge us
 
 **Topics**
 + [Set up a connection to GitHub](#furls-connection-github)
++ [Step 1: Create the AWS CloudFormation stack](#create-gh-cfn-stack)
++ [Step 2: Create a GitHub webhook](#create-gh-webhook)
 + [Set up a connection to a Stripe](#furls-connection-stripe)
 + [Set up a connection to a Twilio](#furls-connection-twilio)
 + [Update webhook secret or auth token](#furls-update-secret)
@@ -26,13 +28,9 @@ The following SaaS providers are currently available for use with EventBridge us
 
 ## Set up a connection to GitHub<a name="furls-connection-github"></a>
 
-### Step 1: Create a GitHub secret<a name="create-gh-secret"></a>
+## Step 1: Create the AWS CloudFormation stack<a name="create-gh-cfn-stack"></a>
 
-To set up a connection between CloudFormation and GitHub, first, create a secret on GitHub\. For more information, see [Encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) in the GitHub documentation\.
-
-### Step 2: Create the AWS CloudFormation stack<a name="create-gh-cfn-stack"></a>
-
-Next, use the Amazon EventBridge console to create a CloudFormation stack:
+ First, use the Amazon EventBridge console to create a CloudFormation stack:
 
 1. Open the Amazon EventBridge console at [https://console\.aws\.amazon\.com/events/](https://console.aws.amazon.com/events/)\.
 
@@ -50,7 +48,7 @@ Next, use the Amazon EventBridge console to create a CloudFormation stack:
 
 1. Enter a name for the stack\.
 
-1. Under parameters, verify that the correct event bus is listed, then enter the **GitHubWebhookSecret** that you created in Step 1\.
+1. Under parameters, verify that the correct event bus is listed, then specify a secure token for the **GitHubWebhookSecret**\. For more information on creating a secure token, see [Setting your secret token](https://docs.github.com/en/developers/webhooks-and-events/webhooks/securing-your-webhooks#setting-your-secret-token) in the GitHub documentation\.
 
 1. Under **Capabilities and transforms**, select each of the following:
    + **I acknowledge that AWS CloudFormation might create IAM resources\.**
@@ -59,9 +57,9 @@ Next, use the Amazon EventBridge console to create a CloudFormation stack:
 
 1. Choose **Create stack**\.
 
-### Step 3: Create a GitHub webhook<a name="create-gh-webhook"></a>
+## Step 2: Create a GitHub webhook<a name="create-gh-webhook"></a>
 
-Finally, create the webhook on GitHub\. You’ll need the secret you created in step 1 and the Lambda function URL you created in step 2 to complete this step\. For more information, see [Creating webhooks](https://docs.github.com/en/developers/webhooks-and-events/webhooks/creating-webhooks) in the GitHub documentation\.
+Next, create the webhook on GitHub\. You’ll need both the secure token and the Lambda function URL you created in step 2 to complete this step\. For more information, see [Creating webhooks](https://docs.github.com/en/developers/webhooks-and-events/webhooks/creating-webhooks) in the GitHub documentation\.
 
 ## Set up a connection to a Stripe<a name="furls-connection-stripe"></a>
 
@@ -70,7 +68,7 @@ Finally, create the webhook on GitHub\. You’ll need the secret you created in 
 To set up a connection between EventBridge and Stripe, first create a Stripe endpoint and note the endpoint secret\. You'll use this endpoint secret when you set up your stack in step 2\. For more information, see [Interactive webhook endpoint builder](https://stripe.com/docs/webhooks/quickstart) in the Stripe documentation\.
 
 **Note**  
-You’ll need a dummy URL to set up the endpoint with Stripe\. For example, `www.abcd123.com`\.
+You’ll need a dummy URL to set up the endpoint with Stripe\. For example, `www.example.com`\.
 
 ### Step 2: Create the AWS CloudFormation stack<a name="create-stripe-cfn-stack"></a>
 
@@ -268,7 +266,7 @@ The number of incoming requests to the webhook is capped by the underlying AWS s
 | --- | --- | 
 |  AWS Lambda  |  Default: 10 concurrent executions For more information about quotas, including requesting quota increases, see [Lambda quotas](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html)\.  | 
 |  AWS Secrets Manager  |  Default: 5,000 requests per second For more information about quotas, including requesting quota increases, see [AWS Secrets Manager quotas](https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_limits.html)\. The number of requests per second is minimized using the [AWS Secrets Manager Python caching client](https://github.com/aws/aws-secretsmanager-caching-python#cache-configuration)\.  | 
-|  Amazon EventBridge  |  256KB maximum entry size for PutEvents actions\.  EventBridge enforces Region\-based rate quotas\. For more information, see [PutEvents quotas by Region](eb-quota.md#eb-putevents-limits)\.  | 
+|  Amazon EventBridge  |  256KB maximum entry size for PutEvents actions\.  EventBridge enforces Region\-based rate quotas\. For more information, see [EventBridge quotas](eb-quota.md#eb-limits)\.  | 
 
 ### Error codes<a name="furls-errors"></a>
 

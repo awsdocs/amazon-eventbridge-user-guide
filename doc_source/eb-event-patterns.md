@@ -67,22 +67,28 @@ For numbers, EventBridge uses string representation\. For example, 300, 300\.0, 
 
 When you write event patterns to match events, you can use the `TestEventPattern` API or the `test-event-pattern` CLI command to test that your pattern matches the correct events\. For more information, see [TestEventPattern](https://docs.aws.amazon.com/AmazonCloudWatchEvents/latest/APIReference/API_TestEventPattern.html)\.
 
-Here's a summary of all the comparison operators available in EventBridge:
+Below a summary of all the comparison operators available in EventBridge\. 
+
+**Note**  
+Not all comparison operators are currently supported by [EventBridge Pipes](eb-pipes.md)\.
 
 
-| **Comparison** | **Example** | **Rule syntax** | 
-| --- | --- | --- | 
-|  Null  |  UserID is null  |  "UserID": \[ null \]  | 
-|  Empty  |  LastName is empty  |  "LastName": \[""\]  | 
-|  Equals  |  Name is "Alice"  |  "Name": \[ "Alice" \]  | 
-|  And  |  Location is "New York" and Day is "Monday"  |  "Location": \[ "New York" \], "Day": \["Monday"\]  | 
-|  Or  |  PaymentType is "Credit" or "Debit"  |  "PaymentType": \[ "Credit", "Debit"\]  | 
-|  Not  |  Weather is anything but "Raining"  |  "Weather": \[ \{ "anything\-but": \[ "Raining" \] \} \]  | 
-|  Numeric \(equals\)  |  Price is 100  |  "Price": \[ \{ "numeric": \[ "=", 100 \] \} \]  | 
-|  Numeric \(range\)  |  Price is more than 10, and less than or equal to 20  |  "Price": \[ \{ "numeric": \[ ">", 10, "<=", 20 \] \} \]  | 
-|  Exists  |  ProductName exists  |  "ProductName": \[ \{ "exists": true \} \]  | 
-|  Does not exist  |  ProductName does not exist  |  "ProductName": \[ \{ "exists": false \} \]  | 
-|  Begins with  |  Region is in the US  |  "Region": \[ \{"prefix": "us\-" \} \]  | 
+| **Comparison** | **Example** | **Rule syntax** | **Supported by Pipes** | 
+| --- | --- | --- | --- | 
+|  Null  |  UserID is null  |  "UserID": \[ null \]  | Yes | 
+|  Empty  |  LastName is empty  |  "LastName": \[""\]  |  Yes  | 
+|  Equals  |  Name is "Alice"  |  "Name": \[ "Alice" \]  |  Yes  | 
+|  Equals \(ignore case\)  |  Name is "Alice"  |  "Name": \[ \{ "equals\-ignore\-case": "alice" \} \]  |  No   | 
+|  And  |  Location is "New York" and Day is "Monday"  |  "Location": \[ "New York" \], "Day": \["Monday"\]  |  Yes  | 
+|  Or  |  PaymentType is "Credit" or "Debit"  |  "PaymentType": \[ "Credit", "Debit"\]  |  Yes  | 
+|  Or \(multiple fields\)  |  Location is "New York", or Day is "Monday"\.  |  "$or": \[ \{ "Location": \[ "New York" \] \}, \{ "Day": \[ "Monday" \] \} \]   |  No   | 
+|  Not  |  Weather is anything but "Raining"  |  "Weather": \[ \{ "anything\-but": \[ "Raining" \] \} \]  |  Yes  | 
+|  Numeric \(equals\)  |  Price is 100  |  "Price": \[ \{ "numeric": \[ "=", 100 \] \} \]  |  Yes  | 
+|  Numeric \(range\)  |  Price is more than 10, and less than or equal to 20  |  "Price": \[ \{ "numeric": \[ ">", 10, "<=", 20 \] \} \]  |  Yes  | 
+|  Exists  |  ProductName exists  |  "ProductName": \[ \{ "exists": true \} \]  |  Yes  | 
+|  Does not exist  |  ProductName does not exist  |  "ProductName": \[ \{ "exists": false \} \]  |  Yes  | 
+|  Begins with  |  Region is in the US  |  "Region": \[ \{"prefix": "us\-" \} \]  |  Yes  | 
+|  Ends with  |  FileName ends with a \.png extension\.  |  "FileName": \[ \{ "suffix": "\.png" \} \]   |  No   | 
 
 ### Match Values<a name="eb-filtering-match-values"></a>
 

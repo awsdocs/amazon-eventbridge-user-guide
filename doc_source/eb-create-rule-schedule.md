@@ -5,9 +5,13 @@ A [rule](eb-rules.md) can run in response to an [event](eb-events.md) or at cert
 EventBridge supports cron expressions and rate expressions\. Rate expressions are simpler to define and cron expressions offer the detailed schedule control\. For example, with a cron expression, you can define a rule that runs at a specified time on a certain day of each week or month\. In contrast, rate expressions run a rule at a regular rate, such as once every hour or once every day\.
 
 **Note**  
+ EventBridge now offers a new scheduling capability, Amazon EventBridge Scheduler\. EventBridge Scheduler is a serverless scheduler that allows you to create, run, and manage tasks from one central, managed service\. EventBridge Scheduler is highly customizable, and offers improved scalability over EventBridge scheduled rules, with a wider set of target API operations and AWS services\.   
+ We recommend that you use EventBridge Scheduler to invoke targets on a schedule\. For more information, see the [https://docs.aws.amazon.com/scheduler/latest/UserGuide/](https://docs.aws.amazon.com/scheduler/latest/UserGuide/)\. 
+
+
+
+**Note**  
 EventBridge doesn't provide second\-level precision in schedule expressions\. The finest resolution using a cron expression is one minute\. Due to the distributed nature of EventBridge and the target services, there can be a delay of several seconds between the time the scheduled rule is triggered and the time the target service runs the target resource\. 
-
-
 
 **Topics**
 + [Cron Expressions](#eb-cron-expressions)
@@ -108,7 +112,7 @@ Valid values: minute \| minutes \| hour \| hours \| day \| days
 If the value is equal to 1, then the unit must be singular\. If the value is greater than 1, the unit must be plural\. For example, rate\(1 hours\) and rate\(5 hour\) aren't valid, but rate\(1 hour\) and rate\(5 hours\) are valid\.
 
 **Examples**  
-The following examples show how to use rate expressions with the AWS CLI  `put-rule` command\. The first example triggers the rule minute, the next triggers it every five minutes, the third example triggers it once an hour, and the final example triggers it once per day\.
+The following examples show how to use rate expressions with the AWS CLI  `put-rule` command\. The first example triggers the rule every minute, the next triggers it every five minutes, the third example triggers it once an hour, and the final example triggers it once per day\.
 
 ```
 aws events put-rule --schedule-expression "rate(1 minute)" --name MyRule2

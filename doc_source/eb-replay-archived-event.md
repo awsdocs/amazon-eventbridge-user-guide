@@ -33,7 +33,7 @@ You can have a maximum of 10 active concurrent replays per account per AWS Regio
 
 When the events from the archived are replayed, the status of the replay is **Completed**\.
 
-If you start a replay and then want to interrupt it, you can cancel it as long as the status ois**Starting** or **Running**\.
+If you start a replay and then want to interrupt it, you can cancel it as long as the status is **Starting** or **Running**\.
 
 **To cancel a replay**
 

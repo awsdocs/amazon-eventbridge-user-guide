@@ -9,11 +9,14 @@ An infinite loop can quickly cause higher than expected charges\. We recommend t
 
 **Topics**
 + [Prefix matching](#eb-filtering-prefix-matching)
++ [Suffix matching](#eb-filtering-suffix-matching)
 + [Anything\-but matching](#eb-filtering-anything-but)
 + [Numeric matching](#filtering-numeric-matching)
 + [IP address matching](#eb-filtering-ip-matching)
 + [Exists matching](#eb-filtering-exists-matching)
++ [Equals\-ignore\-case matching](#eb-filtering-equals-ignore-case-matching)
 + [Complex example with multiple matching](#eb-filtering-complex-example)
++ [Complex example with `$or` matching](#eb-filtering-complex-example-or)
 
 ## Prefix matching<a name="eb-filtering-prefix-matching"></a>
 
@@ -24,6 +27,18 @@ For example, the following event pattern would match any event where the `"time"
 ```
 {
   "time": [ { "prefix": "2017-10-02" } ]
+}
+```
+
+## Suffix matching<a name="eb-filtering-suffix-matching"></a>
+
+You can match an event depending on the suffix of a value in the event source\. You can use suffix matching for string values\.
+
+For example, the following event pattern would match any event where the `"FileName"` field ends with the `.png` file extension\. 
+
+```
+{
+  "FileName": [ { "suffix": ".png" } ]
 }
 ```
 
@@ -84,7 +99,7 @@ The following event pattern shows anything\-but matching that matches any event 
 
 ## Numeric matching<a name="filtering-numeric-matching"></a>
 
-Numeric matching works with values that are JSON numbers\. It is limited to values between \-1\.0e9 and \+1\.0e9 inclusive, with 15 digits of precision, or six digits to the right of the decimal point\.
+Numeric matching works with values that are JSON numbers\. It is limited to values between \-5\.0e9 and \+5\.0e9 inclusive, with 15 digits of precision, or six digits to the right of the decimal point\.
 
 The following shows numeric matching for an event pattern that only matches events that are true for all fields\. 
 
@@ -159,6 +174,32 @@ The preceding event pattern does NOT match the following event because it doesn'
 }
 ```
 
+## Equals\-ignore\-case matching<a name="eb-filtering-equals-ignore-case-matching"></a>
+
+*Equals\-ignore\-case* matching works on string values regardless of case\.
+
+The following event pattern matches any event that has a `detail-type` field that matches the specified string, regardless of case\.
+
+```
+{
+  "detail-type": [ { "equals-ignore-case": "ec2 instance state-change notification" } ]
+}
+```
+
+The preceding event pattern matches the following event\.
+
+```
+{
+  "detail-type": [ "EC2 Instance State-change Notification" ],
+  "resources": [ "arn:aws:ec2:us-east-1:123456789012:instance/i-02ebd4584a2ebd341" ],
+  "detail": {
+    "c-count" : {
+       "c1" : 100
+    }
+  }
+}
+```
+
 ## Complex example with multiple matching<a name="eb-filtering-complex-example"></a>
 
 You can combine multiple matching rules into a more complex event pattern\. For example, the following event pattern combines `anything-but` and `numeric`\.
@@ -187,3 +228,30 @@ When building event patterns, if you include a key more than once the last refer
 }
 ```
 only `{ "anything-but": "us-east" }` will be taken into account when evaluating the `location`\.
+
+## Complex example with `$or` matching<a name="eb-filtering-complex-example-or"></a>
+
+You can also create complex event patterns that check to see if *any* field values match, across multiple fields\. Use `$or` to create an event pattern that matches if any of the values for multiple fields are matched\.
+
+Note that you can include other filter types, such as [numeric matching](#filtering-numeric-matching) and [arrays](eb-event-patterns-arrays.md), in your pattern matching for individual fields in your `$or` construct\.
+
+The following event pattern matches if any of the following conditions are met:
++ The `c-count` field is greater than 0 or less than or equal to 5\.
++ The `d-count` field is less than 10\.
++ The `x-limit` field equals 3\.018e2\.
+
+```
+{
+  "detail": {
+    "$or": [
+      { "c-count": [ { "numeric": [ ">", 0, "<=", 5 ] } ] },
+      { "d-count": [ { "numeric": [ "<", 10 ] } ] },
+      { "x-limit": [ { "numeric": [ "=", 3.018e2 ] } ] }
+    ]
+  }
+}
+```
+
+**Note**  
+APIs that accept an event pattern \(such as `PutRule`, `CreateArchive`, `UpdateArchive`, and `TestEventPattern`\) will throw an `InvalidEventPatternException` if the use of `$or` results in over 1000 rule combinations\.  
+To determine the number of rule combinations in an event pattern, multiply the total number of arguments from each `$or` array in the event pattern\. For example, the above pattern contains a single `$or` array with three arguments, so the total number of rule combinations is also three\. If you added another `$or` array with two arguments, the total rule combinations would then be six\.

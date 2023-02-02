@@ -92,7 +92,7 @@ Create a rule to send events to your topic when an Amazon S3 object is created\.
 
 1. For **Select a target**, choose **SNS topic** from the drop\-down list\.
 
-1. For **Topic**, select the Kinesis stream that you created in the **Step 1: Create an SNS topic** section\. In this example, select `eventbridge-test`\.
+1. For **Topic**, select the Amazon SNS topic that you created in the **Step 1: Create an SNS topic** section\. In this example, select `eventbridge-test`\.
 
 1. Choose **Next**\.
 
@@ -132,7 +132,7 @@ You can now delete the resources that you created for this tutorial, unless you 
 
 **To delete the EventBridge rule\(s\)**
 
-1. Open the [Rules page](https://console.aws.amazon.com/events/home#/rule) of the EventBridge console\.
+1. Open the [Rules page](https://console.aws.amazon.com/events/home#/rules) of the EventBridge console\.
 
 1. Select the rule\(s\) that you created\.
 

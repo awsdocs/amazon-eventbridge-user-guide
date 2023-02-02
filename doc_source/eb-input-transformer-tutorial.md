@@ -2,7 +2,7 @@
 
 You can use the [Input transformer](eb-transform-target-input.md) in EventBridge to customize text from an [event](eb-events.md) before you send it to the target of a [rule](eb-rules.md)\. 
 
-To do this, you define JSON paths from the event and assign their outputs to different variables\. Then you can use those variables in the input template\. The characters < and > can't be escaped\. For more information, see [Transforming Amazon EventBridge target input](eb-transform-target-input.md)
+To do this, you define JSON paths from the event and assign their outputs to different variables\. Then you can use those variables in the input template\. The characters < and > can't be escaped\. For more information, see [Amazon EventBridge input transformation](eb-transform-target-input.md)
 
 **Note**  
 If you specify a variable to match a JSON path that doesn't exist in the event, that variable isn't created and doesn't appear in the output\.
@@ -189,7 +189,7 @@ You can now delete the resources that you created for this tutorial, unless you 
 
 **To delete the EventBridge rule\(s\)**
 
-1. Open the [Rules page](https://console.aws.amazon.com/events/home#/rule) of the EventBridge console\.
+1. Open the [Rules page](https://console.aws.amazon.com/events/home#/rules) of the EventBridge console\.
 
 1. Select the rule\(s\) that you created\.
 

@@ -1,4 +1,4 @@
-# Transforming Amazon EventBridge target input<a name="eb-transform-target-input"></a>
+# Amazon EventBridge input transformation<a name="eb-transform-target-input"></a>
 
 You can customize the text from an [event](eb-events.md) before EventBridge passes the information to the [target](eb-targets.md) of a [rule](eb-rules.md)\. Using the input transformer in the console or the API, you define variables that use JSON path to reference values in the original event source\. The transformed event is sent to a target instead of the original event\. However, [dynamic path parameters](eb-targets.md#targets-dynamic-parms) must reference the original event, not the transformed event\. You can define up to 100 variables, assigning each a value from the input\. Then you can use those variables in the *Input Template* as <*variable\-name*>\. 
 

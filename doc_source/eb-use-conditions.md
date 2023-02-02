@@ -55,6 +55,7 @@ The following table shows the condition keys and key and value pairs that you ca
 For example policy statements for EventBridge, see [Managing access permissions to your Amazon EventBridge resources](eb-manage-iam-access.md)\.
 
 **Topics**
++ [EventBridge Pipes specifics](#eb-pipes-condition-diff)
 + [Example: Using the `creatorAccount` condition](#eb-events-creator-account)
 + [Example: Using the `eventBusInvocation` condition](#eb-events-bus-invocation)
 + [Example: Limiting access to a specific source](#eb-events-limit-access-control)
@@ -66,6 +67,10 @@ For example policy statements for EventBridge, see [Managing access permissions 
 + [Example: Limiting `PutRule` access by `detail.eventTypeCode`](#eb-limit-rule-by-type-code)
 + [Example: Ensuring that only AWS CloudTrail events for API calls from a certain `PrincipalId` are allowed](#eb-consume-specific-events)
 + [Example: Limiting access to targets](#eb-limiting-access-to-targets)
+
+## EventBridge Pipes specifics<a name="eb-pipes-condition-diff"></a>
+
+EventBridge Pipes does not support any additional IAM policy condition keys\.
 
 ## Example: Using the `creatorAccount` condition<a name="eb-events-creator-account"></a>
 

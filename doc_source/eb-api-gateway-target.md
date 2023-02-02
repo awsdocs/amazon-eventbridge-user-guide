@@ -1,12 +1,12 @@
 # Amazon EventBridge targets for Amazon API Gateway<a name="eb-api-gateway-target"></a>
 
-You can use Amazon API Gateway to create, publish, maintain, and monitor REST APIs\. Amazon EventBridge supports sending events to an API Gateway REST endpoint\. When you specify an API Gateway endpoint as a [target](eb-targets.md), each [event](eb-events.md) sent to the target maps to a request sent to the endpoint\.
+You can use Amazon API Gateway to create, publish, maintain, and monitor APIs\. Amazon EventBridge supports sending events to an API Gateway endpoint\. When you specify an API Gateway endpoint as a [target](eb-targets.md), each [event](eb-events.md) sent to the target maps to a request sent to the endpoint\.
 
 **Important**  
 EventBridge supports using API Gateway *Edge\-optimized* and *Regional* endpoints as targets\. *Private* endpoints are not currently supported\. To learn more about endpoints, see [https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-endpoint-types.html](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-endpoint-types.html)\.
 
 You can use an API Gateway target for the following use cases:
-+ To invoke a customer\-specified REST API hosted in API Gateway based on AWS or third\-party events\.
++ To invoke a customer\-specified API hosted in API Gateway based on AWS or third\-party events\.
 + To invoke an endpoint periodically on a schedule\.
 
 The EventBridge JSON event information is sent as the body of the HTTP request to your endpoint\. You can specify the other request attributes in the target’s `HttpParameters` field as follows:
@@ -41,4 +41,6 @@ As with all targets, EventBridge retries some failed invocations\. For API Gatew
 
 ## Timeout<a name="eb-targets-apigateway-timeout"></a>
 
-EventBridge API Gateway requests must have a maximum client execution timeout of 5 seconds\. If API Gateway takes longer than 5 seconds to respond, EventBridge times out the request and then retries
+EventBridge rule API Gateway requests must have a maximum client execution timeout of 5 seconds\. If API Gateway takes longer than 5 seconds to respond, EventBridge times out the request and then retries\.
+
+EventBridge Pipes API Gateway requests have a maximum timeout of 29 seconds, the API Gateway maximum\.

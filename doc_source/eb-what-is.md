@@ -1,13 +1,14 @@
 # What Is Amazon EventBridge?<a name="eb-what-is"></a>
 
-Amazon EventBridge is a serverless event bus service that you can use to connect your applications with data from a variety of sources\. EventBridge delivers a stream of real\-time data from your applications, software as a service \(SaaS\) applications, and AWS services to targets such as AWS Lambda functions, HTTP invocation endpoints using API destinations, or event buses in other AWS accounts\. 
+EventBridge is a serverless service that uses events to connect application components together, making it easier for you to build scalable event\-driven applications\. Use it to route events from sources such as home\-grown applications, AWS services, and third\- party software to consumer applications across your organization\. EventBridge provides a simple and consistent way to ingest, filter, transform, and deliver events so you can build new applications quickly\. 
 
-**Note**  
-EventBridge was formerly called Amazon CloudWatch Events\. The default event bus and the rules you created in CloudWatch Events also display in the EventBridge console\. EventBridge uses the same CloudWatch Events API, so your code that uses the CloudWatch Events API stays the same\. New features added to EventBridge are not added to CloudWatch Events\.  
-
-
+EventBridge event buses are well suited for many\-to\-many routing of events between event\-driven services\. [EventBridge Pipes](eb-pipes.md) is intended for point\-to\-point integrations between these [sources](eb-pipes-event-source.md) and [targets](eb-pipes-event-target.md), with support for advanced transformations and [enrichment](eb-pipes.md#pipes-enrichment)\.
 
 ## How it works<a name="eb-what-is-how-it-works"></a>
+
+The following video provides a high\-level overview of EventBridge event buses\. 
+
+
 
 EventBridge receives an *[event](eb-events.md)*, an indicator of a change in environment, and applies a [rule](eb-rules.md) to route the event to a [target](eb-targets.md)\. Rules match events to targets based on either the structure of the event, called an *[event pattern](eb-event-patterns.md)*, or on a schedule\. For example, when an Amazon EC2 instance changes from pending to running, you can have a rule that sends the event to a Lambda function\.
 
@@ -26,3 +27,7 @@ When you build serverless applications that use EventBridge, it can be helpful t
 To organize AWS resources or to track costs in EventBridge, you can assign a custom label, or *[tag](eb-tagging.md)*, to AWS resources\. Using [tag\-based policies](eb-tag-policies.md), you can control what resources can and can’t do within EventBridge\.
 
 In addition to tag\-based policies, EventBridge supports [identity\-based](eb-use-identity-based.md) and [resource\-based](eb-use-resource-based.md) policies to control access to EventBridge\. Use identity\-based policies to control the permissions of a group, role, or user\. Use resource\-based policies to give specific permissions to each resource , such as a Lambda function or Amazon SNS topic\.
+
+**Note**  
+EventBridge was formerly called Amazon CloudWatch Events\. The default event bus and the rules you created in CloudWatch Events also display in the EventBridge console\. EventBridge uses the same CloudWatch Events API, so your code that uses the CloudWatch Events API stays the same\. New features added to EventBridge are not added to CloudWatch Events\.  
+

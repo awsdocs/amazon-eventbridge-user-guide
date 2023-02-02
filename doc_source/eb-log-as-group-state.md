@@ -133,7 +133,7 @@ You can now delete the resources that you created for this tutorial, unless you 
 
 **To delete the EventBridge rule\(s\)**
 
-1. Open the [Rules page](https://console.aws.amazon.com/events/home#/rule) of the EventBridge console\.
+1. Open the [Rules page](https://console.aws.amazon.com/events/home#/rules) of the EventBridge console\.
 
 1. Select the rule\(s\) that you created\.
 
