@@ -118,7 +118,7 @@ If you’re unsure of the exact well\-scoped permissions required to access the 
 
 1. \(Optional\) For **Additional setting \- optional**, do the following:
 
-   1. For **Batch size \- optional**, enter a maximum number of records for each batch\. The default value is 100\.
+   1. For **Batch size \- optional**, enter a maximum number of records for each batch\. The default value is 100\. If the target is  default value is Amazon SQS the maximum value is 10\. 
 
    1. For **Batch window \- optional**, enter a maximum number of seconds to gather records before proceeding\.
 
