@@ -108,6 +108,7 @@ The following table shows AWS services that generate events\. Choose the service
 | [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/monitoring-eventbridge-events.html) | Best effort | 
 | Tag changes on resources | Best effort | 
 | AWS Transit Gateway | Best effort | 
+| [Amazon Transcribe](https://docs.aws.amazon.com/transcribe/latest/dg/monitoring-events.html) | Best effort |
 | [Amazon Translate](https://docs.aws.amazon.com/translate/latest/dg/monitoring-with-eventbridge.html) | Guaranteed | 
 | [AWS Trusted Advisor](https://docs.aws.amazon.com/awssupport/latest/user/cloudwatch-events-ta.html) | Best effort | 
 | [Amazon WorkSpaces](https://docs.aws.amazon.com/workspaces/latest/adminguide/cloudwatch-events.html) | Best effort  | 
