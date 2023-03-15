@@ -59,7 +59,7 @@ Every event or batch of events received by a pipe that travel to an enrichment o
 By default, a single pipe will scale to the following maximum concurrent executions, depending on the source:
 + **DynamoDB** – The concurrent executions can climb as high as the `ParallelizationFactor` configured on the pipe multiplied by the number of shards in the stream\.
 + **Apache Kafka** – The concurrent executions can climb as high the number of partitions on the topic\.
-+ **Kinesis** – The concurrent execxutions can climb as high as the `ParallelizationFactor` configured on the pipe multiplied by the number of shards in the stream\.
++ **Kinesis** – The concurrent executions can climb as high as the `ParallelizationFactor` configured on the pipe multiplied by the number of shards in the stream\.
 + **Amazon MQ** – 5
 + **Amazon SQS** – 1250
 
