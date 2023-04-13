@@ -73,7 +73,7 @@ EventBridge has the following ways to invoke an enrichment or target:
 
 By default, EventBridge invokes enrichments synchronously because it must wait for a response from the enrichment before invoking the target\. Similarly, for pipes with ordered sources, targets are synchronously invoked because a response from the target is needed before proceeding to the next event\. 
 
-If an source doesn't enforce order, such as a standard Amazon SQS queue, EventBridge can invoke a supported target synchronously or asynchronously\. 
+If a source doesn't enforce order, such as a standard Amazon SQS queue, EventBridge can invoke a supported target synchronously or asynchronously\. 
 
 With Lambda functions and Step Functions state machines, you can configure the invocation type\.
 
